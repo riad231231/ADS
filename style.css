@@ -392,22 +392,27 @@ footer::after {
 @media (max-width: 900px) {
   .main-layout { grid-template-columns: 1fr; margin: 1.5rem 0; }
   .header-flex { flex-direction: column; text-align: center; gap: 1rem; }
-  .nav-list { gap: 0.8rem; justify-content: center; }
+  .nav-list { gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
   .nav-link { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
   .hero { height: 350px; }
-  .hero-title { font-size: 2.2rem; }
+  .hero-title { font-size: 2.2rem; word-break: break-word; }
   .hero-content p { font-size: 1.1rem !important; }
   .content-card { padding: 1.5rem; }
   h1 { font-size: 2rem; }
+  h2 { word-break: break-word; }
   .btn-group { flex-direction: column; }
   .btn { width: 100%; }
 }
 
 @media (max-width: 600px) {
-  .site-title { font-size: 1.3rem; }
-  .nav-list { gap: 0.5rem; }
+  .site-title { font-size: 1.2rem !important; }
+  .nav-list { gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
   .nav-link { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
   .hero { height: 300px; }
   .hero-title { font-size: 1.8rem; }
   .widget { padding: 1.2rem; }
+  .content-card { padding: 1.2rem; }
+  h1 { font-size: 1.8rem; word-break: break-word; }
+  h2 { font-size: 1.5rem; word-break: break-word; }
+  body { overflow-x: hidden; } /* Prevents horizontal scroll from wide elements */
 }
