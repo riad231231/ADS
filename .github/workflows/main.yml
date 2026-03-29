@@ -34,8 +34,8 @@ jobs:
           # Basic check for HTML structure in all .html files
           for file in *.html; do
             echo "Checking $file..."
-            grep -q "<!DOCTYPE html>" "$file" || (echo "$file is missing DOCTYPE" && exit 1)
-            grep -q "<html>" "$file" || (echo "$file is missing <html> tag" && exit 1)
-            grep -q "</html>" "$file" || (echo "$file is missing </html> tag" && exit 1)
+            grep -qi "<!DOCTYPE html" "$file" || (echo "$file is missing DOCTYPE" && exit 1)
+            grep -qi "<html" "$file" || (echo "$file is missing <html> tag" && exit 1)
+            grep -qi "</html>" "$file" || (echo "$file is missing </html> tag" && exit 1)
           done
           echo "All HTML files passed basic check!"
