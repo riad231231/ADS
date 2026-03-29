@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Ailes de Sénart - Club de Parapente</title>
+  <meta name="description" content="Site officiel du club de parapente Les Ailes de Sénart. Stages, sorties et gestion des risques pour les passionnés de vol libre du sud parisien.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="recources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+        <nav id="main-nav">
+          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le club</a>
+              <ul class="dropdown-content">
+                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Voler</a>
+              <ul class="dropdown-content">
+                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
+            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="recources/FV2015-P_Quillet.jpg" alt="Parapente Les Ailes de Sénart" class="hero-bg">
+    <div class="hero-content">
+      <h1 class="hero-title">Envie de prendre de la hauteur ?</h1>
+      <p style="font-size: 1.5rem; margin-bottom: 2rem; font-weight: 500;">Découvrez le plaisir du vol libre avec le club des Ailes de Sénart.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center;">
+        <a href="activites.html" class="btn btn-primary">Découvrir nos activités</a>
+        <a href="contacts.html" class="btn btn-outline" style="border-color: white; color: white;">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <strong>Accueil</strong>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <div class="main-layout">
+      
+      <!-- Zone de Contenu -->
+      <section class="content-card">
+        <h1>Bienvenue sur le site des Ailes de Sénart</h1>
+        
+        <div class="btn-group">
+          <button class="btn btn-outline" onclick="window.print()">
+            Imprimer
+          </button>
+          <button class="btn btn-outline" onclick="location.href='mailto:contact@lesailesdesenart.com'">
+            E-mail
+          </button>
+        </div>
+
+        <div class="intro-text">
+          <p>
+            Nous sommes un club de parapente du sud parisien comptant une centaine de membres. Parmi nos activités :
+          </p>
+          <ul style="margin: 1.5rem 0 1.5rem 2rem; list-style-type: square;">
+            <li>Des stages et sorties club plusieurs fois par an.</li>
+            <li>
+              <strong>Le plus souvent possible</strong> (82 jours en 2021, 76 jours en 2020, 111 jours en 2019, 141 jours en 2018...), nous nous regroupons lors de sorties improvisées pour aller voler sur les quelques sites de la région.
+            </li>
+            <li>Des pratiques innovantes en terme de gestion des risques.</li>
+            <li>Une réunion club mensuelle.</li>
+          </ul>
+          <p>
+            <em>Pour un aperçu complet de nos activités visitez les onglets "Nos activités", "Voler" et "Gestion des risques".</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- SIDEBAR WIDGETS -->
+      <aside class="sidebar">
+        
+        <!-- Module Agenda -->
+        <section class="widget">
+            <h2 class="widget-title">Agenda</h2>
+            <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">MARS 2026</div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: center;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border);">
+                  <th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td></tr>
+                <tr><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+                <tr><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td style="background: var(--primary); color:white; border-radius: 4px;">16</td><td>17</td></tr>
+                <tr><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+                <tr><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+              </tbody>
+            </table>
+        </section>
+
+        <!-- Module Dernières News -->
+        <section class="widget">
+          <h2 class="widget-title">Dernières news</h2>
+          <ul style="list-style: none; padding-left: 0;">
+            <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 5px;">
+              <a href="#" style="text-decoration: none; color: var(--text-main); font-size: 0.95rem;">Concours photos 2022: l'œil dans le viseur</a>
+            </li>
+            <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 5px;">
+              <a href="#" style="text-decoration: none; color: var(--text-main); font-size: 0.95rem;">L'offre Formation de la ligue</a>
+            </li>
+            <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 5px;">
+              <a href="#" style="text-decoration: none; color: var(--text-main); font-size: 0.95rem;">Examen théorique (pilote, confirm, QBI) 07 Avril</a>
+            </li>
+            <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 5px;">
+              <a href="#" style="text-decoration: none; color: var(--text-main); font-size: 0.95rem;">Covid19 et Vol Libre</a>
+            </li>
+            <li>
+              <a href="#" style="text-decoration: none; color: var(--text-main); font-size: 0.95rem;">Volet final trilogie ateliers cross</a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Module Connexion -->
+        <section class="widget">
+          <h2 class="widget-title">Connexion</h2>
+          <form onsubmit="event.preventDefault(); alert('Tentative de connexion...')">
+            <div class="form-group">
+              <label for="username">Identifiant</label>
+              <input type="text" id="username" placeholder="votre identifiant">
+            </div>
+            <div class="form-group">
+              <label for="password">Mot de passe</label>
+              <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" id="remember">
+              <label for="remember" style="margin-bottom: 0; font-weight: normal;">Se souvenir de moi</label>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" type="submit">Connexion</button>
+          </form>
+          <div style="margin-top: 15px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 5px;">
+            <a href="#" style="color: var(--primary);">Identifiant oublié ?</a>
+            <a href="#" style="color: var(--primary);">Mot de passe oublié ?</a>
+          </div>
+        </section>
+
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

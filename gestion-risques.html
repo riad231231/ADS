@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Risques - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .risk-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: var(--radius);
+      margin-bottom: 2.5rem;
+    }
+    .risk-card h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--bg-subtle);
+      padding-bottom: 0.5rem;
+    }
+    .objective-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .objective-item {
+      background: var(--bg-subtle);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border-top: 4px solid var(--secondary);
+    }
+    .objective-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: var(--secondary);
+    }
+    .guide-box {
+      background: #F8FAFC;
+      border-left: 5px solid var(--accent);
+      padding: 2rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+    }
+    .action-list {
+      list-style: none;
+      padding: 0;
+    }
+    .action-list li {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .action-list li::before {
+      content: "-";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="recources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+        <nav id="main-nav">
+          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le club</a>
+              <ul class="dropdown-content">
+                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Voler</a>
+              <ul class="dropdown-content">
+                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
+            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > Voler > <strong>Gestion des risques</strong>
+  </div>
+
+  <main class="container">
+    <div class="main-layout">
+      
+      <section class="content-card">
+        <h1>Gestion et Prévention des Risques</h1>
+        <p class="lead" style="font-size: 1.2rem; margin-bottom: 2.5rem; color: var(--text-muted);">
+          Les risques d'accidents font partie de notre pratique. Pour les minimiser, le club des Ailes de Sénart met en place plusieurs actions concrètes.
+        </p>
+
+        <div class="risk-card">
+          <h2>Actions de Prévention du Club</h2>
+          <ul class="action-list">
+            <li><strong>Aides financières à la formation :</strong> Soutien pour les stages SIV, journées PSC1, stages sécu en école ou sessions tyrolienne.</li>
+            <li><strong>Partage d'expertise :</strong> Réunions thématiques, page de REX (retours d'expériences), sorties encadrées, sessions de pliage de secours et réglage de sellettes.</li>
+            <li><strong>Vigilance partagée :</strong> Promotion du "Tu me check ?" pour prévenir les erreurs individuelles au décollage.</li>
+            <li><strong>Kit Sécurité :</strong> Un équipement spécifique proposé aux membres pour s'assurer en cas d'arbrissage et éviter le suraccident.</li>
+          </ul>
+
+          <div style="margin-top: 2rem; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border);">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+              <iframe 
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
+                src="https://www.youtube-nocookie.com/embed/ydDgrXxwBAU" 
+                title="Démonstration Kit Sécurité AG 2023" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p style="background: var(--bg-subtle); padding: 0.8rem; margin: 0; font-size: 0.85rem; text-align: center; color: var(--text-muted);">
+              Vidéo : Démonstration du Kit Sécurité (AG 2023)
+            </p>
+          </div>
+        </div>
+
+        <div class="risk-card" style="border-top: 5px solid var(--secondary);">
+          <div style="display: flex; gap: 2rem; align-items: start; margin-bottom: 2rem;">
+            <div style="flex-shrink: 0;">
+              <img src="recources/Jean-Marc-Galan-portrait-1-e1460390978110.jpg" alt="Jean-Marc Galan" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 3px solid var(--secondary); box-shadow: var(--shadow);">
+              <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 5px;">Crédit : Jean-Marc Galan</p>
+            </div>
+            <div>
+              <h2 style="border: none; margin-bottom: 1rem;">Sécurité en Vol Libre : Misez sur les "Réunions Confesses"</h2>
+              <p>
+                Dans le monde du parapente, la sécurité passe par le partage. C'est l'essence des <strong>séances confesses</strong>. Organisées lors de nos réunions mensuelles, ces sessions de 15 à 30 minutes offrent un espace informel où les pilotes partagent leurs incidents de vol afin d'en discuter collectivement.
+              </p>
+            </div>
+          </div>
+          <p style="font-style: italic; color: var(--text-muted);">
+            Soutenue par la commission sécurité de la FFVL, cette démarche repose sur l'intelligence collective.
+          </p>
+
+          <div class="objective-grid">
+            <div class="objective-item">
+              <h3>Augmenter le capital sécurité</h3>
+              <p>Enrichir les connaissances de chacun grâce aux scénarios d'accidents vécus par les autres membres.</p>
+            </div>
+            <div class="objective-item">
+              <h3>Briser le tabou</h3>
+              <p>Développer une véritable culture du retour d'expérience et lutter contre le déni face aux erreurs de pilotage.</p>
+            </div>
+            <div class="objective-item">
+              <h3>Apprendre ensemble</h3>
+              <p>Transformer une simple mésaventure individuelle en un puissant outil d'apprentissage pour tout le club.</p>
+            </div>
+          </div>
+
+          <div class="guide-box">
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary);">Le "Guide du Confesseur"</h3>
+            <p style="margin-bottom: 1rem;">Voici les règles d'or pour réussir l'animation de ces séances :</p>
+            <ul style="padding-left: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+              <li><strong>Instaurez un climat de confiance :</strong> Mettez tout le monde à l'aise, usez d'humour et ne dévalorisez jamais un pilote qui partage une erreur.</li>
+              <li><strong>Montrez l'exemple :</strong> Sollicitez d'abord les pilotes expérimentés. Cela prouve que les incidents n'arrivent pas qu'aux "mauvais pilotes".</li>
+              <li><strong>Célébrez les petits incidents :</strong> Un oubli lors de la pré-vol ou une aérologie mal comprise sont des sources d'apprentissage majeures.</li>
+              <li><strong>Nourrissez le débat :</strong> Posez des questions clés : "Comment l'éviter ?", "Avez-vous déjà vécu cela ?".</li>
+              <li><strong>Prenez de la hauteur :</strong> Reliez l'incident à des causes fréquentes (ergonomie, réglages, stress) pour une perspective globale.</li>
+              <li><strong>Le Plan B :</strong> Si personne n'ose se lancer, utilisez des vidéos d'incidents (Jérôme Canaud) pour lancer la discussion.</li>
+            </ul>
+          </div>
+
+          <p style="margin-top: 2rem; font-weight: 600; text-align: center; color: var(--secondary);">
+            La réussite d'une réunion confesse ? Quand le pilote repart fier d'avoir fait progresser toute sa communauté.
+          </p>
+        </div>
+
+      </section>
+
+      <aside class="sidebar">
+        <section class="widget">
+           <h2 class="widget-title">Tableau des REX</h2>
+           <p style="font-size: 0.9rem; margin-bottom: 1rem;">Consultez la base de données partagée des retours d'expériences (incidents/accidents).</p>
+           <a href="https://docs.google.com/spreadsheets/d/1y4klSqhKMyilFxX5BAi-m0o-cwnsu0wE/edit?gid=194466731#gid=194466731" target="_blank" class="btn" style="width: 100%; display: block; text-align: center; background: var(--primary); color: white;">Accéder au Tableau</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

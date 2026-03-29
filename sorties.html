@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos sorties club - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .stats-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+    }
+    .stats-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 1.1rem;
+    }
+    .stats-item:last-child {
+      border-bottom: none;
+    }
+    .year-label {
+      font-weight: 800;
+      color: var(--secondary);
+    }
+    .days-badge {
+      background: var(--primary);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      min-width: 100px;
+      text-align: center;
+    }
+    .rules-box {
+      background: #F0F9FF;
+      border: 1px dashed var(--primary);
+      padding: var(--spacing-md);
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="recources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+        <nav id="main-nav">
+          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le club</a>
+              <ul class="dropdown-content">
+                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Voler</a>
+              <ul class="dropdown-content">
+                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
+            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > Voler > <strong>Nos sorties</strong>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <div class="main-layout">
+      
+      <section class="content-card">
+        <h1>Nos sorties club</h1>
+        
+        <div class="rules-box">
+          <p style="margin-bottom: 0.5rem; color: var(--primary); font-weight: bold;">Règles de validation :</p>
+          <p>Pour être reportée dans ce tableau une sortie doit avoir été annoncée et au moins 2 membres des ADS doivent y avoir participé.</p>
+          <p style="margin-top: 0.8rem; font-style: italic;">Note : On ajoute la sortie même si cela n'a pas volé (météo). Merci aux pilotes participant aux sorties de remplir ce tableau.</p>
+        </div>
+
+        <h2 style="font-size: 1.4rem; color: var(--secondary);">Historique des sorties</h2>
+        
+        <ul class="stats-list">
+          <li class="stats-item"><span class="year-label">Sorties 2023</span> <span class="days-badge">123 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2022</span> <span class="days-badge">101 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2021</span> <span class="days-badge">82 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2020</span> <span class="days-badge">76 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2019</span> <span class="days-badge">112 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2018</span> <span class="days-badge">141 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2017</span> <span class="days-badge">139 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2016</span> <span class="days-badge">113 jours</span></li>
+          <li class="stats-item"><span class="year-label">Sorties 2015</span> <span class="days-badge">127 jours</span></li>
+        </ul>
+      </section>
+
+      <aside class="sidebar">
+        <section class="widget">
+          <h2 class="widget-title">Connexion</h2>
+          <form>
+            <div class="form-group">
+              <label>Identifiant</label>
+              <input type="text">
+            </div>
+            <button class="btn" style="width: 100%; background: var(--primary); color: white;">Me connecter</button>
+          </form>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page ↑</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

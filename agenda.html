@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .agenda-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .event-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      display: flex;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .event-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .event-date-box {
+      background: #f1f5f9;
+      color: #64748b;
+      min-width: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .date-day {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .date-month {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin: 0.2rem 0;
+    }
+    .date-year {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+    .event-content {
+      padding: 1.5rem 2rem;
+      flex-grow: 1;
+    }
+    .event-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .event-title {
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-bottom: 0.8rem;
+    }
+    .event-info {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .event-info strong {
+      color: var(--text);
+    }
+    .admin-notice {
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      .event-card {
+        flex-direction: column;
+      }
+      .event-date-box {
+        flex-direction: row;
+        gap: 1rem;
+        min-width: 100%;
+        padding: 0.8rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .date-day { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="recources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+        <nav id="main-nav">
+          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le club</a>
+              <ul class="dropdown-content">
+                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Voler</a>
+              <ul class="dropdown-content">
+                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
+            <li class="nav-item"><a href="agenda.html" class="nav-link active">Agenda</a></li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Agenda</strong>
+  </div>
+
+  <main class="container">
+    <div class="agenda-container">
+      <h1 style="margin-bottom: 2rem;">Évènements à venir</h1>
+
+      <!-- NOTICE POUR L'ADMIN (Simulée) -->
+      <div class="admin-notice">
+        <div>
+          <strong>Note :</strong> L'ajout d'évènements se fait via votre interface de gestion sécurisée. 
+          Pour les besoins de démonstration, les dates ci-dessous sont synchronisées avec le fichier de données du club.
+        </div>
+      </div>
+
+      <!-- LISTE DES ÉVÈNEMENTS -->
+      <div id="events-list">
+        <!-- Les évènements seront injectés par JS pour une mise à jour facile -->
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem; font-size: 0.9rem; color: var(--text-muted);">
+        Propulsé par le système de gestion interne des Ailes de Sénart
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script>
+    // LISTE DES ÉVÈNEMENTS (Facile à modifier ici ou via un fichier JSON externe)
+    const events = [
+      {
+        day: "14",
+        month: "Avr",
+        year: "2026",
+        tag: "LADS",
+        title: "Réunion Club",
+        location: "Maison des associations Moissy",
+        description: "Réunion mensuelle pour discuter des activités du club et des prochaines sorties."
+      },
+      {
+        day: "19",
+        month: "Mai",
+        year: "2026",
+        tag: "LADS",
+        title: "Réunion Club",
+        location: "Maison des associations Moissy",
+        description: "Réunion mensuelle de préparation de la saison estivale."
+      },
+      {
+        day: "23",
+        month: "Jui",
+        year: "2026",
+        tag: "LADS",
+        title: "Réunion Club",
+        location: "Maison des associations Moissy",
+        description: "Bilan des premières sorties et organisation des stages."
+      },
+       {
+        day: "08",
+        month: "Sep",
+        year: "2026",
+        tag: "LADS",
+        title: "Réunion Club",
+        location: "Maison des associations Moissy",
+        description: "Réunion mensuelle de rentrée."
+      },
+       {
+        day: "06",
+        month: "Oct",
+        year: "2026",
+        tag: "LADS",
+        title: "Réunion Club",
+        location: "Maison des associations Moissy",
+        description: "Réunion mensuelle d'automne."
+      }
+    ];
+
+    function renderEvents() {
+      const list = document.getElementById('events-list');
+      list.innerHTML = events.map(event => `
+        <div class="event-card">
+          <div class="event-date-box">
+            <span class="date-day">${event.day}</span>
+            <span class="date-month">${event.month}</span>
+            <span class="date-year">${event.year}</span>
+          </div>
+          <div class="event-content">
+            <span class="event-tag">${event.tag}</span>
+            <h2 class="event-title">${event.title}</h2>
+            <div class="event-info">
+              <p><strong>Lieu :</strong> ${event.location}</p>
+              <p>${event.description}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderEvents();
+  </script>
+</body>
+</html>

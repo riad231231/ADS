@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secours & Sécurité - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .safety-item {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      border-left: 5px solid var(--primary);
+    }
+    .safety-item h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .alert-box {
+      background: #fef2f2;
+      border: 2px solid #ef4444;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+    }
+    .alert-box h2 {
+      color: #b91c1c;
+      margin-top: 0;
+    }
+    .kit-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+    .kit-card {
+      background: var(--bg-subtle);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .kit-card strong {
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="recources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+        <nav id="main-nav">
+          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le club</a>
+              <ul class="dropdown-content">
+                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Voler</a>
+              <ul class="dropdown-content">
+                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
+            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > Voler > <strong>Secours & Sécurité</strong>
+  </div>
+
+  <main class="container">
+    <div class="main-layout">
+      
+      <section class="content-card">
+        <h1>Guide de Sécurité et de Secours</h1>
+        <p class="lead" style="font-size: 1.2rem; margin-bottom: 2.5rem; color: var(--text-muted);">
+          La Fédération Française de Vol Libre (FFVL) a établi des consignes strictes pour protéger les pilotes et faciliter le travail des secouristes. Voici les règles essentielles.
+        </p>
+
+        <div class="alert-box">
+          <h2>Intervention d'un hélicoptère</h2>
+          <p><strong>Priorité absolue aux secours :</strong> Lorsqu'un hélicoptère approche, vous ne devez <strong>plus décoller</strong> pendant toute la durée de l'intervention.</p>
+          <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+            <li><strong>Zone d'interdiction :</strong> Respectez 500m horizontalement autour de l'accident. Interdiction illimitée en hauteur.</li>
+            <li><strong>Pourquoi ?</strong> Pour permettre les manœuvres et éviter les turbulences de sillage, extrêmement dangereuses.</li>
+          </ul>
+        </div>
+
+        <div class="safety-item">
+          <h2>Comment donner l'alerte ?</h2>
+          <p>Gardez toujours votre téléphone accessible dans votre sellette. En cas d'urgence :</p>
+          <ol style="margin-top: 1rem; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+            <li><strong>Appelez le 112</strong>.</li>
+            <li><strong>Basculez votre radio sur la fréquence FFVL (143,9875 MHz)</strong> pour être joingnable par l'équipage.</li>
+            <li><strong>Transmettez votre position GPS</strong> exacte.</li>
+            <li>Restez attentif et prêt à répondre aux secouristes.</li>
+          </ol>
+        </div>
+
+        <div class="safety-item" style="border-left-color: var(--accent);">
+          <h2>Branché ou en falaise</h2>
+          <p>La règle d'or : <strong>ne prenez aucun risque</strong> en essayant de redescendre seul.</p>
+          <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+            <li><strong>Si vous avez besoin d'aide :</strong> Attachez-vous pour vous sécuriser. Utilisez le signal visuel international (bras levés en "Y").</li>
+            <li><strong>Si vous n'avez PAS besoin d'aide :</strong> Appelez quand même le 112 pour signaler votre position et éviter une opération inutile. Utilisez le signal de refus (bras en diagonale).</li>
+          </ul>
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <img src="recources/sos.jpg" alt="Signaux visuels de secours" style="max-width: 100%; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow);">
+          </div>
+        </div>
+
+        <div class="safety-item">
+          <h2>Le Kit de secours personnel</h2>
+          <p>Équipement de survie recommandé par la FFVL, toujours accessible :</p>
+          <div class="kit-list">
+            <div class="kit-card">
+              <strong>Sangle & Mousqueton</strong>
+              <span>Dyneema (120 cm) pour se "vacher" et sécuriser sa position.</span>
+            </div>
+            <div class="kit-card">
+              <strong>Cordelette de 20m</strong>
+              <span>Pour hisser le matériel des secouristes jusqu'à vous.</span>
+            </div>
+            <div class="kit-card">
+              <strong>Couteau</strong>
+              <span>Pour lester la cordelette ou se dégager en urgence.</span>
+            </div>
+            <div class="kit-card">
+              <strong>Sifflet</strong>
+              <span>Pour signaler facilement votre position par le son.</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <aside class="sidebar">
+        <section class="widget">
+          <h2 class="widget-title">Liens FFVL</h2>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">Consultez les fiches de sécurité officielles de la fédération.</p>
+          <a href="https://federation.ffvl.fr" target="_blank" class="btn" style="width: 100%; display: block; text-align: center; background: var(--secondary); color: white;">Site FFVL</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page ↑</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

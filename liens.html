@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liens Utiles - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .category-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+    }
+    .category-card h2 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .category-card h3 {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-top: 1.2rem;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .link-item {
+      display: block;
+      padding: 0.6rem 0;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--bg-subtle);
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .link-item:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    .link-item:last-child {
+      border-bottom: none;
+    }
+    .link-item span {
+      font-weight: 600;
+    }
+    .category-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="recources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+        <nav id="main-nav">
+          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le club</a>
+              <ul class="dropdown-content">
+                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Voler</a>
+              <ul class="dropdown-content">
+                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="liens.html" class="nav-link active">Liens</a></li>
+            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > Voler > <strong>Liens utiles</strong>
+  </div>
+
+  <main class="container">
+    <h1 style="margin-bottom: 3rem; text-align: center;">Tableau de Bord du Pilote</h1>
+
+    <div class="links-grid">
+      
+      <!-- CATEGORY: METEO -->
+      <div class="category-card">
+        <h2>Météo & Prévisions</h2>
+        
+        <h4>Généralistes</h4>
+        <a href="https://www.meteociel.fr/" target="_blank" class="link-item"><span>Météociel</span> (Annecy)</a>
+        <a href="https://meteofrance.com/" target="_blank" class="link-item"><span>Météo-France</span></a>
+        <a href="https://www.meteoblue.com/" target="_blank" class="link-item"><span>Météoblue</span> (Multimodel)</a>
+
+        <h4>Spécialisés Vol Libre</h4>
+        <a href="https://meteo-parapente.com/" target="_blank" class="link-item"><span>Météo-Parapente</span></a>
+        <a href="https://www.velivole.fr/" target="_blank" class="link-item"><span>Velivole</span></a>
+        <a href="https://www.topmeteo.eu/" target="_blank" class="link-item"><span>Topmeteo</span> (Abonnés)</a>
+
+        <h4>Vent & Dynamique</h4>
+        <a href="https://www.windy.com/" target="_blank" class="link-item"><span>Windy</span></a>
+        <a href="https://www.windguru.cz/" target="_blank" class="link-item"><span>Windguru</span></a>
+        <a href="https://www.windfinder.com/" target="_blank" class="link-item"><span>Windfinder</span></a>
+        <a href="https://www.xcweather.co.uk/" target="_blank" class="link-item"><span>XCWeather</span></a>
+      </div>
+
+      <!-- CATEGORY: BALISES & TERRAIN -->
+      <div class="category-card">
+        <h2>Balises & Terrain</h2>
+        
+        <h4>Temps Réel & Balises</h4>
+        <a href="http://www.balisemeteo.com/" target="_blank" class="link-item"><span>Balisemeteo.com</span> (FFVL)</a>
+        <a href="https://www.spotair.mobi/" target="_blank" class="link-item"><span>Spotair</span></a>
+        <a href="https://pioupiou.com/fr/map" target="_blank" class="link-item"><span>Pioupiou Map</span></a>
+
+        <h4>Brises de Vallée</h4>
+        <a href="https://www.google.com/search?q=brises+vallee+annecy" target="_blank" class="link-item"><span>Annecy</span></a>
+        <a href="https://www.google.com/search?q=brises+vallee+bauges" target="_blank" class="link-item"><span>Les Bauges</span></a>
+        <a href="https://www.google.com/search?q=brises+vallee+savoie+isere" target="_blank" class="link-item"><span>Savoie / Isère</span></a>
+
+        <h4>Outils Maritimes</h4>
+        <a href="https://maree.shom.fr/" target="_blank" class="link-item"><span>Horaires des marées</span> (SHOM)</a>
+      </div>
+
+      <!-- CATEGORY: REGLEMENTATION -->
+      <div class="category-card">
+        <h2>Réglementation & Accès</h2>
+        
+        <h4>Infos & Fermetures</h4>
+        <a href="https://parapente.ffvl.fr/annuaire/ligue/1" target="_blank" class="link-item"><span>Ligue PIDF</span></a>
+        <a href="http://paff.free.fr/" target="_blank" class="link-item"><span>Synthèse Piafs Migrateurs</span></a>
+        <a href="https://intranet.ffvl.fr/" target="_blank" class="link-item"><span>Intranet FFVL</span></a>
+
+        <h4>Sensibilisation</h4>
+        <a href="https://haizehegoa.fr/" target="_blank" class="link-item"><span>Soaring dunaire</span> (Haize Hegoa)</a>
+      </div>
+
+      <!-- CATEGORY: TECHNIQUE -->
+      <div class="category-card">
+        <h2>Technique & Matériel</h2>
+        
+        <h4>Formation & Tutos</h4>
+        <a href="https://parapente.ffvl.fr/tutos" target="_blank" class="link-item"><span>Tutos FFVL</span></a>
+        <a href="https://www.youtube.com/watch?v=ydDgrXxwBAU" target="_blank" class="link-item"><span>Simulation Amérissage</span></a>
+
+        <h4>Entretien</h4>
+        <a href="http://www.chantduvario.com/" target="_blank" class="link-item"><span>Le Chant du Vario</span></a>
+
+        <h4>Nœuds de suspentage</h4>
+        <a href="http://www.noeuds-animes.com/" target="_blank" class="link-item"><span>Nœuds Animés</span> (Général)</a>
+        <a href="http://www.noeuds-animes.com/pages/0noeud_cabestan.php" target="_blank" class="link-item"><span>Cabestan</span></a>
+        <a href="http://www.noeuds-animes.com/pages/0noeud_chaise.php" target="_blank" class="link-item"><span>Nœud de Chaise</span></a>
+      </div>
+
+      <!-- CATEGORY: COMMUNAUTÉ -->
+      <div class="category-card">
+        <h2>Communauté & Apps</h2>
+        
+        <h4>Applications Mobiles</h4>
+        <a href="https://xcsoar.org/" target="_blank" class="link-item"><span>XCSoar</span></a>
+        <a href="https://www.google.com/search?q=flyme+parapente" target="_blank" class="link-item"><span>FlyMe</span></a>
+        <a href="https://xctrack.org/" target="_blank" class="link-item"><span>XCTrack</span></a>
+
+        <h4>Clubs Voisins</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted); padding: 0.6rem 0;">
+          Le Thermique Francilien, Ride and Cow, Les Crécerelles, Voiles en vue, Les piafs migrateurs.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
