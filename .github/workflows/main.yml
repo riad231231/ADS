@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image (Dry Run)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: ads-site:latest
+
+  lint_html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Lint HTML files
+        run: |
+          # Basic check for HTML structure in all .html files
+          for file in *.html; do
+            echo "Checking $file..."
+            grep -q "<!DOCTYPE html>" "$file" || (echo "$file is missing DOCTYPE" && exit 1)
+            grep -q "<html>" "$file" || (echo "$file is missing <html> tag" && exit 1)
+            grep -q "</html>" "$file" || (echo "$file is missing </html> tag" && exit 1)
+          done
+          echo "All HTML files passed basic check!"
