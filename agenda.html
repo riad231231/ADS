@@ -3,8 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agenda - Les Ailes de Sénart</title>
+  <title>Agenda des Sorties Parapente - Les Ailes de Sénart</title>
+  <meta name="description" content="Calendrier des sorties, réunions et événements du club de parapente Les Ailes de Sénart. Ne manquez aucun vol !">
+  <link rel="canonical" href="https://www.ailesdesenart.com/agenda.html">
   <link rel="stylesheet" href="style.css">
+  
+  <!-- Open Graph / SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ailesdesenart.com/agenda.html">
+  <meta property="og:title" content="Agenda des Sorties Parapente - Les Ailes de Sénart">
+  <meta property="og:description" content="Calendrier des sorties et événements du club.">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "breadcrumb": "Accueil > Agenda",
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Prochaines sorties parapente",
+      "description": "Événements et sorties organisés par le club Les Ailes de Sénart"
+    }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -154,10 +177,13 @@
   </header>
 
   <div class="container breadcrumb">
-    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Agenda</str  <main class="container">
-    <div class="agenda-container">
-      <h1 style="margin-bottom: 2rem;">Évènements à venir</h1>
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Agenda</strong>
+  </div>
 
+  <main class="container">
+    <h1 style="font-size: 2.2rem; margin-bottom: 2rem; color: var(--primary);">Agenda & Événements du Club</h1>
+
+    <div class="agenda-container" id="eventsContainer">
       <!-- LISTE DES ÉVÈNEMENTS -->
       <div id="events-list">
         <p style="text-align: center; color: var(--text-muted);">Chargement de l'agenda...</p>
