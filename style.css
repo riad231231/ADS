@@ -293,27 +293,44 @@ h2 {
 
 @media (max-width: 768px) {
   .hero {
-    aspect-ratio: 16 / 9; /* More vertical for mobile */
+    aspect-ratio: auto; /* Let padding define height on mobile */
     height: auto;
-    padding: 3rem 1rem;
+    min-height: 350px;
+    padding: 6rem 1rem 4rem; /* More top padding to clear sticky header */
     background-attachment: scroll !important;
   }
   .hero-content {
     padding: 0 1rem;
   }
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem; /* Smaller more condensed title */
+    margin-bottom: 1rem;
   }
   .hero p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 0; /* Removing margin since buttons are gone */
+    line-height: 1.5;
   }
+  /* Hide CTA buttons on mobile as requested */
   .hero .hero-content div[style*="display: flex"] {
-    flex-direction: column;
-    width: 100%;
+    display: none !important;
   }
-  .hero .btn {
-    width: 100%;
+  
+  /* Compact Menu for Mobile */
+  .nav-list {
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .logo img {
+    height: 40px; /* Smaller logo on mobile */
+  }
+  .site-title {
+    font-size: 1.2rem;
   }
 }
 
