@@ -205,6 +205,31 @@
         </section>
 
         <section class="admin-card">
+            <h2 style="margin-bottom: 1.5rem; color: var(--admin-primary);">Nouvelle Sortie Club</h2>
+            <form id="sortieForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="admin-label">Date (Optionnel)</label>
+                        <input type="date" id="sortieDate" class="admin-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="admin-label">Site de vol (Optionnel)</label>
+                        <input type="text" id="sortieSite" class="admin-input" placeholder="ex: Jeufosse, Octeville...">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="admin-label">Nombre de jours validés</label>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <button type="button" onclick="changeDays(-1)" class="btn-delete" style="border-radius: 8px; width: 50px; height: 50px; font-size: 1.5rem;">-</button>
+                            <input type="number" id="sortieDays" class="admin-input" value="1" style="text-align: center; font-size: 1.2rem; width: 80px;">
+                            <button type="button" onclick="changeDays(1)" class="btn-add" style="width: 50px; height: 50px; font-size: 1.5rem; border-radius: 8px; padding: 0;">+</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-add" style="margin-top: 1.5rem;">Enregistrer la sortie</button>
+            </form>
+        </section>
+
+        <section class="admin-card">
             <h2 style="margin-bottom: 1.5rem; color: var(--admin-secondary);">Ajouter un événement (Agenda)</h2>
             <form id="eventForm">
                 <div class="form-grid">
@@ -229,14 +254,18 @@
             </form>
         </section>
 
-        <div class="list-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="list-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;">
             <div class="event-list">
                 <h2 style="margin-bottom: 1.5rem; color: white;">News publiées</h2>
                 <div id="newsContainer"><!-- Loaded here --></div>
             </div>
             <div class="event-list">
-                <h2 style="margin-bottom: 1.5rem; color: white;">Événements programmés</h2>
+                <h2 style="margin-bottom: 1.5rem; color: white;">Agenda</h2>
                 <div id="eventsContainer"><!-- Loaded here --></div>
+            </div>
+            <div class="event-list">
+                <h2 style="margin-bottom: 1.5rem; color: white;">Sorties (Récent)</h2>
+                <div id="sortiesContainer"><!-- Loaded here --></div>
             </div>
         </div>
     </div>
@@ -345,8 +374,57 @@
             return div.innerHTML;
         }
 
+        // SORTIES MANAGEMENT
+        function changeDays(val) {
+            const input = document.getElementById('sortieDays');
+            input.value = Math.max(1, parseInt(input.value) + val);
+        }
+
+        function getSorties() { return JSON.parse(localStorage.getItem('ads_sorties_list') || '[]'); }
+        function saveSorties(sorties) {
+            localStorage.setItem('ads_sorties_list', JSON.stringify(sorties));
+            renderSorties();
+        }
+
+        function renderSorties() {
+            const sorties = getSorties();
+            const container = document.getElementById('sortiesContainer');
+            if (sorties.length === 0) { container.innerHTML = '<p style="color: #64748B;">Aucune sortie récente.</p>'; return; }
+            container.innerHTML = sorties.slice(0, 10).map(s => `
+                <div class="event-item">
+                    <div class="event-info">
+                        <h3>${escapeHtml(s.site || 'Sortie Club')}</h3>
+                        <p>${s.date ? formatDate(s.date) : 'Date non précisée'} — <strong>${s.days} jour(s)</strong></p>
+                    </div>
+                    <div class="event-actions">
+                        <button type="button" class="btn-delete" onclick="window.deleteSortie('${s.id}')" title="Supprimer"><i class="fas fa-trash-can"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('sortieForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const sorties = getSorties();
+            sorties.unshift({
+                id: Date.now().toString(),
+                date: document.getElementById('sortieDate').value,
+                site: document.getElementById('sortieSite').value,
+                days: parseInt(document.getElementById('sortieDays').value)
+            });
+            saveSorties(sorties);
+            document.getElementById('sortieForm').reset();
+            document.getElementById('sortieDays').value = 1;
+        });
+
+        window.deleteSortie = function(id) {
+            const sorties = getSorties().filter(s => s.id !== id);
+            saveSorties(sorties);
+        };
+
         renderNews();
         renderEvents();
+        renderSorties();
     </script>
 </body>
 </html>

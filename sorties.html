@@ -18,24 +18,25 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
-      border-bottom: 1px solid var(--border);
-      font-size: 1.1rem;
+      padding: 0.7rem 0; /* Finer spacing */
+      border-bottom: 1px solid rgba(0,0,0,0.05); /* Very subtle line */
+      font-size: 0.95rem; /* Smaller font */
     }
     .stats-item:last-child {
       border-bottom: none;
     }
     .year-label {
-      font-weight: 800;
-      color: var(--secondary);
+      font-weight: 500; /* Less bold for finesse */
+      color: var(--text-main);
     }
     .days-badge {
-      background: var(--primary);
-      color: white;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-weight: bold;
-      min-width: 100px;
+      background: rgba(var(--primary-rgb), 0.1); /* Subtle background */
+      color: var(--primary);
+      padding: 0.2rem 0.8rem;
+      border-radius: 4px; /* Less rounded for a technical look */
+      font-weight: 700;
+      font-size: 0.85rem;
+      min-width: 80px;
       text-align: center;
     }
     .rules-box {
@@ -117,30 +118,96 @@
 
         <h2 style="font-size: 1.4rem; color: var(--secondary);">Historique des sorties</h2>
         
-        <ul class="stats-list">
-          <li class="stats-item"><span class="year-label">Sorties 2023</span> <span class="days-badge">123 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2022</span> <span class="days-badge">101 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2021</span> <span class="days-badge">82 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2020</span> <span class="days-badge">76 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2019</span> <span class="days-badge">112 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2018</span> <span class="days-badge">141 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2017</span> <span class="days-badge">139 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2016</span> <span class="days-badge">113 jours</span></li>
-          <li class="stats-item"><span class="year-label">Sorties 2015</span> <span class="days-badge">127 jours</span></li>
+        <ul class="stats-list" id="stats-list-container">
+          <!-- Dynamically loaded -->
+          <li class="stats-item"><p style="color: var(--text-muted);">Chargement de l'historique...</p></li>
         </ul>
+
+        <script>
+          function renderSortiesStats() {
+            const container = document.getElementById('stats-list-container');
+            const historical = {
+              2023: 123,
+              2022: 101,
+              2021: 82,
+              2020: 76,
+              2019: 112,
+              2018: 141,
+              2017: 139,
+              2016: 113,
+              2015: 127
+            };
+
+            // Get dynamic sorties from localStorage
+            const dynamicSorties = JSON.parse(localStorage.getItem('ads_sorties_list') || '[]');
+            
+            // Sum by year
+            const stats = { ...historical };
+            dynamicSorties.forEach(s => {
+              if (s.date) {
+                const year = new Date(s.date).getFullYear();
+                stats[year] = (stats[year] || 0) + (s.days || 1);
+              }
+            });
+
+            // Sort years descending
+            const sortedYears = Object.keys(stats).sort((a, b) => b - a);
+
+            container.innerHTML = sortedYears.map(year => `
+              <li class="stats-item">
+                <span class="year-label">Sorties ${year}</span> 
+                <span class="days-badge">${stats[year]} jours</span>
+              </li>
+            `).join('');
+          }
+          
+          document.addEventListener('DOMContentLoaded', renderSortiesStats);
+        </script>
       </section>
 
       <aside class="sidebar">
-        <section class="widget">
-          <h2 class="widget-title">Connexion</h2>
-          <form>
-            <div class="form-group">
-              <label>Identifiant</label>
-              <input type="text">
+        <section class="widget" id="login-widget">
+          <h2 class="widget-title">Espace Membre</h2>
+          <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.4;">
+              Accédez à l'interface de gestion du club pour mettre à jour l'agenda et les news.
+            </p>
+            <form id="sidebarLoginForm">
+              <div class="form-group">
+                <input type="text" id="side-username" placeholder="Identifiant" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.8rem;">
+              </div>
+              <div class="form-group">
+                <input type="password" id="side-password" placeholder="Mot de passe" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 1rem;">
+              </div>
+              <button class="btn btn-primary" style="width: 100%; padding: 0.8rem; font-weight: 800; letter-spacing: 0.05em;" type="submit">
+                S'AUTHENTIFIER
+              </button>
+            </form>
+            <div id="login-status" style="margin-top: 10px; font-size: 0.8rem; color: #ef4444; display: none; text-align: center;">
+              Identifiants incorrects.
             </div>
-            <button class="btn" style="width: 100%; background: var(--primary); color: white;">Me connecter</button>
-          </form>
+          </div>
         </section>
+
+        <script>
+          const loginForm = document.getElementById('sidebarLoginForm');
+          if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              const u = document.getElementById('side-username').value;
+              const p = document.getElementById('side-password').value;
+              
+              if (u && p) {
+                localStorage.setItem('ads_logged_in', 'true');
+                window.location.href = 'admin/index.html';
+              } else {
+                const status = document.getElementById('login-status');
+                if (status) status.style.display = 'block';
+              }
+              loginForm.reset();
+            });
+          }
+        </script>
       </aside>
     </div>
   </main>
