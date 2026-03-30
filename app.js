@@ -14,19 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Simulation de Connexion (Accessibilité : feedback immédiat)
-  const loginForm = document.querySelector('form');
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = document.getElementById('username')?.value;
-      if (username) {
-        alert(`Tentative de connexion pour : ${username}. (Simulation)`);
-      } else {
-        alert('Veuillez remplir les champs de connexion.');
-      }
-    });
-  }
+
 
   // 3. Navigation Dropdown (Mobile support & Accessibility)
   // Sur mobile, on pourrait ajouter un menu burger ici si nécessaire

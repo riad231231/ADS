@@ -117,12 +117,12 @@
           </div>
         </a>
         
-        <nav id="main-nav">
-          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+                <nav id="main-nav">
+          <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
             <li class="nav-item" style="position: relative;">
-              <a href="#" class="nav-link">Le club</a>
+              <a href="#" class="nav-link">Club</a>
               <ul class="dropdown-content">
                 <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
                 <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
@@ -132,6 +132,7 @@
             <li class="nav-item" style="position: relative;">
               <a href="#" class="nav-link">Voler</a>
               <ul class="dropdown-content">
+                <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
                 <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
                 <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
                 <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
@@ -141,34 +142,25 @@
                 <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
               </ul>
             </li>
+            <li class="nav-item"><a href="media.html" class="nav-link">Média</a></li>
             <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
-            <li class="nav-item"><a href="agenda.html" class="nav-link active">Agenda</a></li>
+            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
             <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
           </ul>
         </nav>
+
       </div>
     </div>
   </header>
 
   <div class="container breadcrumb">
-    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Agenda</strong>
-  </div>
-
-  <main class="container">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Agenda</str  <main class="container">
     <div class="agenda-container">
       <h1 style="margin-bottom: 2rem;">Évènements à venir</h1>
 
-      <!-- NOTICE POUR L'ADMIN (Simulée) -->
-      <div class="admin-notice">
-        <div>
-          <strong>Note :</strong> L'ajout d'évènements se fait via votre interface de gestion sécurisée. 
-          Pour les besoins de démonstration, les dates ci-dessous sont synchronisées avec le fichier de données du club.
-        </div>
-      </div>
-
       <!-- LISTE DES ÉVÈNEMENTS -->
       <div id="events-list">
-        <!-- Les évènements seront injectés par JS pour une mise à jour facile -->
+        <p style="text-align: center; color: var(--text-muted);">Chargement de l'agenda...</p>
       </div>
 
       <div style="text-align: center; margin-top: 3rem; font-size: 0.9rem; color: var(--text-muted);">
@@ -185,77 +177,60 @@
   </footer>
 
   <script>
-    // LISTE DES ÉVÈNEMENTS (Facile à modifier ici ou via un fichier JSON externe)
-    const events = [
-      {
-        day: "14",
-        month: "Avr",
-        year: "2026",
-        tag: "LADS",
-        title: "Réunion Club",
-        location: "Maison des associations Moissy",
-        description: "Réunion mensuelle pour discuter des activités du club et des prochaines sorties."
-      },
-      {
-        day: "19",
-        month: "Mai",
-        year: "2026",
-        tag: "LADS",
-        title: "Réunion Club",
-        location: "Maison des associations Moissy",
-        description: "Réunion mensuelle de préparation de la saison estivale."
-      },
-      {
-        day: "23",
-        month: "Jui",
-        year: "2026",
-        tag: "LADS",
-        title: "Réunion Club",
-        location: "Maison des associations Moissy",
-        description: "Bilan des premières sorties et organisation des stages."
-      },
-       {
-        day: "08",
-        month: "Sep",
-        year: "2026",
-        tag: "LADS",
-        title: "Réunion Club",
-        location: "Maison des associations Moissy",
-        description: "Réunion mensuelle de rentrée."
-      },
-       {
-        day: "06",
-        month: "Oct",
-        year: "2026",
-        tag: "LADS",
-        title: "Réunion Club",
-        location: "Maison des associations Moissy",
-        description: "Réunion mensuelle d'automne."
-      }
-    ];
+    const months = ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"];
 
-    function renderEvents() {
-      const list = document.getElementById('events-list');
-      list.innerHTML = events.map(event => `
-        <div class="event-card">
-          <div class="event-date-box">
-            <span class="date-day">${event.day}</span>
-            <span class="date-month">${event.month}</span>
-            <span class="date-year">${event.year}</span>
-          </div>
-          <div class="event-content">
-            <span class="event-tag">${event.tag}</span>
-            <h2 class="event-title">${event.title}</h2>
-            <div class="event-info">
-              <p><strong>Lieu :</strong> ${event.location}</p>
-              <p>${event.description}</p>
-            </div>
-          </div>
-        </div>
-      `).join('');
+    async function fetchEvents() {
+      try {
+        // First try localStorage (for items added via the JS admin)
+        let events = JSON.parse(localStorage.getItem('ads_events') || '[]');
+        
+        // If empty, try to fetch from JSON file (default data)
+        if (events.length === 0) {
+          const response = await fetch('data/events.json?t=' + new Date().getTime());
+          events = await response.json();
+        }
+        
+        renderEvents(events);
+      } catch (error) {
+        console.error('Erreur lors du chargement des événements:', error);
+        document.getElementById('events-list').innerHTML = '<p style="text-align: center; color: #ef4444;">Impossible de charger l\'agenda pour le moment.</p>';
+      }
     }
 
-    renderEvents();
+    function renderEvents(events) {
+      const list = document.getElementById('events-list');
+      if (!events || events.length === 0) {
+        list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Aucun évènement programmé pour le moment.</p>';
+        return;
+      }
+
+      list.innerHTML = events.map(event => {
+        const d = new Date(event.date);
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = months[d.getMonth()];
+        const year = d.getFullYear();
+
+        return `
+          <div class="event-card">
+            <div class="event-date-box">
+              <span class="date-day">${day}</span>
+              <span class="date-month">${month}</span>
+              <span class="date-year">${year}</span>
+            </div>
+            <div class="event-content">
+              <span class="event-tag">LADS</span>
+              <h2 class="event-title">${event.title}</h2>
+              <div class="event-info">
+                <p><strong>Lieu :</strong> ${event.location || 'À confirmer'}</p>
+                <p>${event.desc || ''}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    fetchEvents();
   </script>
 </body>
 </html>

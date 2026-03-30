@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Agenda - Admin ADS</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --admin-bg: #0F172A;
+            --admin-card: #1E293B;
+            --admin-border: #334155;
+            --admin-primary: #3B82F6;
+            --admin-secondary: #F59E0B;
+        }
+        body {
+            background: var(--admin-bg);
+            color: #E2E8F0;
+            padding: 2rem;
+            display: none; /* Hide before auth check */
+        }
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 1.5rem 2.5rem;
+            background: #1F2937; /* Dark Grey */
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .admin-header h1 {
+            color: #FFFFFF;
+            font-size: 1.6rem;
+            margin-bottom: 0;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .welcome-text {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .btn-logout {
+            background: #F59E0B; /* Yellow */
+            color: #000000;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+        .admin-card {
+            background: var(--admin-card);
+            border: 1px solid var(--admin-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .admin-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #94A3B8;
+        }
+        .admin-input {
+            width: 100%;
+            background: #0F172A;
+            border: 1px solid var(--admin-border);
+            padding: 0.8rem;
+            border-radius: var(--radius-sm);
+            color: white;
+            font-size: 1rem;
+        }
+        .admin-input:focus {
+            outline: none;
+            border-color: var(--admin-primary);
+        }
+        .btn-add {
+            background: var(--admin-primary);
+            color: white;
+            width: 100%;
+            margin-top: 2rem;
+            cursor: pointer;
+            padding: 1rem;
+            border-radius: var(--radius);
+            font-weight: bold;
+        }
+        .event-list {
+            margin-top: 3rem;
+        }
+        .event-item {
+            background: #1E293B;
+            border: 1px solid var(--admin-border);
+            padding: 1.2rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .event-info h3 {
+            color: white;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+        .event-info p {
+            color: #94A3B8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .event-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn-delete {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-delete:hover {
+            background: #ef4444;
+            color: white;
+        }
+        .btn-delete i {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Administration ADS</h1>
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                <span class="welcome-text">Bienvenue, <strong>ads</strong></span>
+                <button id="logoutBtn" class="btn-logout">Se déconnecter</button>
+            </div>
+        </header>
+
+        <section class="admin-card">
+            <h2 style="margin-bottom: 1.5rem; color: #10B981;">📢 Publier une News (Flash Info)</h2>
+            <form id="newsForm">
+                <div class="form-grid">
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="admin-label">Titre de la news</label>
+                        <input type="text" id="newsTitle" class="admin-input" placeholder="ex: Fermeture du site de Jeufosse">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="admin-label">Contenu court / Message</label>
+                        <input type="text" id="newsMessage" class="admin-input" placeholder="Détails rapides">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="admin-label">Lien (URL)</label>
+                        <input type="url" id="newsUrl" class="admin-input" placeholder="https://...">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-add" style="background: #10B981;">✨ Publier la news</button>
+            </form>
+        </section>
+
+        <section class="admin-card">
+            <h2 style="margin-bottom: 1.5rem; color: var(--admin-secondary);">📅 Ajouter un événement (Agenda)</h2>
+            <form id="eventForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="admin-label">Titre de l'événement</label>
+                        <input type="text" id="title" class="admin-input" placeholder="ex: Réunion Club">
+                    </div>
+                    <div class="form-group">
+                        <label class="admin-label">Date</label>
+                        <input type="date" id="date" class="admin-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="admin-label">Lieu</label>
+                        <input type="text" id="location" class="admin-input" placeholder="ex: Local Club / Zoom">
+                    </div>
+                    <div class="form-group">
+                        <label class="admin-label">Description courte</label>
+                        <input type="text" id="desc" class="admin-input" placeholder="Précisez l'objet du RDV">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-add">🚀 Enregistrer l'événement</button>
+            </form>
+        </section>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div class="event-list">
+                <h2 style="margin-bottom: 1.5rem; color: white;">News publiées</h2>
+                <div id="newsContainer"><!-- Loaded here --></div>
+            </div>
+            <div class="event-list">
+                <h2 style="margin-bottom: 1.5rem; color: white;">Événements programmés</h2>
+                <div id="eventsContainer"><!-- Loaded here --></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AUTH CHECK
+        if (localStorage.getItem('ads_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        } else {
+            document.body.style.display = 'block';
+        }
+
+        // LOGOUT
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('ads_logged_in');
+            window.location.href = '../index.html';
+        });
+
+        // NEWS MANAGEMENT
+        function getNews() { return JSON.parse(localStorage.getItem('ads_news') || '[]'); }
+        function saveNews(news) { 
+            localStorage.setItem('ads_news', JSON.stringify(news)); 
+            renderNews(); 
+        }
+        function renderNews() {
+            const news = getNews();
+            const container = document.getElementById('newsContainer');
+            if (news.length === 0) { container.innerHTML = '<p style="color: #64748B;">Aucun flash info.</p>'; return; }
+            container.innerHTML = news.map(n => `
+                <div class="event-item">
+                    <div class="event-info">
+                        <h3>${escapeHtml(n.title || 'Flash Info')}</h3>
+                        <p>${escapeHtml(n.message || 'Sans message')}</p>
+                    </div>
+                    <div class="event-actions">
+                        <button type="button" class="btn-delete" onclick="window.deleteNews('${n.id}')" title="Supprimer"><i class="fas fa-trash-can"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        // Global scope for onclick handlers
+        window.deleteNews = function(id) {
+            const news = getNews().filter(n => n.id !== id);
+            saveNews(news);
+        };
+
+        window.deleteEvent = function(id) {
+            const events = getEvents().filter(e => e.id !== id);
+            saveEvents(events);
+        };
+
+        document.getElementById('newsForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const news = getNews();
+            news.unshift({
+                id: Date.now().toString(),
+                title: document.getElementById('newsTitle').value,
+                message: document.getElementById('newsMessage').value,
+                url: document.getElementById('newsUrl').value
+            });
+            saveNews(news);
+            document.getElementById('newsForm').reset();
+        });
+
+        // EVENTS MANAGEMENT (PRESERVED)
+        function getEvents() { return JSON.parse(localStorage.getItem('ads_events') || '[]'); }
+        function saveEvents(events) {
+            events.sort((a, b) => new Date(a.date) - new Date(b.date));
+            localStorage.setItem('ads_events', JSON.stringify(events));
+            renderEvents();
+        }
+        function renderEvents() {
+            const events = getEvents();
+            const container = document.getElementById('eventsContainer');
+            if (events.length === 0) { container.innerHTML = '<p style="color: #64748B;">Aucun événement.</p>'; return; }
+            container.innerHTML = events.map(e => `
+                <div class="event-item">
+                    <div class="event-info">
+                        <h3>${escapeHtml(e.title || 'N/A')}</h3>
+                        <p><i class="far fa-calendar"></i> ${formatDate(e.date)}</p>
+                    </div>
+                    <div class="event-actions">
+                        <button type="button" class="btn-delete" onclick="window.deleteEvent('${e.id}')" title="Supprimer"><i class="fas fa-trash-can"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        document.getElementById('eventForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const events = getEvents();
+            events.push({
+                id: Date.now().toString(),
+                title: document.getElementById('title').value,
+                date: document.getElementById('date').value,
+                location: document.getElementById('location').value,
+                desc: document.getElementById('desc').value
+            });
+            saveEvents(events);
+            document.getElementById('eventForm').reset();
+        });
+
+        function formatDate(dateStr) { return new Date(dateStr).toLocaleDateString('fr-FR'); }
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        renderNews();
+        renderEvents();
+    </script>
+</body>
+</html>

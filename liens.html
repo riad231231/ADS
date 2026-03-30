@@ -78,12 +78,12 @@
           </div>
         </a>
         
-        <nav id="main-nav">
-          <ul class="nav-list" style="display: flex; list-style: none; gap: var(--spacing-lg); align-items: center;">
+                <nav id="main-nav">
+          <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
             <li class="nav-item" style="position: relative;">
-              <a href="#" class="nav-link">Le club</a>
+              <a href="#" class="nav-link">Club</a>
               <ul class="dropdown-content">
                 <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
                 <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
@@ -93,6 +93,7 @@
             <li class="nav-item" style="position: relative;">
               <a href="#" class="nav-link">Voler</a>
               <ul class="dropdown-content">
+                <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
                 <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
                 <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
                 <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
@@ -102,11 +103,13 @@
                 <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
               </ul>
             </li>
-            <li class="nav-item"><a href="liens.html" class="nav-link active">Liens</a></li>
+            <li class="nav-item"><a href="media.html" class="nav-link">Média</a></li>
+            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
             <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
             <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
           </ul>
         </nav>
+
       </div>
     </div>
   </header>
@@ -118,90 +121,92 @@
   <main class="container">
     <h1 style="margin-bottom: 3rem; text-align: center;">Tableau de Bord du Pilote</h1>
 
-    <div class="links-grid">
-      
       <!-- CATEGORY: METEO -->
       <div class="category-card">
         <h2>Météo & Prévisions</h2>
         
         <h4>Généralistes</h4>
-        <a href="https://www.meteociel.fr/" target="_blank" class="link-item"><span>Météociel</span> (Annecy)</a>
-        <a href="https://meteofrance.com/" target="_blank" class="link-item"><span>Météo-France</span></a>
-        <a href="https://www.meteoblue.com/" target="_blank" class="link-item"><span>Météoblue</span> (Multimodel)</a>
+        <a href="https://www.meteociel.fr/" target="_blank" class="link-item"><span>Météociel</span> (Sondages & Émagrammes)</a>
+        <a href="https://meteofrance.com/" target="_blank" class="link-item"><span>Météo-France</span> (Prévisions J+5)</a>
+        <a href="https://www.meteoblue.com/" target="_blank" class="link-item"><span>Météoblue</span> (Analyse fine)</a>
 
         <h4>Spécialisés Vol Libre</h4>
         <a href="https://meteo-parapente.com/" target="_blank" class="link-item"><span>Météo-Parapente</span></a>
         <a href="https://www.velivole.fr/" target="_blank" class="link-item"><span>Velivole</span></a>
-        <a href="https://www.topmeteo.eu/" target="_blank" class="link-item"><span>Topmeteo</span> (Abonnés)</a>
+        <a href="http://www.thermiquefrancilien.org/meteo.html" target="_blank" class="link-item"><span>Thermique Francilien</span> (Analyse régionale)</a>
 
-        <h4>Vent & Dynamique</h4>
-        <a href="https://www.windy.com/" target="_blank" class="link-item"><span>Windy</span></a>
-        <a href="https://www.windguru.cz/" target="_blank" class="link-item"><span>Windguru</span></a>
-        <a href="https://www.windfinder.com/" target="_blank" class="link-item"><span>Windfinder</span></a>
-        <a href="https://www.xcweather.co.uk/" target="_blank" class="link-item"><span>XCWeather</span></a>
+        <h4>Animations & Radars</h4>
+        <a href="http://www.vigilance-meteo.fr/fr/meteo/meteo-pro/animation-des-nuages-et-precipitations/france.html" target="_blank" class="link-item"><span>Vigilance Météo</span> (Nuages & Précipitations)</a>
+        <a href="http://www.vigilance-meteo.fr/fr/meteo/meteo-pro/animation-des-courants/france.html" target="_blank" class="link-item"><span>Courants de masse d'air</span> (Animation)</a>
+        <a href="http://earth.nullschool.net/#current/wind/isobaric/1000hPa" target="_blank" class="link-item"><span>Earth Wind Map</span> (Visualisation globale)</a>
+
+        <h4>Observations Temps Réel</h4>
+        <a href="https://www.xcweather.co.uk/" target="_blank" class="link-item"><span>XCWeather</span> (Vents réels & Forecast)</a>
+        <a href="http://murblanc.org/vent/" target="_blank" class="link-item"><span>Balises Vent</span> (Visualisation Google Map)</a>
+        <a href="http://www.aprr.fr/fr/preparation_au_voyage/temps_reel/webcams" target="_blank" class="link-item"><span>Webcams APRR</span> (Trafic & Météo France)</a>
       </div>
 
-      <!-- CATEGORY: BALISES & TERRAIN -->
+      <!-- CATEGORY: PREPARATION CROSS -->
       <div class="category-card">
-        <h2>Balises & Terrain</h2>
+        <h2>Préparation Cross & GPS</h2>
         
-        <h4>Temps Réel & Balises</h4>
-        <a href="http://www.balisemeteo.com/" target="_blank" class="link-item"><span>Balisemeteo.com</span> (FFVL)</a>
-        <a href="https://www.spotair.mobi/" target="_blank" class="link-item"><span>Spotair</span></a>
-        <a href="https://pioupiou.com/fr/map" target="_blank" class="link-item"><span>Pioupiou Map</span></a>
+        <h4>Planification & Tracés</h4>
+        <a href="https://xcplanner.appspot.com/" target="_blank" class="link-item"><span>XCPlanner</span> (Planification circuit)</a>
+        <a href="http://www.gpsvisualizer.com/map_input?form=google" target="_blank" class="link-item"><span>GPS Visualizer</span> (Visualisation d'itinéraires)</a>
+        <a href="http://www.victorb.fr/visuigc.html" target="_blank" class="link-item"><span>VisuGPS</span> (Analyse de traces IGC)</a>
+        <a href="http://thermal.kk7.ch/" target="_blank" class="link-item"><span>Thermal KK7</span> (Cartographie des thermiques)</a>
 
-        <h4>Brises de Vallée</h4>
-        <a href="https://www.google.com/search?q=brises+vallee+annecy" target="_blank" class="link-item"><span>Annecy</span></a>
-        <a href="https://www.google.com/search?q=brises+vallee+bauges" target="_blank" class="link-item"><span>Les Bauges</span></a>
-        <a href="https://www.google.com/search?q=brises+vallee+savoie+isere" target="_blank" class="link-item"><span>Savoie / Isère</span></a>
+        <h4>Logiciels & GPS</h4>
+        <a href="http://francois.fouchet.free.fr" target="_blank" class="link-item"><span>Navigation</span> (Préparation & NOTAM)</a>
+        <a href="http://www.multinett.no/stein.sorensen" target="_blank" class="link-item"><span>GpsDump</span> (Transfert de données)</a>
+        <a href="http://carnet.parawing.net/form_conv_public.php" target="_blank" class="link-item"><span>GPS2GE</span> (Déclaration CFD)</a>
+        <a href="http://ywtw.de/wresources/IGCGeSetup.exe" target="_blank" class="link-item"><span>IGC Flight Simulator</span> (Rejouer un vol)</a>
 
-        <h4>Outils Maritimes</h4>
-        <a href="https://maree.shom.fr/" target="_blank" class="link-item"><span>Horaires des marées</span> (SHOM)</a>
+        <h4>Espace Aérien</h4>
+        <a href="http://carte.f-aero.fr/a" target="_blank" class="link-item"><span>F-AERO</span> (Cartographie NOTAM/SUPAIP)</a>
+        <a href="http://www.netvibes.com/eaffvv#Check-List_Espace_Aerien_FFVV" target="_blank" class="link-item"><span>Check-list FFVV</span> (Netvibes)</a>
+        <a href="http://www.maddyhome.com/ctr/index.html" target="_blank" class="link-item"><span>MaddyHome</span> (Zones & CTR)</a>
       </div>
 
-      <!-- CATEGORY: REGLEMENTATION -->
+      <!-- CATEGORY: RESSOURCES SITES -->
       <div class="category-card">
-        <h2>Réglementation & Accès</h2>
+        <h2>Référentiels & Sites de vol</h2>
         
-        <h4>Infos & Fermetures</h4>
-        <a href="https://parapente.ffvl.fr/annuaire/ligue/1" target="_blank" class="link-item"><span>Ligue PIDF</span></a>
-        <a href="http://paff.free.fr/" target="_blank" class="link-item"><span>Synthèse Piafs Migrateurs</span></a>
-        <a href="https://intranet.ffvl.fr/" target="_blank" class="link-item"><span>Intranet FFVL</span></a>
+        <h4>Recherche de Spots</h4>
+        <a href="https://parapente.ffvl.fr/sites" target="_blank" class="link-item"><span>FFVL</span> (Recherche de sites officielle)</a>
+        <a href="http://www.paraglidingmap.com/" target="_blank" class="link-item"><span>Paragliding Map</span> (Catalogue mondial)</a>
+        <a href="http://www.para2000.org/sites/france-index.html" target="_blank" class="link-item"><span>Para2000</span> (Spots France)</a>
+        <a href="http://barbules.fr" target="_blank" class="link-item"><span>Barbules / JCM</span> (Guide des sites)</a>
 
-        <h4>Sensibilisation</h4>
-        <a href="https://haizehegoa.fr/" target="_blank" class="link-item"><span>Soaring dunaire</span> (Haize Hegoa)</a>
+        <h4>Pratique & Sécurité</h4>
+        <a href="http://maree.frbateaux.net/28" target="_blank" class="link-item"><span>Horaires de marées</span> (Vols côtiers)</a>
+        <a href="http://augredelair.free.fr/cross_idees_luc.pdf" target="_blank" class="link-item"><span>Guide Luc Armant</span> (Stratégies de Cross)</a>
       </div>
 
-      <!-- CATEGORY: TECHNIQUE -->
+      <!-- CATEGORY: CALCULS & CONVERSIONS -->
       <div class="category-card">
-        <h2>Technique & Matériel</h2>
+        <h2>Calculs & Conversions</h2>
         
-        <h4>Formation & Tutos</h4>
-        <a href="https://parapente.ffvl.fr/tutos" target="_blank" class="link-item"><span>Tutos FFVL</span></a>
-        <a href="https://www.youtube.com/watch?v=ydDgrXxwBAU" target="_blank" class="link-item"><span>Simulation Amérissage</span></a>
-
-        <h4>Entretien</h4>
-        <a href="http://www.chantduvario.com/" target="_blank" class="link-item"><span>Le Chant du Vario</span></a>
-
-        <h4>Nœuds de suspentage</h4>
-        <a href="http://www.noeuds-animes.com/" target="_blank" class="link-item"><span>Nœuds Animés</span> (Général)</a>
-        <a href="http://www.noeuds-animes.com/pages/0noeud_cabestan.php" target="_blank" class="link-item"><span>Cabestan</span></a>
-        <a href="http://www.noeuds-animes.com/pages/0noeud_chaise.php" target="_blank" class="link-item"><span>Nœud de Chaise</span></a>
+        <h4>Outils Mathématiques</h4>
+        <a href="http://appailesdair.free.fr/club/public/LectureDeCarte/ConvertionsPiedsEnMettres.xls" target="_blank" class="link-item"><span>Pieds → Mètres</span> (Fichier XLS)</a>
+        <a href="http://www.gpsfrance.net/adresse-vers-coordonnees-gps" target="_blank" class="link-item"><span>Adresse → Point GPS</span></a>
+        <a href="http://www.annuaire-des-mairies.com" target="_blank" class="link-item"><span>Altitude des communes</span> (Annuaire)</a>
+        <a href="http://www.convertworld.com/fr/vitesse/km-2Fh.html" target="_blank" class="link-item"><span>Vitesse & Longueur</span> (Conversions)</a>
       </div>
 
-      <!-- CATEGORY: COMMUNAUTÉ -->
+      <!-- CATEGORY: APPS MOBILES -->
       <div class="category-card">
-        <h2>Communauté & Apps</h2>
+        <h2>Applications Mobiles</h2>
         
-        <h4>Applications Mobiles</h4>
-        <a href="https://xcsoar.org/" target="_blank" class="link-item"><span>XCSoar</span></a>
-        <a href="https://www.google.com/search?q=flyme+parapente" target="_blank" class="link-item"><span>FlyMe</span></a>
-        <a href="https://xctrack.org/" target="_blank" class="link-item"><span>XCTrack</span></a>
+        <h4>Android</h4>
+        <a href="http://mobibalises.free.fr" target="_blank" class="link-item"><span>Mobibalises</span> (Lecture balises FFVL)</a>
+        <a href="https://xcsoar.org/" target="_blank" class="link-item"><span>XCSoar</span> (Navigation vol libre)</a>
+        <a href="http://www.androidpit.fr" target="_blank" class="link-item"><span>Gaggle</span> (Carnet de vol & Tracking)</a>
 
-        <h4>Clubs Voisins</h4>
-        <p style="font-size: 0.9rem; color: var(--text-muted); padding: 0.6rem 0;">
-          Le Thermique Francilien, Ride and Cow, Les Crécerelles, Voiles en vue, Les piafs migrateurs.
-        </p>
+        <h4>iPhone / iOS</h4>
+        <a href="https://itunes.apple.com/fr/app/id28828607" target="_blank" class="link-item"><span>Aeroweather</span> (METAR / TAF)</a>
+        <a href="http://monappstore.com/app?a=304192668" target="_blank" class="link-item"><span>TrackLog</span> (Enregistrement de traces)</a>
+        <a href="https://itunes.apple.com/fr/app/id579557181" target="_blank" class="link-item"><span>AltiMountain</span> (SOS GPS & Altimètre)</a>
       </div>
 
     </div>
@@ -214,6 +219,18 @@
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=1.1"></script>
+</body>
+</html>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js?v=1.1"></script>
 </body>
 </html>
