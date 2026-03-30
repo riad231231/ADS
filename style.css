@@ -280,7 +280,7 @@ h2 {
 /* HERO SECTION - THE WOW FACTOR */
 .hero {
   position: relative;
-  aspect-ratio: 1344 / 583; /* Matching the exact image proportions */
+  aspect-ratio: 1376 / 768; /* Updated aspect ratio for new image */
   width: 100%;
   margin: 0;
   border-radius: 0;

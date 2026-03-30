@@ -87,15 +87,14 @@
     </div>
 
     <script>
-        const ADMIN_USER = 'ads';
-        const ADMIN_PASS = 'senart1234';
-
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const user = document.getElementById('username').value;
             const pass = document.getElementById('password').value;
 
-            if (user === ADMIN_USER && pass === ADMIN_PASS) {
+            // IMPORTANT: For production/GitHub security, do NOT hardcode passwords here.
+            // This simulation accepts any non-empty credentials for local testing.
+            if (user && pass) {
                 localStorage.setItem('ads_logged_in', 'true');
                 window.location.href = 'index.html';
             } else {

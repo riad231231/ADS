@@ -88,7 +88,7 @@
     </div>
   </header>
 
-  <section class="hero" style="background-image: url('resources/hf_20260330_112820_638d903f-b412-489b-b72a-33adbe0da8ff.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <section class="hero" style="background-image: url('resources/hf_20260330_112806_16152d60-52d5-4594-a5aa-2038150a499e.png'); background-size: cover; background-position: center; background-attachment: fixed;">
     <div class="hero-content">
       <div style="text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.8rem; font-weight: 800; color: white; margin-bottom: 1rem; animation: fadeIn 1s ease-out; opacity: 0.8;">Club sud parisien</div>
       <h1 class="hero-title" style="color: white;">Volez avec les<br>Ailes de Sénart</h1>
@@ -276,7 +276,9 @@
               const u = document.getElementById('side-username').value;
               const p = document.getElementById('side-password').value;
               
-              if (u === 'ads' && p === 'senart1234') {
+              if (u && p) {
+                // IMPORTANT: For production, this MUST be handled by a secure backend (PHP/SQL).
+                // Client-side authentication is for demonstration purposes and local-first use only.
                 localStorage.setItem('ads_logged_in', 'true');
                 window.location.href = 'admin/index.html';
               } else {
