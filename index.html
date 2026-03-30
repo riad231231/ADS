@@ -206,13 +206,36 @@
               ];
             }
 
-            container.innerHTML = news.slice(0, 5).map(n => `
-              <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 5px;">
-                <a href="${n.url || '#'}" target="_blank" style="text-decoration: none; color: var(--text-main); font-size: 0.95rem;">
-                  ${n.title}
-                </a>
-              </li>
-            `).join('');
+            container.innerHTML = news.slice(0, 5).map(n => {
+              const fullMsg = n.message || '';
+              const limit = 70;
+              const isLong = fullMsg.length > limit;
+
+              if (!isLong) {
+                return `
+                  <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 8px;">
+                    <a href="${n.url || '#'}" target="_blank" style="text-decoration: none; color: var(--text-main); font-weight: 700; display: block; margin-bottom: 4px; font-size: 0.95rem;">
+                      ${n.title}
+                    </a>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0;">${fullMsg}</p>
+                  </li>
+                `;
+              }
+
+              const shortMsg = fullMsg.substring(0, limit);
+
+              return `
+                <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 8px;">
+                  <a href="${n.url || '#'}" target="_blank" style="text-decoration: none; color: var(--text-main); font-weight: 700; display: block; margin-bottom: 4px; font-size: 0.95rem;">
+                    ${n.title}
+                  </a>
+                  <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0;">
+                    <span>${shortMsg}...</span>
+                    <a href="javascript:void(0)" onclick="const p = this.parentElement; p.querySelector('span').innerText = \`${fullMsg}\`; this.remove();" style="display:inline; color: var(--primary); font-weight: 700; border-bottom: none; font-size: 0.8rem; text-decoration: none; margin-left: 5px;">Lire la suite</a>
+                  </p>
+                </li>
+              `;
+            }).join('');
           }
           loadSidebarNews();
         </script>

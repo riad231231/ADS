@@ -122,7 +122,48 @@
         border-right: none;
         border-bottom: 1px solid var(--border);
       }
-      .date-day { font-size: 1.5rem; }
+    }
+
+    /* News Sidebar CSS */
+    .agenda-grid {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 3rem;
+      align-items: flex-start;
+      margin-top: 2rem;
+    }
+    @media (max-width: 1000px) {
+      .agenda-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .news-widget {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: sticky;
+      top: 100px;
+      box-shadow: var(--shadow-sm);
+    }
+    .news-item {
+      padding: 1rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-item a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .news-item a:hover { color: var(--primary); }
+    .news-item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
     }
   </style>
 </head>
@@ -183,15 +224,26 @@
   <main class="container">
     <h1 style="font-size: 2.2rem; margin-bottom: 2rem; color: var(--primary);">Agenda & Événements du Club</h1>
 
-    <div class="agenda-container" id="eventsContainer">
-      <!-- LISTE DES ÉVÈNEMENTS -->
-      <div id="events-list">
-        <p style="text-align: center; color: var(--text-muted);">Chargement de l'agenda...</p>
+    <div class="agenda-grid">
+      <div class="agenda-container" id="eventsContainer">
+        <!-- LISTE DES ÉVÈNEMENTS -->
+        <div id="events-list">
+          <p style="text-align: center; color: var(--text-muted);">Chargement de l'agenda...</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; font-size: 0.9rem; color: var(--text-muted);">
+          Propulsé par le système de gestion interne des Ailes de Sénart
+        </div>
       </div>
 
-      <div style="text-align: center; margin-top: 3rem; font-size: 0.9rem; color: var(--text-muted);">
-        Propulsé par le système de gestion interne des Ailes de Sénart
-      </div>
+      <aside class="news-sidebar">
+        <div class="news-widget">
+          <h2 style="font-size: 1.4rem; color: var(--secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 4px solid var(--primary);">Flash Info / News</h2>
+          <div id="news-list-sidebar">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Chargement des news...</p>
+          </div>
+        </div>
+      </aside>
     </div>
   </main>
 
@@ -256,7 +308,45 @@
       }).join('');
     }
 
+    function loadNews() {
+      const news = JSON.parse(localStorage.getItem('ads_news') || '[]');
+      const container = document.getElementById('news-list-sidebar');
+      
+      if (news.length === 0) {
+        container.innerHTML = '<p style="font-size: 0.9rem; color: var(--text-muted);">Aucune actualité pour le moment.</p>';
+        return;
+      }
+
+      container.innerHTML = news.map(item => {
+        const fullMsg = item.message || '';
+        const limit = 85; 
+        const isLong = fullMsg.length > limit;
+        
+        if (!isLong) {
+          return `
+            <div class="news-item">
+              <a href="${item.url || '#'}" ${item.url ? 'target="_blank"' : ''}>${item.title}</a>
+              <p style="margin-bottom: 0;">${fullMsg}</p>
+            </div>
+          `;
+        }
+
+        const shortMsg = fullMsg.substring(0, limit);
+        
+        return `
+          <div class="news-item">
+            <a href="${item.url || '#'}" ${item.url ? 'target="_blank"' : ''}>${item.title}</a>
+            <p style="margin-bottom: 0;">
+              <span>${shortMsg}...</span>
+              <a href="javascript:void(0)" onclick="const p = this.parentElement; p.querySelector('span').innerText = \`${fullMsg}\`; this.remove();" style="display:inline; font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-left: 5px;">Lire la suite</a>
+            </p>
+          </div>
+        `;
+      }).join('');
+    }
+
     fetchEvents();
+    loadNews();
   </script>
 </body>
 </html>
