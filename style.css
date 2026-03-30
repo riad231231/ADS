@@ -72,48 +72,24 @@ body {
   background-attachment: fixed;
 }
 
-/* NAVIGATION GLASSMORPHISM */
+/* NAVIGATION CLASSIC */
 header {
-  position: sticky;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: white;
   border-bottom: 1px solid var(--border);
-  padding: 0.8rem 0;
   z-index: 1000;
-  box-shadow: var(--shadow-sm);
-  transition: padding 0.3s ease;
 }
-
-header.scrolled {
-  padding: 0.5rem 0;
-}
-
-header .site-title { color: var(--primary); }
-header .nav-link { color: var(--text-main); }
-header .welcome-text { color: var(--text-main); }
-header .site-tagline { color: var(--text-muted); }
-
 
 .header-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  text-decoration: none;
+  padding: 0.5rem 0; /* Ultra thin */
 }
 
 .logo img {
-  height: 60px;
+  height: 50px; /* Smaller logo */
   width: auto;
   transition: transform 0.3s ease;
 }

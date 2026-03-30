@@ -156,7 +156,8 @@
 
         /* Mobile Optimization */
         @media (max-width: 768px) {
-            body { padding: 1rem; }
+            body { padding: 0.5rem; }
+            .admin-container { width: 100%; }
             .admin-header {
                 flex-direction: column;
                 gap: 1.5rem;
@@ -167,9 +168,16 @@
                 flex-direction: column;
                 gap: 1rem !important;
             }
-            .form-grid { grid-template-columns: 1fr; }
-            .list-grid { grid-template-columns: 1fr !important; }
+            .form-grid { 
+                grid-template-columns: 1fr !important; /* Force 1 column on mobile */
+                gap: 1rem;
+            }
+            .list-grid { 
+                grid-template-columns: 1fr !important; /* Force 1 column on mobile */
+                gap: 1.5rem;
+            }
             .admin-header h1 { font-size: 1.3rem; }
+            .admin-card { padding: 1.5rem; }
         }
     </style>
 </head>
