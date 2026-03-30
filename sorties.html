@@ -166,12 +166,30 @@
       </section>
 
       <aside class="sidebar">
+        
+        <!-- Module Agenda Dynamique -->
+        <section class="widget">
+            <h2 class="widget-title">Agenda Prochainement</h2>
+            <div id="next-events" style="font-size: 0.9rem; color: var(--text-muted);">
+              Chargement...
+            </div>
+            <div style="margin-top: 1rem; text-align: right;">
+              <a href="agenda.html" style="color: var(--primary); font-size: 0.85rem; font-weight: 600;">Voir tout l'agenda →</a>
+            </div>
+        </section>
+
+        <!-- Module News -->
+        <section class="widget">
+          <h2 class="widget-title">Dernières news</h2>
+          <ul id="news-list" style="list-style: none; padding-left: 0;">
+            <!-- Chargement dynamique -->
+          </ul>
+        </section>
+
+        <!-- Module Connexion -->
         <section class="widget" id="login-widget">
           <h2 class="widget-title">Espace Membre</h2>
           <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.4;">
-              Accédez à l'interface de gestion du club pour mettre à jour l'agenda et les news.
-            </p>
             <form id="sidebarLoginForm">
               <div class="form-group">
                 <input type="text" id="side-username" placeholder="Identifiant" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.8rem;">
@@ -183,31 +201,9 @@
                 S'AUTHENTIFIER
               </button>
             </form>
-            <div id="login-status" style="margin-top: 10px; font-size: 0.8rem; color: #ef4444; display: none; text-align: center;">
-              Identifiants incorrects.
-            </div>
+            <div id="login-status" style="margin-top: 10px; font-size: 0.8rem; color: #ef4444; display: none; text-align: center;"></div>
           </div>
         </section>
-
-        <script>
-          const loginForm = document.getElementById('sidebarLoginForm');
-          if (loginForm) {
-            loginForm.addEventListener('submit', function(e) {
-              e.preventDefault();
-              const u = document.getElementById('side-username').value;
-              const p = document.getElementById('side-password').value;
-              
-              if (u && p) {
-                localStorage.setItem('ads_logged_in', 'true');
-                window.location.href = 'admin/index.html';
-              } else {
-                const status = document.getElementById('login-status');
-                if (status) status.style.display = 'block';
-              }
-              loginForm.reset();
-            });
-          }
-        </script>
       </aside>
     </div>
   </main>

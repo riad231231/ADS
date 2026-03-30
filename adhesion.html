@@ -123,15 +123,43 @@
       </section>
 
       <aside class="sidebar">
+        
+        <!-- Module Agenda Dynamique -->
         <section class="widget">
-          <h2 class="widget-title">Connexion</h2>
-          <form>
-            <div class="form-group">
-              <label>Identifiant</label>
-              <input type="text">
+            <h2 class="widget-title">Agenda Prochainement</h2>
+            <div id="next-events" style="font-size: 0.9rem; color: var(--text-muted);">
+              Chargement...
             </div>
-            <button class="btn" style="width: 100%; background: var(--primary); color: white;">Me connecter</button>
-          </form>
+            <div style="margin-top: 1rem; text-align: right;">
+              <a href="agenda.html" style="color: var(--primary); font-size: 0.85rem; font-weight: 600;">Voir tout l'agenda →</a>
+            </div>
+        </section>
+
+        <!-- Module News -->
+        <section class="widget">
+          <h2 class="widget-title">Dernières news</h2>
+          <ul id="news-list" style="list-style: none; padding-left: 0;">
+            <!-- Chargement dynamique -->
+          </ul>
+        </section>
+
+        <!-- Module Connexion Unified -->
+        <section class="widget" id="login-widget">
+          <h2 class="widget-title">Espace Membre</h2>
+          <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <form id="sidebarLoginForm">
+              <div class="form-group">
+                <input type="text" id="side-username" placeholder="Identifiant" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.8rem;">
+              </div>
+              <div class="form-group">
+                <input type="password" id="side-password" placeholder="Mot de passe" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 1rem;">
+              </div>
+              <button class="btn btn-primary" style="width: 100%; padding: 0.8rem; font-weight: 800; letter-spacing: 0.05em;" type="submit">
+                S'AUTHENTIFIER
+              </button>
+            </form>
+            <div id="login-status" style="margin-top: 10px; font-size: 0.8rem; color: #ef4444; display: none; text-align: center;"></div>
+          </div>
         </section>
       </aside>
     </div>

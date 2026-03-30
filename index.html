@@ -149,100 +149,13 @@
             </div>
         </section>
 
-        <script>
-          async function loadSidebarEvents() {
-            try {
-              // Priority 1: localStorage
-              let events = JSON.parse(localStorage.getItem('ads_events') || '[]');
-              
-              // Priority 2: JSON file
-              if (events.length === 0) {
-                const res = await fetch('data/events.json?t=' + Date.now());
-                events = await res.json();
-              }
-              
-              const container = document.getElementById('next-events');
-              
-              if (!events || events.length === 0) {
-                container.innerHTML = "Aucun événement prévu.";
-                return;
-              }
-
-              // Show top 3
-              container.innerHTML = events.slice(0, 3).map(e => `
-                <div style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 8px;">
-                  <div style="font-weight: 800; color: var(--secondary); font-size: 0.75rem; text-transform: uppercase;">
-                    ${new Date(e.date).toLocaleDateString('fr-FR', {day: '2-digit', month: 'short'})}
-                  </div>
-                  <a href="agenda.html" style="text-decoration: none; color: var(--text-main); font-weight: 600; display: block; margin-top: 2px;">
-                    ${e.title}
-                  </a>
-                </div>
-              `).join('');
-            } catch (e) {
-              document.getElementById('next-events').innerHTML = "Erreur de chargement.";
-            }
-          }
-          loadSidebarEvents();
-        </script>
-
         <!-- Module Dernières News Dynamique -->
         <section class="widget">
           <h2 class="widget-title">Dernières news</h2>
           <ul id="news-list" style="list-style: none; padding-left: 0;">
-            <!-- Loaded here -->
+            <!-- Chargement dynamique -->
           </ul>
         </section>
-
-        <script>
-          async function loadSidebarNews() {
-            const container = document.getElementById('news-list');
-            
-            // Priority 1: localStorage
-            let news = JSON.parse(localStorage.getItem('ads_news') || '[]');
-            
-            // Default News if empty (Initial look)
-            if (news.length === 0) {
-              news = [
-                { title: "Concours photos 2022: l'œil dans le viseur", url: "#" },
-                { title: "L'offre Formation de la ligue", url: "#" },
-                { title: "Examen théorique 07 Avril", url: "#" }
-              ];
-            }
-
-            container.innerHTML = news.slice(0, 5).map(n => {
-              const fullMsg = n.message || '';
-              const limit = 70;
-              const isLong = fullMsg.length > limit;
-
-              if (!isLong) {
-                return `
-                  <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 8px;">
-                    <a href="${n.url || '#'}" target="_blank" style="text-decoration: none; color: var(--text-main); font-weight: 700; display: block; margin-bottom: 4px; font-size: 0.95rem;">
-                      ${n.title}
-                    </a>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0;">${fullMsg}</p>
-                  </li>
-                `;
-              }
-
-              const shortMsg = fullMsg.substring(0, limit);
-
-              return `
-                <li style="margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 8px;">
-                  <a href="${n.url || '#'}" target="_blank" style="text-decoration: none; color: var(--text-main); font-weight: 700; display: block; margin-bottom: 4px; font-size: 0.95rem;">
-                    ${n.title}
-                  </a>
-                  <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0;">
-                    <span>${shortMsg}...</span>
-                    <a href="javascript:void(0)" onclick="const p = this.parentElement; p.querySelector('span').innerText = \`${fullMsg}\`; this.remove();" style="display:inline; color: var(--primary); font-weight: 700; border-bottom: none; font-size: 0.8rem; text-decoration: none; margin-left: 5px;">Lire la suite</a>
-                  </p>
-                </li>
-              `;
-            }).join('');
-          }
-          loadSidebarNews();
-        </script>
 
         <!-- Module Connexion Redesign -->
         <section class="widget" id="login-widget">
@@ -267,30 +180,6 @@
             </div>
           </div>
         </section>
-
-        <script>
-          const loginForm = document.getElementById('sidebarLoginForm');
-          if (loginForm) {
-            loginForm.addEventListener('submit', function(e) {
-              e.preventDefault();
-              const u = document.getElementById('side-username').value;
-              const p = document.getElementById('side-password').value;
-              
-              if (u && p) {
-                // IMPORTANT: For production, this MUST be handled by a secure backend (PHP/SQL).
-                // Client-side authentication is for demonstration purposes and local-first use only.
-                localStorage.setItem('ads_logged_in', 'true');
-                window.location.href = 'admin/index.html';
-              } else {
-                const status = document.getElementById('login-status');
-                if (status) status.style.display = 'block';
-              }
-              
-              // Réinitialiser le formulaire après chaque tentative
-              loginForm.reset();
-            });
-          }
-        </script>
 
       </aside>
     </div>

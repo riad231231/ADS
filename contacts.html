@@ -9,23 +9,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    .contact-wrapper {
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
-    .contact-card {
-      background: white;
-      border: 1px solid var(--border);
-      padding: 2.5rem;
-      border-radius: var(--radius);
-      height: 100%;
-    }
-    .contact-card h2 {
-      color: var(--primary);
+    .contact-section h2 {
+      font-size: 1.5rem;
       margin-bottom: 2rem;
-      font-size: 1.8rem;
+      color: var(--primary);
     }
     .contact-point {
       margin-bottom: 2rem;
@@ -38,46 +31,52 @@
     .contact-point p {
       color: var(--text-muted);
       line-height: 1.6;
+      font-size: 0.95rem;
     }
     .email-link {
       display: block;
       color: var(--primary);
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       font-size: 1.1rem;
-      margin-top: 0.3rem;
-      transition: color 0.2s;
-    }
-    .email-link:hover {
-      color: var(--secondary);
+      margin-top: 0.5rem;
+      word-break: break-all;
     }
     .map-placeholder {
       background: var(--bg-subtle);
       border-radius: var(--radius);
       width: 100%;
-      height: 300px;
+      height: 250px;
       margin-top: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 1px solid var(--border);
       color: var(--text-muted);
-      font-style: italic;
     }
     .badge-info {
       display: inline-block;
       background: #E0F2FE;
       color: #0369A1;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-top: 1rem;
     }
-    @media (max-width: 900px) {
-      .contact-wrapper {
+
+    @media (max-width: 1000px) {
+      .contact-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
       }
+    }
+
+    @media (max-width: 600px) {
+      .lead { font-size: 1.1rem; }
+      .contact-section h2 { font-size: 1.3rem; margin-bottom: 1.5rem; }
+      .email-link { font-size: 1rem; }
+      .map-placeholder { height: 200px; }
     }
   </style>
 </head>
@@ -95,7 +94,7 @@
           </div>
         </a>
         
-                <nav id="main-nav">
+        <nav id="main-nav">
           <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
@@ -126,7 +125,6 @@
             <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
           </ul>
         </nav>
-
       </div>
     </div>
   </header>
@@ -136,52 +134,103 @@
   </div>
 
   <main class="container">
-    <h1>Restons en contact</h1>
-    <p class="lead" style="color: var(--text-muted); margin-top: 1rem;">Vous avez une question ? Vous souhaitez nous rejoindre ? Voici comment nous trouver et nous écrire.</p>
-
-    <div class="contact-wrapper">
+    <div class="main-layout">
       
-      <!-- COL 1: LOCATION -->
-      <div class="contact-card">
-        <h2>Où trouver le club ?</h2>
-        <div class="contact-point">
-          <h3>Le QG du club</h3>
-          <p>
-            Maison des associations de Moissy-Cramayel (77550),<br>
-            Situé dans le bâtiment de la mairie.
-          </p>
-          <div class="badge-info">Réunion mensuelle : voir l'agenda</div>
+      <!-- Zone de Contenu Principale -->
+      <section class="content-card">
+        <h1>Restons en contact</h1>
+        <p class="lead">Vous avez une question ? Vous souhaitez nous rejoindre ? Voici comment nous trouver et nous écrire.</p>
+
+        <div class="contact-grid">
+          
+          <!-- Localisation -->
+          <div class="contact-section">
+            <h2>Où trouver le club ?</h2>
+            <div class="contact-point">
+              <h3>Le QG du club</h3>
+              <p>
+                Maison des associations de Moissy-Cramayel (77550),<br>
+                Situé dans le bâtiment de la mairie.
+              </p>
+              <div class="badge-info">Réunion mensuelle : voir l'agenda</div>
+            </div>
+            
+            <div class="map-placeholder">
+              <div style="text-align: center;">
+                <strong>Mairie de Moissy-Cramayel</strong><br>
+                <span style="font-size: 0.85rem; opacity: 0.8;">Place de la Mairie, 77550</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emails -->
+          <div class="contact-section">
+            <h2>Nous écrire</h2>
+            
+            <div class="contact-point">
+              <h3>Direction & Administration</h3>
+              <a href="mailto:president@lesailesdesenart.com" class="email-link">president@lesailesdesenart.com</a>
+              <a href="mailto:secretaire@lesailesdesenart.com" class="email-link">secretaire@lesailesdesenart.com</a>
+            </div>
+
+            <div class="contact-point">
+              <h3>Adhésion au club</h3>
+              <p>Pour toute question sur les modalités d'inscription et de licence :</p>
+              <a href="mailto:info-adhesion@lesailesdesenart.com" class="email-link">info-adhesion@lesailesdesenart.com</a>
+            </div>
+
+            <div class="contact-point">
+              <h3>Vols Découverte</h3>
+              <p>Pour un baptême de l'air ou une première expérience :</p>
+              <a href="mailto:journeedecouverte@lesailesdesenart.com" class="email-link">journeedecouverte@lesailesdesenart.com</a>
+            </div>
+          </div>
+
         </div>
+      </section>
+
+      <!-- SIDEBAR DYNAMIQUE -->
+      <aside class="sidebar">
         
-        <div class="map-placeholder">
-          <!-- Ici on pourrait intégrer un embed Google Maps dans le futur -->
-          Mairie de Moissy-Cramayel, Place de la Mairie, 77550
-        </div>
-      </div>
+        <!-- Module Agenda Dynamique -->
+        <section class="widget">
+            <h2 class="widget-title">Agenda Prochainement</h2>
+            <div id="next-events" style="font-size: 0.9rem; color: var(--text-muted);">
+              Chargement...
+            </div>
+            <div style="margin-top: 1rem; text-align: right;">
+              <a href="agenda.html" style="color: var(--primary); font-size: 0.85rem; font-weight: 600;">Voir tout l'agenda →</a>
+            </div>
+        </section>
 
-      <!-- COL 2: EMAILS -->
-      <div class="contact-card">
-        <h2>Nous écrire</h2>
-        
-        <div class="contact-point">
-          <h3>Direction & Administration</h3>
-          <a href="mailto:president@lesailesdesenart.com" class="email-link">president@lesailesdesenart.com</a>
-          <a href="mailto:secretaire@lesailesdesenart.com" class="email-link">secretaire@lesailesdesenart.com</a>
-        </div>
+        <!-- Module News -->
+        <section class="widget">
+          <h2 class="widget-title">Dernières news</h2>
+          <ul id="news-list" style="list-style: none; padding-left: 0;">
+            <!-- Chargement dynamique -->
+          </ul>
+        </section>
 
-        <div class="contact-point">
-          <h3>Adhésion au club</h3>
-          <p>Pour toute question sur les modalités d'inscription et de licence :</p>
-          <a href="mailto:info-adhesion@lesailesdesenart.com" class="email-link">info-adhesion@lesailesdesenart.com</a>
-        </div>
+        <!-- Module Connexion -->
+        <section class="widget" id="login-widget">
+          <h2 class="widget-title">Espace Membre</h2>
+          <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <form id="sidebarLoginForm">
+              <div class="form-group">
+                <input type="text" id="side-username" placeholder="Identifiant" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.8rem;">
+              </div>
+              <div class="form-group">
+                <input type="password" id="side-password" placeholder="Mot de passe" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 1rem;">
+              </div>
+              <button class="btn btn-primary" style="width: 100%; padding: 0.8rem; font-weight: 800; letter-spacing: 0.05em;" type="submit">
+                S'AUTHENTIFIER
+              </button>
+            </form>
+            <div id="login-status" style="margin-top: 10px; font-size: 0.8rem; color: #ef4444; display: none; text-align: center;"></div>
+          </div>
+        </section>
 
-        <div class="contact-point">
-          <h3>Vols Biplace & Journées Découverte</h3>
-          <p>Si vous êtes intéressé par un baptême de l'air ou une première expérience :</p>
-          <a href="mailto:journeedecouverte@lesailesdesenart.com" class="email-link">journeedecouverte@lesailesdesenart.com</a>
-        </div>
-
-      </div>
+      </aside>
 
     </div>
   </main>
