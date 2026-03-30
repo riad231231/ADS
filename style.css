@@ -280,7 +280,7 @@ h2 {
 /* HERO SECTION - THE WOW FACTOR */
 .hero {
   position: relative;
-  height: 480px; 
+  aspect-ratio: 1344 / 583; /* Matching the exact image proportions */
   width: 100%;
   margin: 0;
   border-radius: 0;
@@ -293,10 +293,10 @@ h2 {
 
 @media (max-width: 768px) {
   .hero {
+    aspect-ratio: 16 / 9; /* More vertical for mobile */
     height: auto;
-    min-height: 400px;
-    padding: 4rem 1rem;
-    background-attachment: scroll !important; /* Better performance on mobile */
+    padding: 3rem 1rem;
+    background-attachment: scroll !important;
   }
   .hero-content {
     padding: 0 1rem;
