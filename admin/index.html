@@ -71,6 +71,11 @@
             margin-bottom: 2rem;
             box-shadow: var(--shadow-lg);
         }
+        .list-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -262,7 +267,7 @@
             </form>
         </section>
 
-        <div class="list-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;">
+        <div class="list-grid">
             <div class="event-list">
                 <h2 style="margin-bottom: 1.5rem; color: white;">News publiées</h2>
                 <div id="newsContainer"><!-- Loaded here --></div>
