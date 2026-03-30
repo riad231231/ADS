@@ -74,16 +74,29 @@ body {
 
 /* NAVIGATION GLASSMORPHISM */
 header {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.8rem 0;
   position: sticky;
   top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.8rem 0;
   z-index: 1000;
   box-shadow: var(--shadow-sm);
+  transition: padding 0.3s ease;
 }
+
+header.scrolled {
+  padding: 0.5rem 0;
+}
+
+header .site-title { color: var(--primary); }
+header .nav-link { color: var(--text-main); }
+header .welcome-text { color: var(--text-main); }
+header .site-tagline { color: var(--text-muted); }
+
 
 .header-flex {
   display: flex;
@@ -267,20 +280,43 @@ h2 {
 /* HERO SECTION - THE WOW FACTOR */
 .hero {
   position: relative;
-  height: 650px;
+  height: 480px; 
+  width: 100%;
+  margin: 0;
   border-radius: 0;
-  margin-top: 0; /* Removed gap */
-  width: 100vw; /* Full viewport width */
-  margin-left: calc(-50vw + 50%); /* Center full-width breakout if needed */
-  left: 50%;
-  transform: translateX(-50%);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-dark);
-  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.4);
 }
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 400px;
+    padding: 4rem 1rem;
+    background-attachment: scroll !important; /* Better performance on mobile */
+  }
+  .hero-content {
+    padding: 0 1rem;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .hero .hero-content div[style*="display: flex"] {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero .btn {
+    width: 100%;
+  }
+}
+
 
 .hero::before {
   content: "";
