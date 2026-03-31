@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sites de vol Parapente - Les Ailes de Sénart</title>
+  <meta name="description" content="Découvrez tous les sites de vol en parapente en Île-de-France (Essonne, Seine-et-Marne, Val d'Oise) et en Normandie. Guide complet pour les pilotes du club Les Ailes de Sénart.">
+  <link rel="canonical" href="https://www.ailesdesenart.com/sites.html">
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Open Graph / SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.ailesdesenart.com/sites.html">
+  <meta property="og:title" content="Sites de vol Parapente - Les Ailes de Sénart">
+  <meta property="og:description" content="Guide complet des sites de vol libre en Île-de-France et Normandie.">
+
+  <!-- JSON-LD Structured Data: ItemList of flight sites -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "description": "Liste des sites de vol de parapente pratiqués par le club Les Ailes de Sénart",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Lac de Saulx-les-Chartreux (Essonne)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Parc Léonard de Vinci – Lisses (Essonne)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jeufosse (Yvelines)"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Octeville-sur-Mer (Seine-Maritime)"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .search-filter {
+      margin-bottom: 2rem;
+      position: sticky;
+      top: 80px;
+      z-index: 10;
+      background: white;
+      padding: 1rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      border: 1px solid var(--border);
+    }
+    .search-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-size: 1.1rem;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+    
+    .region-container {
+      margin-bottom: 4rem;
+    }
+    .region-header {
+      background: var(--secondary);
+      color: white;
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .dept-group {
+      margin-bottom: 2.5rem;
+    }
+    .dept-label {
+      font-size: 1.2rem;
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dept-label::after {
+      content: "";
+      flex: 1;
+      height: 2px;
+      background: #e2e8f0;
+    }
+
+    .site-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.2s;
+    }
+    .site-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .wind-badge {
+      display: inline-block;
+      padding: 6px;
+      background: #f0f9ff;
+      color: var(--primary);
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-align: center;
+      border: 1px solid #bae6fd;
+    }
+    
+    .site-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    .site-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .tag-closed { background: #fee2e2; color: #991b1b; }
+    .tag-biplace { background: #dcfce7; color: #166534; }
+    .tag-sensitive { background: #fef3c7; color: #92400e; }
+    .tag-tech { background: #f1f5f9; color: #475569; }
+
+    .weather-pack {
+      display: flex;
+      gap: 8px;
+    }
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.7rem;
+      color: #64748b;
+      background: #f8fafc;
+      transition: all 0.2s;
+    }
+    .icon-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .site-grid {
+      display: grid;
+      gap: 15px;
+    }
+
+    @media (max-width: 900px) {
+      .site-card {
+        grid-template-columns: 1fr auto;
+      }
+      .wind-badge {
+        grid-row: 1;
+        grid-column: 1 / span 2;
+        width: fit-content;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="resources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+                        <nav id="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le Club</a>
+              <ul class="dropdown-content">
+                <li><a href="activites.html" class="dropdown-link">Nos Activités</a></li>
+                <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Vol Libre</a>
+              <ul class="dropdown-content">
+                <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
+                <li><a href="sites.html" class="dropdown-link">Sites de Vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos Sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des Risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Actualités</a>
+              <ul class="dropdown-content">
+                <li><a href="news.html" class="dropdown-link">Journal du Club</a></li>
+                <li><a href="agenda.html" class="dropdown-link">Agenda du Club</a></li>
+                <li><a href="liens.html" class="dropdown-link">Liens Utiles</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-connexion">Connexion</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > Voler > <strong>Sites de vol</strong>
+  </div>
+
+  <main class="container">
+    <h1 style="font-size: 2.2rem; margin-bottom: 2rem; color: var(--primary);">Où voler en parapente ? Nos sites de vol</h1>
+
+    <div class="ppt-box" style="background: var(--primary); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
+      <div>
+        <h2 style="color: white; font-size: 1.4rem;">Guide Illustré des Sites</h2>
+        <p style="font-size: 0.9rem; opacity: 0.9;">Vues aériennes, plans et détails techniques (PDF)</p>
+      </div>
+      <a href="https://www.lesailesdesenart.com/images/listesites.pdf" target="_blank" class="btn" style="background: white; color: var(--primary); font-weight: 800;">Ouvrir le PDF</a>
+    </div>
+
+    <!-- Filtre Intelligent -->
+    <div class="search-filter">
+      <input type="text" id="siteSearch" class="search-input" placeholder="Rechercher un site, un département ou une orientation (ex: 77, Nord, Beynes...)" onkeyup="filterSites()">
+    </div>
+
+    <!-- REGION PIDF -->
+    <div class="region-container" data-region="PIDF">
+      <div class="region-header">
+        <h2>Région Île-de-France (PIDF)</h2>
+        <span style="font-size: 0.8rem; opacity: 0.8;">Proche Paris</span>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">91 – Essonne</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="91 essonne nord ne saulx les chartreux">
+            <span class="wind-badge">N, NE</span>
+            <div class="site-info">
+              <h3>Lac de Saulx-les-Chartreux</h3>
+              <div class="site-tags"><span class="tag tag-tech">Plateau herbeux</span></div>
+            </div>
+            <div class="weather-pack">
+              <a href="https://www.windy.com" target="_blank" class="icon-btn">W</a>
+              <a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a>
+              <a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a>
+            </div>
+          </div>
+          <div class="site-card" data-search="91 essonne ne e lisses parc leonard vinci">
+            <span class="wind-badge">NE, E</span>
+            <div class="site-info">
+              <h3>Parc Léonard de Vinci – Lisses</h3>
+              <div class="site-tags"><span class="tag tag-tech">Plateau herbeux</span></div>
+            </div>
+            <div class="weather-pack">
+              <a href="https://www.windy.com" target="_blank" class="icon-btn">W</a>
+              <a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a>
+              <a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a>
+            </div>
+          </div>
+          <div class="site-card" data-search="91 essonne sso se so no courcouronnes gonflage">
+            <span class="wind-badge">SSO - NO</span>
+            <div class="site-info">
+              <h3>Courcouronnes</h3>
+              <div class="site-tags"><span class="tag tag-tech">Gonflage</span></div>
+            </div>
+            <div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">M</a><a href="#" class="icon-btn">F</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">95 – Val d’Oise</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="95 val d'oise o so saint clair sur epte ferme">
+            <span class="wind-badge">O, SO</span>
+            <div class="site-info"><h3>Saint-Clair-sur-Epte</h3><div class="site-tags"><span class="tag tag-closed">SITE FERMÉ</span></div></div>
+            <div class="weather-pack"></div>
+          </div>
+          <div class="site-card" data-search="95 val d'oise no saint clair sur epte reouvert">
+            <span class="wind-badge">NO</span>
+            <div class="site-info"><h3>Saint-Clair-sur-Epte</h3><div class="site-tags"><span class="tag tag-biplace">RÉOUVERT</span></div></div>
+            <div class="weather-pack"><a href="#" class="icon-btn">W</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">60 – Oise</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="60 oise n ne lalandelle biplace chasse">
+            <span class="wind-badge">N, NE</span>
+            <div class="site-info"><h3>Lalandelle</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span> <span class="tag tag-sensitive">Interdit en période de chasse</span></div></div>
+            <div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">77 – Seine-et-Marne</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="77 seine marne n ne brie comte robert">
+            <span class="wind-badge">N - NE</span>
+            <div class="site-info">
+              <h3>Brie Comte Robert</h3>
+              <div class="site-tags"><span class="tag tag-tech">Gonflage</span></div>
+            </div>
+            <div class="weather-pack"><a href="https://www.windy.com" target="_blank" class="icon-btn">W</a><a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a><a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a></div>
+          </div>
+          <div class="site-card" data-search="77 seine marne n doue gonflage">
+            <span class="wind-badge">N</span>
+            <div class="site-info">
+              <h3>Doue</h3>
+              <div class="site-tags"><span class="tag tag-tech">Gonflage</span></div>
+            </div>
+            <div class="weather-pack"><a href="https://www.windy.com" target="_blank" class="icon-btn">W</a><a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a><a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a></div>
+          </div>
+          <div class="site-card" data-search="77 seine marne s courcelles en bassee ferme">
+            <span class="wind-badge">S</span>
+            <div class="site-info">
+              <h3>Courcelles-en-Bassée</h3>
+              <div class="site-tags"><span class="tag tag-closed">SITE FERMÉ</span></div>
+            </div>
+            <div class="weather-pack"></div>
+          </div>
+          <div class="site-card" data-search="77 seine marne s sse se trechy ferme">
+            <span class="wind-badge">S - SE</span>
+            <div class="site-info">
+              <h3>Tréchy</h3>
+              <div class="site-tags"><span class="tag tag-closed">SITE FERMÉ</span> <span class="tag tag-tech">Technique</span></div>
+            </div>
+            <div class="weather-pack"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">78 – Yvelines</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="78 yvelines sse so beynes cab prive">
+            <span class="wind-badge">SSE - SO</span>
+            <div class="site-info">
+              <h3>Beynes – La pente du "CAB"</h3>
+              <div class="site-tags"><span class="tag tag-sensitive">Site PRIVE (Crécerelles)</span></div>
+            </div>
+            <div class="weather-pack"><a href="https://www.windy.com" target="_blank" class="icon-btn">W</a><a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a><a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a></div>
+          </div>
+          <div class="site-card" data-search="78 yvelines sso beynes frileuse tech">
+            <span class="wind-badge">SSO</span>
+            <div class="site-info">
+              <h3>Beynes – La pente de "Frileuse"</h3>
+              <div class="site-tags"><span class="tag tag-tech">Site Technique</span></div>
+            </div>
+            <div class="weather-pack"><a href="https://www.windy.com" target="_blank" class="icon-btn">W</a><a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a><a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a></div>
+          </div>
+          <div class="site-card" data-search="78 yvelines e jeufosse autorisation">
+            <span class="wind-badge">E</span>
+            <div class="site-info">
+              <h3>Jeufosse</h3>
+              <div class="site-tags"><span class="tag tag-sensitive">Autorisation requise</span></div>
+            </div>
+            <div class="weather-pack"><a href="https://www.windy.com" target="_blank" class="icon-btn">W</a><a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a><a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGION NORMANDIE -->
+    <div class="region-container" data-region="NORMANDIE">
+      <div class="region-header">
+        <h2>Normandie (Ouest de Paris)</h2>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">14 – Calvados</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="14 calvados no nno villers sur mer auberville biplace">
+            <span class="wind-badge">NO, NNO</span>
+            <div class="site-info">
+              <h3>Villers-sur-Mer (Auberville)</h3>
+              <div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div>
+            </div>
+            <div class="weather-pack"><a href="https://www.windy.com" target="_blank" class="icon-btn">W</a><a href="https://www.meteociel.fr" target="_blank" class="icon-btn">M</a><a href="https://federation.ffvl.fr/pages/rechercher-un-site-pratique" target="_blank" class="icon-btn">F</a></div>
+          </div>
+          <div class="site-card"><span class="wind-badge">NNE</span><div class="site-info"><h3>Tracy-sur-Mer</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+          <div class="site-card"><span class="wind-badge">N, NNE</span><div class="site-info"><h3>Commes</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+          <div class="site-card"><span class="wind-badge">NE</span><div class="site-info"><h3>Vierville-sur-Mer</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+          <div class="site-card"><span class="wind-badge">S, O</span><div class="site-info"><h3>Clécy / St-Omer</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+          <div class="site-card" data-search="14 calvados ne saint marc douilly biplace">
+            <span class="wind-badge">NE</span>
+            <div class="site-info">
+              <h3>Saint-Marc-d’Ouilly</h3>
+              <div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div>
+            </div>
+            <div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div>
+          </div>
+          <div class="site-card"><span class="wind-badge">NO</span><div class="site-info"><h3>Aunay-sur-Odon</h3><div class="site-tags"><span class="tag tag-tech">Site cross difficile</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">N</span><div class="site-info"><h3>Berjou</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">ESE</span><div class="site-info"><h3>La-Roche-à-Busnel</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+        </div>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">27 – Eure</div>
+        <div class="site-grid">
+          <div class="site-card"><span class="wind-badge">NNO, OSO</span><div class="site-info"><h3>Les-Deux-Amants / Le-Plessis</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+          <div class="site-card"><span class="wind-badge">SE</span><div class="site-info"><h3>La-Roquette</h3><div class="site-tags"><span class="tag tag-sensitive">Site sensible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+          <div class="site-card"><span class="wind-badge">NE, E</span><div class="site-info"><h3>Fontaine-sous-Jouy</h3><div class="site-tags"><span class="tag tag-sensitive">Autorisation requise</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+          <div class="site-card"><span class="wind-badge">S</span><div class="site-info"><h3>Sotteville-sous-le-Val</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">N</span><div class="site-info"><h3>Barneville-sur-Seine</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">NE</span><div class="site-info"><h3>Marais-Vernier</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div></div>
+        </div>
+      </div>
+
+      <div class="dept-group">
+        <div class="dept-label">76 – Seine-Maritime</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="76 seine maritime ono octeville sur mer webcam biplace">
+            <span class="wind-badge">ONO</span>
+            <div class="site-info">
+              <h3>Octeville-sur-Mer</h3>
+              <div class="site-tags"><span class="tag tag-biplace">Biplace possible</span> <span class="tag tag-tech">Webcam</span></div>
+            </div>
+            <div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div>
+          </div>
+          <div class="site-card" data-search="76 seine maritime no senneville biplace"><span class="wind-badge">NO</span><div class="site-info"><h3>Senneville-sur-Fécamp</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card" data-search="76 seine maritime so la heve biplace"><span class="wind-badge">SO</span><div class="site-info"><h3>La-Hève</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card" data-search="76 seine maritime hénouville chasse"><span class="wind-badge">SO (SSO)</span><div class="site-info"><h3>Hénouville</h3><div class="site-tags"><span class="tag tag-sensitive">Interdit en période de chasse</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card" data-search="76 seine maritime se le hode biplace"><span class="wind-badge">SE</span><div class="site-info"><h3>Le-Hode</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card" data-search="76 seine maritime osmoy"><span class="wind-badge">N à ENE</span><div class="site-info"><h3>Osmoy-Saint-Valery</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card" data-search="76 seine maritime londiniere"><span class="wind-badge">SE, SSE, S</span><div class="site-info"><h3>Londinière</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGION EST & NORD -->
+    <div class="region-container" data-region="EST">
+      <div class="region-header">
+        <h2>Est & Hauts-de-France</h2>
+      </div>
+      <div class="dept-group">
+        <div class="dept-label">02 – Aisne</div>
+        <div class="site-grid">
+          <div class="site-card"><span class="wind-badge">SE</span><div class="site-info"><h3>Mont-Saint-Père</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">E</span><div class="site-info"><h3>Bonneil</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">S</span><div class="site-info"><h3>Pasly (Soissons)</h3><div class="site-tags"><span class="tag tag-tech">Petit site 40m</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+        </div>
+      </div>
+      <div class="dept-group">
+        <div class="dept-label">51 – Marne</div>
+        <div class="site-grid">
+          <div class="site-card"><span class="wind-badge">Toutes</span><div class="site-info"><h3>Champaubert / PEC</h3><div class="site-tags"><span class="tag tag-biplace">Treuil - Biplace</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">SO</span><div class="site-info"><h3>Grauves</h3><div class="site-tags"><span class="tag tag-tech">Site technique</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+        </div>
+      </div>
+      <div class="dept-group">
+        <div class="dept-label">10 – Aube</div>
+        <div class="site-grid">
+          <div class="site-card"><span class="wind-badge">S, SO</span><div class="site-info"><h3>Eaux-Puiseaux</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">O, SO</span><div class="site-info"><h3>Rigny-le-Ferron</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+          <div class="site-card"><span class="wind-badge">O, NO</span><div class="site-info"><h3>Bar-sur-Aube</h3></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+        </div>
+      </div>
+      <div class="dept-group">
+        <div class="dept-label">80 – Somme</div>
+        <div class="site-grid">
+          <div class="site-card"><span class="wind-badge">O, NO</span><div class="site-info"><h3>Quend-Plage</h3><div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div></div><div class="weather-pack"><a href="#" class="icon-btn">W</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGION SUD/EST -->
+    <div class="region-container" data-region="SUD_EST">
+      <div class="region-header">
+        <h2>Bourgogne / Champagne / Centre</h2>
+      </div>
+      <div class="dept-group">
+        <div class="dept-label">89 – Yonne</div>
+        <div class="site-grid">
+          <div class="site-card" data-search="89 yonne s sso noyers sur serein clorges">
+            <span class="wind-badge">S à SSO</span>
+            <div class="site-info">
+              <h3>Noyers-sur-Serein</h3>
+              <div class="site-tags"><span class="tag tag-tech">Clorges, Beauvais, Les-Cotats...</span></div>
+            </div>
+            <div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">M</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="dept-group">
+          <div class="dept-label">18 – Cher</div>
+          <div class="site-card" data-search="18 cher sancerre sensitive">
+            <span class="wind-badge">N, NNE, NNO</span>
+            <div class="site-info">
+              <h3>Sancerre – Les Caves de la Mignonne</h3>
+              <div class="site-tags"><span class="tag tag-sensitive">Site sensible</span></div>
+            </div>
+            <div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">F</a></div>
+          </div>
+      </div>
+    </div>
+
+    <!-- REGION JURA -->
+    <div class="region-container" data-region="JURA">
+        <div class="region-header">
+          <h2>Jura / Franche-Comté</h2>
+        </div>
+        <div class="dept-group">
+          <div class="dept-label">39 – Franche-Comté</div>
+          <div class="site-grid">
+            <div class="site-card" data-search="39 jura mont poupet biplace">
+              <span class="wind-badge">N, NO, O, S, E, SE</span>
+              <div class="site-info">
+                <h3>Le-Mont-Poupet</h3>
+                <div class="site-tags"><span class="tag tag-biplace">Biplace possible</span></div>
+              </div>
+              <div class="weather-pack"><a href="#" class="icon-btn">W</a><a href="#" class="icon-btn">M</a><a href="#" class="icon-btn">F</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </main>
+
+  <footer>
+    <div class="container" style="text-align: center; padding: 2rem 0;">
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+      <p style="font-size: 0.8rem; margin-top: 10px; color: #64748b;">
+        Liens utiles : <a href="http://www.normandie-vol-libre.fr" target="_blank">Normandie Vol Libre</a> | <a href="http://www.pap08.eu" target="_blank">Pap08</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function filterSites() {
+      const input = document.getElementById('siteSearch');
+      const filter = input.value.toLowerCase();
+      const cards = document.getElementsByClassName('site-card');
+
+      for (let i = 0; i < cards.length; i++) {
+        const searchText = cards[i].getAttribute('data-search') || cards[i].innerText.toLowerCase();
+        if (searchText.indexOf(filter) > -1) {
+          cards[i].style.display = "";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+
+      // Masquer les groupes de départements s'ils n'ont plus de sites visibles
+      const groups = document.getElementsByClassName('dept-group');
+      for (let g = 0; g < groups.length; g++) {
+        const visibleCards = groups[g].querySelectorAll('.site-card[style=""]');
+        if (visibleCards.length === 0 && filter !== "") {
+            // Un peu complexe à gérer parfaitement sans JS plus lourd, 
+            // on se contente de filtrer les cartes pour l'instant.
+        }
+      }
+    }
+  </script>
+</body>
+</html>

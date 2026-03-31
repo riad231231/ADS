@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Activités - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .activity-section {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 3rem;
+    }
+    .flex-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 3rem;
+      align-items: center;
+    }
+    .activity-img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .contact-card {
+      background: var(--bg-subtle);
+      border-left: 5px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-top: 1.5rem;
+      word-break: break-word; /* Fix email overflow */
+    }
+    .price-badge {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    .charity-box {
+      background: #F0F9FF;
+      border: 1px dashed var(--primary);
+      padding: 2rem;
+      border-radius: var(--radius);
+    }
+    @media (max-width: 900px) {
+      .flex-layout {
+        grid-template-columns: 1fr;
+      }
+      .activity-section {
+        padding: 1.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .activity-section {
+        padding: 1rem;
+      }
+      .flex-layout {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="resources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+                        <nav id="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le Club</a>
+              <ul class="dropdown-content">
+                <li><a href="activites.html" class="dropdown-link">Nos Activités</a></li>
+                <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Vol Libre</a>
+              <ul class="dropdown-content">
+                <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
+                <li><a href="sites.html" class="dropdown-link">Sites de Vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos Sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des Risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Actualités</a>
+              <ul class="dropdown-content">
+                <li><a href="news.html" class="dropdown-link">Journal du Club</a></li>
+                <li><a href="agenda.html" class="dropdown-link">Agenda du Club</a></li>
+                <li><a href="liens.html" class="dropdown-link">Liens Utiles</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-connexion">Connexion</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Nos activités</strong>
+  </div>
+
+  <main class="container">
+    <h1 style="margin-bottom: 2.5rem; text-align: center;">Les activités du club</h1>
+
+    <!-- SECTION : JOURNÉES DÉCOUVERTE -->
+    <section class="activity-section">
+      <div class="flex-layout">
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Journées Découverte</h2>
+          <p style="margin-bottom: 1rem;">
+            Nous organisons des journées découverte pour vous permettre de vivre au rythme du vol libre. Sous réserve d'une météo favorable, vous pourrez réaliser votre baptême en parapente biplace accompagné d'un pilote qualifié.
+          </p>
+          <p style="margin-bottom: 1.5rem; font-style: italic;">
+            Le parapente étant fortement dépendant des conditions, nous vous prévenons généralement 24h à 48h à l'avance si un créneau se confirme.
+          </p>
+          
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Nos sites privilégiés</h3>
+          <p>Situés entre 150 et 300 km de Paris, nous pratiquons le covoiturage pour nous y rendre :</p>
+          <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+            <li><strong>Côte normande :</strong> Vol insolite entre ciel, mer et falaises.</li>
+            <li><strong>Bourgogne :</strong> Survol des vallons plantés de vignes.</li>
+            <li><strong>Suisse Normande :</strong> Au-dessus des bocages verdoyants.</li>
+          </ul>
+
+          <div class="price-badge">Participation aux frais : 30 €</div>
+          <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--text-muted);">Réglé au club après réalisation du vol (hors frais de covoiturage).</p>
+
+          <div class="contact-card">
+            <strong>Contact Découverte :</strong><br>
+            <a href="mailto:journeedecouverte@lesailesdesenart.com">journeedecouverte@lesailesdesenart.com</a>
+          </div>
+        </div>
+        <div>
+          <img src="resources/journee-decouverte-parapente-senart.jpg" alt="Journée découverte parapente Sénart" class="activity-img" style="opacity: 1;">
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION : HANDI -->
+    <section class="activity-section">
+      <div class="flex-layout">
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Parapente Handi</h2>
+          <p style="margin-bottom: 1rem;">
+            Le club s'engage pour rendre le vol libre accessible à tous. Une journée type débute par une présentation du parapente, suivie de vols en biplace assurés par des biplaceurs qualifiés <strong>Handicare</strong>.
+          </p>
+          <div class="contact-card" style="border-left-color: var(--accent);">
+            <strong>Structures, CMP ou particuliers :</strong><br>
+            Contact Guy Buisson : <a href="mailto:guy.buisson@gmail.com">guy.buisson@gmail.com</a>
+          </div>
+        </div>
+        <div>
+          <img src="resources/FV2015-P_Quillet.jpg" alt="Parapente Handi" class="activity-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION : COMPÉTITION -->
+    <section class="activity-section">
+      <div class="flex-layout">
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Compétition</h2>
+          <p>
+            Bien que le club n'ait pas une culture uniquement tournée vers la compétition, plusieurs de nos membres sont d'excellents compétiteurs évoluant au niveau national. Nous encourageons le dépassement de soi et le partage de performance.
+          </p>
+          <div class="contact-card">
+            <strong>Plus d'informations :</strong><br>
+            <a href="mailto:president@lesailesdesenart.com">president@lesailesdesenart.com</a>
+          </div>
+        </div>
+        <div>
+          <img src="resources/Grappe.webp" alt="Grappe de parapentes" class="activity-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION : AILES POUR EUX -->
+    <section class="activity-section" style="background: white; border: 1px solid var(--border);">
+      <div class="flex-layout">
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Ailes pour Eux : ils n'ont rien mais ils volent !</h2>
+          <p style="font-size: 1.1rem; margin-bottom: 2rem; font-weight: 600;">
+            Nous récupérons du matériel (voiles, sellettes, secours, casques...) pour les pilotes de pays n'ayant pas nos moyens.
+          </p>
+          
+          <div style="margin-bottom: 2rem;">
+            <p style="margin-bottom: 1rem;">Le circuit est 100% bénévole : aucune transaction commerciale. Les révisions sont offertes par <strong>Rip'Air</strong> et <strong>Wingshop</strong>.</p>
+            <p>L'acheminement est assuré gratuitement par des pilotes voyageurs ou du personnel navigant solidaire.</p>
+          </div>
+
+          <p style="margin-bottom: 1.5rem;">
+            Initié par Catherine Mouligné, ce projet est aujourd'hui porté par l'association "Ailes pour Eux" avec les mêmes principes : donner la liberté de voler.
+          </p>
+
+          <div style="text-align: left; margin-top: 2rem;">
+            <a href="https://ailespoureux.fr/" target="_blank" class="btn" style="background: var(--primary); color: white; padding: 1rem 2rem;">Devenir donateur ou bénévole</a>
+          </div>
+        </div>
+        <div>
+          <img src="resources/wp2.webp" alt="Action Ailes pour Eux" class="activity-img">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page </a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js?v=1.5"></script>
+</body>
+</html>

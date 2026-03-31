@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Média & Ressources - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .media-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .media-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .media-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--primary);
+    }
+    .media-type {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 0.05em;
+    }
+    .media-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--bg-dark);
+      margin: 0;
+    }
+    .media-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .media-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: b;
+      align-items: center;
+    }
+    .btn-download {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-download:hover {
+      text-decoration: underline;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="resources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+                        <nav id="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le Club</a>
+              <ul class="dropdown-content">
+                <li><a href="activites.html" class="dropdown-link">Nos Activités</a></li>
+                <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Vol Libre</a>
+              <ul class="dropdown-content">
+                <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
+                <li><a href="sites.html" class="dropdown-link">Sites de Vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos Sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des Risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Actualités</a>
+              <ul class="dropdown-content">
+                <li><a href="news.html" class="dropdown-link">Journal du Club</a></li>
+                <li><a href="agenda.html" class="dropdown-link">Agenda du Club</a></li>
+                <li><a href="liens.html" class="dropdown-link">Liens Utiles</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-connexion">Connexion</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Média & Ressources</strong>
+  </div>
+
+  <main class="container">
+    <div class="content-card" style="margin-bottom: 3rem;">
+      <h1>Média & Bibliothèque</h1>
+      <p class="lead">Retrouvez ici tous les documents utiles, manuels, PDF de formation et ressources pour préparer vos vols.</p>
+    </div>
+
+    <!-- Filtres -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="formation">Formation</button>
+      <button class="filter-btn" data-filter="sécurité">Sécurité</button>
+      <button class="filter-btn" data-filter="matériel">Matériel</button>
+      <button class="filter-btn" data-filter="météo">Météo</button>
+      <button class="filter-btn" data-filter="réglementation">Réglem.</button>
+      <button class="filter-btn" data-filter="radio">Radio</button>
+      <button class="filter-btn" data-filter="club">Club</button>
+    </div>
+
+    <div class="media-grid">
+      
+      <!-- FORMATION -->
+      <div class="media-card" data-category="formation">
+        <span class="media-type">Formation</span>
+        <h3 class="media-title">Les axes de progression</h3>
+        <p class="media-desc">Support complet sur les étapes clés pour évoluer en sécurité dans sa pratique.</p>
+        <div class="media-footer">
+          <a href="Media/Les-axes-de-progression.ppt" class="btn-download">⬇️ PPT (15 Mo)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="formation">
+        <span class="media-type">Formation</span>
+        <h3 class="media-title">La catégorie B</h3>
+        <p class="media-desc">Comprendre les exigences et le comportement des ailes de catégorie B (2023).</p>
+        <div class="media-footer">
+          <a href="Media/la_catégorie_B_20230323.pdf" class="btn-download">⬇️ PDF (419 Ko)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="formation">
+        <span class="media-type">Formation</span>
+        <h3 class="media-title">Nouveau site Montagne</h3>
+        <p class="media-desc">Guide pour découvrir et appréhender un nouveau site en milieu montagnard.</p>
+        <div class="media-footer">
+          <a href="Media/2018-04-05_Decouvrir_nouveau-site_montagne.pptx" class="btn-download">⬇️ PPTX (13.4 Mo)</a>
+        </div>
+      </div>
+
+      <!-- SÉCURITÉ -->
+      <div class="media-card" data-category="sécurité">
+        <span class="media-type">Sécurité</span>
+        <h3 class="media-title">Live Tracking & Sécurité</h3>
+        <p class="media-desc">Tout savoir sur le suivi en direct et les outils pour rester visible en vol.</p>
+        <div class="media-footer">
+          <a href="Media/Tuto%20Live%20Tracking.pdf" class="btn-download">⬇️ PDF (3.4 Mo)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="sécurité">
+        <span class="media-type">Sécurité</span>
+        <h3 class="media-title">Live Tracking Presentation</h3>
+        <p class="media-desc">Présentation détaillée d'Antoine sur les solutions de tracking en vol.</p>
+        <div class="media-footer">
+          <a href="Media/Live-tracking-Pres-Antoine.pdf" class="btn-download">⬇️ PDF (3.2 Mo)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="sécurité">
+        <span class="media-type">Sécurité</span>
+        <h3 class="media-title">Balise SPOT</h3>
+        <p class="media-desc">Guide d'utilisation de la balise satellite pour les vols engagés.</p>
+        <div class="media-footer">
+          <a href="Media/Balise_SPOT.pdf" class="btn-download">⬇️ PDF (707 Ko)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="sécurité">
+        <span class="media-type">Sécurité</span>
+        <h3 class="media-title">KSS - Sécurité</h3>
+        <p class="media-desc">Document technique sur la sécurité et le pliage des secours.</p>
+        <div class="media-footer">
+          <a href="Media/kss.ppt" class="btn-download">⬇️ PPT (5.5 Mo)</a>
+        </div>
+      </div>
+
+      <!-- MATÉRIEL -->
+      <div class="media-card" data-category="matériel" style="border-left-color: var(--secondary);">
+        <span class="media-type" style="color: var(--secondary);">Matériel</span>
+        <h3 class="media-title">Présentation Sellettes</h3>
+        <p class="media-desc">Comparatif et critères de choix selon votre type de pratique.</p>
+        <div class="media-footer">
+          <a href="Media/2013-10-29_PresentationSellettes.ppt" class="btn-download">⬇️ PPT (1.8 Mo)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="matériel" style="border-left-color: var(--secondary);">
+        <span class="media-type" style="color: var(--secondary);">Matériel</span>
+        <h3 class="media-title">Révision de voile</h3>
+        <p class="media-desc">Pourquoi et comment faire réviser son aile ? Guide pratique 2023.</p>
+        <div class="media-footer">
+          <a href="Media/Revision_de_voile_20231003_v1.pdf" class="btn-download">⬇️ PDF (458 Ko)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="matériel" style="border-left-color: var(--secondary);">
+        <span class="media-type" style="color: var(--secondary);">Matériel</span>
+        <h3 class="media-title">Kit réparation suspentage</h3>
+        <p class="media-desc">Comment préparer et utiliser un kit de réparation d'urgence.</p>
+        <div class="media-footer">
+          <a href="Media/kitReparationSuspentage.ppt" class="btn-download">⬇️ PPT (2.4 Mo)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="matériel" style="border-left-color: var(--secondary);">
+        <span class="media-type" style="color: var(--secondary);">Matériel</span>
+        <h3 class="media-title">Calcul du PTV</h3>
+        <p class="media-desc">Le Poids Total Volant : comprendre son influence sur le comportement de l'aile.</p>
+        <div class="media-footer">
+          <a href="Media/PTV.pdf" class="btn-download">⬇️ PDF (372 Ko)</a>
+        </div>
+      </div>
+
+      <!-- MÉTÉO -->
+      <div class="media-card" data-category="météo">
+        <span class="media-type">Météo</span>
+        <h3 class="media-title">Comprendre l'émagramme</h3>
+        <p class="media-desc">Analyse avancée de la masse d'air pour prévoir les plafonds et la stabilité.</p>
+        <div class="media-footer">
+          <a href="Media/emagramme-1.ppt" class="btn-download">⬇️ PPT (9.4 Mo)</a>
+        </div>
+      </div>
+
+      <!-- RÉGLEMENTATION -->
+      <div class="media-card" data-category="réglementation">
+        <span class="media-type">Réglementation</span>
+        <h3 class="media-title">Espaces Aériens</h3>
+        <p class="media-desc">Support sur la réglementation et les zones de vol complexes.</p>
+        <div class="media-footer">
+          <a href="Media/AB_mai-18_espaces-aeriens-677011401.pptx" class="btn-download">⬇️ PPTX (3.1 Mo)</a>
+        </div>
+      </div>
+
+      <!-- RADIO -->
+      <div class="media-card" data-category="radio">
+        <span class="media-type">Radio</span>
+        <h3 class="media-title">Antenne Filaire DIY</h3>
+        <p class="media-desc">Tuto pour augmenter la portée de vos radios (antenne 1/2 onde).</p>
+        <div class="media-footer">
+          <a href="Media/Matos%20_ANTENNE_FILAIRE_Augmenter_la_portée_de_nos_radios.doc" class="btn-download">⬇️ DOC (43 Ko)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="radio">
+        <span class="media-type">Radio</span>
+        <h3 class="media-title">Accus Radio Kenwood</h3>
+        <p class="media-desc">Astuces pour augmenter la puissance et l'autonomie de vos batteries.</p>
+        <div class="media-footer">
+          <a href="Media/Matos_Accus_radio_Augmenter_sa_puissance_Kenwood_TH22_ou_autres.doc" class="btn-download">⬇️ DOC (34 Ko)</a>
+        </div>
+      </div>
+
+      <div class="media-card" data-category="radio">
+        <span class="media-type">Radio</span>
+        <h3 class="media-title">Antenne Fouet 5/8</h3>
+        <p class="media-desc">Réalisation d'une antenne fouet haute performance pour la radio.</p>
+        <div class="media-footer">
+          <a href="Media/Matos_REALISATION_D_UNE_ANTENNE_FOUET_5_8%20(1).doc" class="btn-download">⬇️ DOC (27 Ko)</a>
+        </div>
+      </div>
+
+      <!-- CLUB -->
+      <div class="media-card" data-category="club">
+        <span class="media-type">Club</span>
+        <h3 class="media-title">Assurance & Assistance</h3>
+        <p class="media-desc">Présentation des garanties et de l'assistance liée à la licence FFVL (2015).</p>
+        <div class="media-footer">
+          <a href="Media/assurance-et-assistance-2015%20(2).ppt" class="btn-download">⬇️ PPT (4.4 Mo)</a>
+        </div>
+      </div>
+
+      <!-- WEB RESOURCES -->
+      <div class="media-card" data-category="club">
+        <span class="media-type">Web</span>
+        <h3 class="media-title">Ressources Parapente/Delta</h3>
+        <p class="media-desc">Lien vers d'autres présentations et documents externes utiles.</p>
+        <div class="media-footer">
+          <a href="Media/Quelques%20présentations%20sur%20le%20domaine%20Parapente:Deltaplane.webloc" class="btn-download">🔗 Ouvrir le lien</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page</a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js?v=1.5"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const mediaCards = document.querySelectorAll('.media-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          mediaCards.forEach(card => {
+            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+              card.style.display = 'flex';
+              card.style.animation = 'fadeIn 0.3s ease forwards';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</body>
+</html>

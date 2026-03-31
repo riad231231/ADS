@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités & News - Les Ailes de Sénart</title>
+    <meta name="description" content="Toutes les dernières nouvelles, flash infos et actualités du club de parapente Les Ailes de Sénart.">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Open Graph / SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ailesdesenart.com/news.html">
+    <meta property="og:title" content="Actualités & News - Les Ailes de Sénart">
+    <meta property="og:description" content="Suivez l'actualité du club Les Ailes de Sénart.">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="app.js?v=1.5"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        .news-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .news-article {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .news-article::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary);
+        }
+        .news-article.sortie::before { background: var(--amber); }
+        
+        .news-meta {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .news-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+        }
+        .news-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            max-height: 120px; /* Hauteur réduite par défaut */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.4s ease;
+        }
+        .news-content::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .news-article.expanded .news-content {
+            max-height: 2000px; /* On laisse de la place pour tout le contenu */
+        }
+        .news-article.expanded .news-content::after {
+            opacity: 0;
+        }
+        .news-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .btn-more {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-more:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .news-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 1000px) {
+            .news-layout { grid-template-columns: 1fr; }
+        }
+
+        .calendar-widget {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            position: sticky;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <div class="container">
+            <div class="header-flex">
+                <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+                    <img src="resources/logo_05519.png" alt="Les Ailes de Sénart">
+                    <div class="logo-text">
+                        <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+                        <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+                    </div>
+                </a>
+                
+                        <nav id="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le Club</a>
+              <ul class="dropdown-content">
+                <li><a href="activites.html" class="dropdown-link">Nos Activités</a></li>
+                <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Vol Libre</a>
+              <ul class="dropdown-content">
+                <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
+                <li><a href="sites.html" class="dropdown-link">Sites de Vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos Sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des Risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Actualités</a>
+              <ul class="dropdown-content">
+                <li><a href="news.html" class="dropdown-link">Journal du Club</a></li>
+                <li><a href="agenda.html" class="dropdown-link">Agenda du Club</a></li>
+                <li><a href="liens.html" class="dropdown-link">Liens Utiles</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-connexion">Connexion</a></li>
+          </ul>
+        </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container breadcrumb">
+        Vous êtes ici : <a href="index.html">Accueil</a> <span class="separator">></span> <strong>Actualités</strong>
+    </div>
+
+    <main class="container">
+        <h1 style="font-size: 2.2rem; margin-bottom: 2rem; color: var(--primary);">Le Journal du Club</h1>
+
+        <div class="news-layout">
+            <div class="news-container" id="news-full-list">
+                <p style="text-align: center; color: var(--text-muted);">Chargement des actualités...</p>
+            </div>
+
+            <aside class="sidebar">
+                <div class="calendar-widget">
+                    <h2 style="font-size: 1.4rem; color: var(--secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 4px solid var(--primary);">Prochains Événements</h2>
+                    <div id="next-events">
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Chargement de l'agenda...</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <a href="#" class="footer-link">Haut de page</a>
+            <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialisation spécifique à la page news
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllNews();
+        });
+
+        async function loadAllNews() {
+            const container = document.getElementById('news-full-list');
+            if (!container || typeof SUPABASE_URL === 'undefined') return;
+
+            try {
+                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                const { data: news, error } = await supabase
+                    .from('news')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (!news || news.length === 0) {
+                    container.innerHTML = "<p style='text-align: center; padding: 3rem;'>Aucune actualité pour le moment.</p>";
+                    return;
+                }
+
+                container.innerHTML = news.map(n => {
+                    const dateStr = new Date(n.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+                    return `
+                        <article class="news-article" id="news-${n.id}">
+                            <div class="news-meta">
+                                <span><i class="far fa-calendar-alt"></i> ${dateStr}</span>
+                                <span><i class="far fa-user"></i> LADS</span>
+                            </div>
+                            <h2 class="news-title">${n.title}</h2>
+                            <div class="news-content" id="content-${n.id}">
+                                ${n.message.replace(/\n/g, '<br>')}
+                            </div>
+                            <div class="news-actions">
+                                <button class="btn-more" onclick="toggleNews('${n.id}', this)" id="btn-${n.id}">
+                                    Lire la suite
+                                </button>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+
+                // Gérer l'ancre si présente dans l'URL
+                const hash = window.location.hash;
+                if (hash && hash.startsWith('#news-')) {
+                    const el = document.querySelector(hash);
+                    if (el) {
+                        setTimeout(() => {
+                            el.scrollIntoView({ behavior: 'smooth' });
+                            const btn = document.getElementById('btn-' + hash.replace('#news-', ''));
+                            if (btn) toggleNews(hash.replace('#news-', ''), btn);
+                        }, 500);
+                    }
+                }
+
+            } catch (e) {
+                console.error("News Load Error:", e);
+                container.innerHTML = "<p style='color: var(--danger);'>Erreur lors du chargement des actualités.</p>";
+            }
+        }
+
+        function toggleNews(id, btn) {
+            const article = document.getElementById('news-' + id);
+            const content = document.getElementById('content-' + id);
+            
+            if (article.classList.contains('expanded')) {
+                article.classList.remove('expanded');
+                btn.innerText = "Lire la suite";
+                article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                article.classList.add('expanded');
+                btn.innerText = "Réduire";
+            }
+        }
+    </script>
+</body>
+</html>

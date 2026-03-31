@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incidents & Accidents - Les Ailes de Sénart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .rex-container {
+      margin-top: 2rem;
+    }
+    .objective-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      transition: transform 0.2s;
+    }
+    .objective-card:hover {
+      transform: translateX(5px);
+      border-color: var(--primary);
+    }
+    .objective-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .disclaimer-banner {
+      background: #FFFBEB;
+      border-left: 5px solid #F59E0B;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 4px;
+    }
+    .cta-area {
+      text-align: center;
+      padding: 3rem 0;
+      background: #F8FAFC;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .btn-rex {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #10B981;
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+    .btn-rex:hover {
+      background: #059669;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    .rex-icon {
+      font-size: 1.4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container">
+      <div class="header-flex">
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary); display: flex; align-items: center; gap: 1rem;">
+          <img src="resources/logo_05519.png" alt="Les Ailes de Sénart">
+          <div class="logo-text">
+            <span class="site-title" style="font-weight: 800; font-size: 1.5rem; line-height: 1.2;">Les Ailes de Sénart</span>
+            <span class="site-tagline" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted); display: block;">Club de Parapente</span>
+          </div>
+        </a>
+        
+                        <nav id="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Le Club</a>
+              <ul class="dropdown-content">
+                <li><a href="activites.html" class="dropdown-link">Nos Activités</a></li>
+                <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
+                <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Vol Libre</a>
+              <ul class="dropdown-content">
+                <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
+                <li><a href="sites.html" class="dropdown-link">Sites de Vol</a></li>
+                <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
+                <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos Sorties</a></li>
+                <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
+                <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des Risques</a></li>
+              </ul>
+            </li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Actualités</a>
+              <ul class="dropdown-content">
+                <li><a href="news.html" class="dropdown-link">Journal du Club</a></li>
+                <li><a href="agenda.html" class="dropdown-link">Agenda du Club</a></li>
+                <li><a href="liens.html" class="dropdown-link">Liens Utiles</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-connexion">Connexion</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="container breadcrumb">
+    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > Voler > <strong>Incidents / Accidents</strong>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <div class="main-layout">
+      
+      <section class="content-card">
+        <h1>Incidents et Accidents</h1>
+        
+        <p class="lead" style="font-size: 1.2rem; margin-bottom: 2rem; color: #64748b;">
+          La sécurité est l'affaire de tous. Ce partage d'expérience a pour vocation d'apprendre des situations vécues pour voler plus sereinement.
+        </p>
+
+        <div class="rex-container">
+          <div class="objective-card">
+            <h3>Tracement & Mémoire</h3>
+            <p>Garder une trace des incidents/accidents de nos membres pour mieux comprendre l'historique sécurité du club.</p>
+            <a href="https://docs.google.com/spreadsheets/d/1y4klSqhKMyilFxX5BAi-m0o-cwnsu0wE/edit?gid=194466731#gid=194466731" target="_blank" class="btn" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem; background: var(--secondary); color: white;">Voir l'historique</a>
+          </div>
+          
+          <div class="objective-card">
+            <h3>Culture du REX</h3>
+            <p>Développer la culture du REtour d'eXpérience (REX) : analyser les causes sans jugement pour faire progresser tout le groupe.</p>
+          </div>
+          
+          <div class="objective-card">
+            <h3>Prévention locale</h3>
+            <p>Informer sur les risques spécifiques aux sites que nous fréquentons (aérologie, topographie, obstacles).</p>
+          </div>
+        </div>
+
+        <div class="disclaimer-banner">
+          <p><strong>Note importante :</strong> Le tableau est renseigné au bon vouloir des pilotes concernés, sans modération ni relecture par des tiers.</p>
+        </div>
+
+        <div class="cta-area">
+          <p style="margin-bottom: 1.5rem; font-weight: 600;">Partagez votre expérience ou consultez le tableau :</p>
+          <a href="https://docs.google.com/spreadsheets/d/1y4klSqhKMyilFxX5BAi-m0o-cwnsu0wE/edit?gid=194466731#gid=194466731" target="_blank" class="btn-rex">
+            Accéder au Tableau des REX
+          </a>
+          <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #64748b;">
+            Un grand merci aux pilotes qui acceptent de partager leurs expériences !
+          </p>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="widget">
+          <h2 class="widget-title">Sécurité</h2>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem;">La FFVL propose également un système de déclaration national.</p>
+          <a href="#" class="btn" style="width: 100%; display: block; text-align: center; font-size: 0.8rem; background: var(--secondary); color: white;">REX FFVL</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#" class="footer-link">Haut de page </a>
+      <p>© 2026 Les Ailes de Sénart - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="app.js?v=1.5"></script>
+</body>
+</html>
