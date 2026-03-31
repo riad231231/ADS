@@ -130,6 +130,8 @@
             .actions { width: 100%; justify-content: flex-end; }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
 </head>
 <body>
 
@@ -238,10 +240,12 @@
 </div>
 
 <script>
-    // Config Supabase
-    const SUPA_URL = "https://hksbiafznhdjngzimypi.supabase.co";
-    const SUPA_KEY = "sb_publishable_odIBMR0BBSPQiJrcyma9NQ_sumPmxew";
-    const db = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+    // Utilisation de la configuration centralisée
+    const db = window.supabaseClient; 
+    
+    if (!db) {
+        console.error("Configuration Supabase manquante ou mal chargée.");
+    }
 
     // Navigation Onglets
     function switchTab(id) {
