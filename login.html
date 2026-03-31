@@ -89,7 +89,13 @@
             
             try {
                 if (window.supabase) {
-                    client = window.supabase.createClient(SU_URL, SU_KEY);
+                    client = window.supabase.createClient(SU_URL, SU_KEY, {
+                        auth: {
+                            persistSession: true,
+                            storage: window.sessionStorage, // Session effacée à la fermeture
+                            autoRefreshToken: true
+                        }
+                    });
                 }
             } catch (err) {
                 console.error("Init error", err);
@@ -159,6 +165,20 @@
                         full_name: fn + " " + ln,
                         is_approved: false 
                     }]);
+                    
+                    // --- Notification Admin Rapide (Formspree) ---
+                    try {
+                        fetch("https://formspree.io/f/mgopydbw", {
+                            method: "POST",
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                objet: "NOUVELLE INSCRIPTION SITE ADS",
+                                nom_complet: fn + " " + ln,
+                                email: em,
+                                message: "Un nouveau membre vient de s'inscrire sur le site et attend sa validation dans Supabase."
+                            })
+                        });
+                    } catch(e) { console.error("Notif error", e); }
                     
                     ms.className = "suc";
                     ms.innerHTML = "<strong>Demande enregistrée !</strong><br>Le bureau va valider votre compte très prochainement.";

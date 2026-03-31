@@ -208,7 +208,7 @@
             };
 
             try {
-              const client = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+              const client = window.supabaseClient || window.supabase.createClient(SUPA_URL, SUPA_KEY, { auth: { persistSession: true, storage: window.sessionStorage } });
 
               // 1. Récupération des sorties depuis Supabase
               const { data: sorties, error } = await client

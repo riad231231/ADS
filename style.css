@@ -148,13 +148,14 @@ header {
 
 /* DROPDOWN EVOLUTIONS */
 .dropdown-content {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(10px);
   background: white;
-  min-width: 200px;
+  min-width: 220px;
   max-width: 90vw;
   box-shadow: var(--shadow-lg);
   border-radius: var(--radius);
@@ -163,16 +164,27 @@ header {
   border: 1px solid var(--border);
   padding: 0.8rem;
   margin-top: 0.5rem;
-  animation: slideDropdown 0.3s ease;
+  transition: opacity 0.2s ease 0.1s, visibility 0.2s ease 0.1s, transform 0.2s ease 0.1s;
+  pointer-events: none;
 }
 
-@keyframes slideDropdown {
-  from { opacity: 0; transform: translate(-50%, 10px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+/* Invisible bridge to catch mouse movement between link and menu */
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: -0.7rem; /* slightly larger bridge for more safety */
+  left: 0;
+  right: 0;
+  height: 0.7rem;
+  background: transparent;
 }
 
 .nav-item:hover .dropdown-content {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.2s ease 0s, visibility 0.2s ease 0s, transform 0.2s ease 0s;
+  pointer-events: auto;
 }
 
 .dropdown-link {

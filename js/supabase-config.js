@@ -2,9 +2,15 @@
 window.SUPABASE_URL = "https://hksbiafznhdjngzimypi.supabase.co";
 window.SUPABASE_KEY = "sb_publishable_odIBMR0BBSPQiJrcyma9NQ_sumPmxew";
 
-// 2. Initialisation du client Supabase
+// 2. Initialisation du client Supabase (Session éphémère : disparaît à la fermeture du navigateur)
 if (window.supabase && typeof window.supabase.createClient === 'function') {
-  window.supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+  window.supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY, {
+    auth: {
+      persistSession: true,
+      storage: window.sessionStorage, // Supprime la session quand on ferme l'onglet/fenêtre
+      autoRefreshToken: true
+    }
+  });
 } else {
   console.error("Supabase library not loaded. Check CDN link.");
 }

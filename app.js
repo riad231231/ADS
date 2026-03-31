@@ -46,7 +46,7 @@ async function loadAgendaPages() {
   }
 
   try {
-      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      const supabase = window.supabaseClient || window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, storage: window.sessionStorage } });
       const { data, error } = await supabase
           .from('events')
           .select('*')
