@@ -238,13 +238,22 @@ async function initMainNavLogin() {
       const { data: { user } } = await supabase.auth.getUser();
 
       if (user) {
-          // Si connecté, on change le texte et le lien
-          loginLink.innerText = "Mon Espace";
-          loginLink.href = "admin/index.html";
-          
-          // Optionnel: ajouter un bouton de déconnexion à côté ? 
-          // Pour rester simple selon la demande "un bouton menu connection", 
-          // on va juste transformer Connexion en Mon Espace.
+          // On vérifie si l'utilisateur est approuvé
+          const { data: profile } = await supabase
+              .from('profiles')
+              .select('is_approved')
+              .eq('id', user.id)
+              .single();
+
+          if (profile && profile.is_approved) {
+              // Si déjà connecté ET approuvé
+              loginLink.innerText = "Mon Espace";
+              loginLink.href = "admin/index.html";
+          } else {
+              // Connecté mais pas encore approuvé par le bureau
+              loginLink.innerText = "En attente...";
+              loginLink.href = "login.html?status=pending";
+          }
       }
   } catch (e) {
       console.error("Login Nav Error:", e);

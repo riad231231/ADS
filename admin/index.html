@@ -301,6 +301,22 @@
     async function checkAuth() {
         const { data: { user } } = await db.auth.getUser();
         if (!user) { window.location.href = '../login.html'; return; }
+        
+        // Vérification de l'approbation
+        const { data: profile, error } = await db
+            .from('profiles')
+            .select('is_approved')
+            .eq('id', user.id)
+            .single();
+
+        if (error || !profile || !profile.is_approved) {
+            console.warn("Accès refusé : compte non approuvé.");
+            // On déconnecte pour éviter les boucles et on redirige
+            await db.auth.signOut();
+            window.location.href = '../login.html?status=pending';
+            return;
+        }
+
         document.getElementById('user-email').textContent = user.email;
         return user;
     }

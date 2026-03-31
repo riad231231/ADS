@@ -94,6 +94,15 @@
             } catch (err) {
                 console.error("Init error", err);
             }
+
+            // Vérification du statut d'attente
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('status') === 'pending') {
+                const ms = document.getElementById('msg');
+                ms.style.display = 'block';
+                ms.className = 'err'; // Style rouge/attention
+                ms.innerHTML = "<strong>Accès Restreint</strong><br>Votre compte est en attente de validation par le bureau ADS.";
+            }
         };
 
         let isSignup = false;
