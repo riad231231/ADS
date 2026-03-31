@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMainNavLogin();
   updateFlightStats();
   loadAgendaPages();
+  loadDynamicContacts();
 
 });
 
@@ -247,5 +248,47 @@ async function initMainNavLogin() {
       }
   } catch (e) {
       console.error("Login Nav Error:", e);
+  }
+}
+
+/**
+ * Charge les contacts dynamiquement sur la page contacts.html
+ */
+async function loadDynamicContacts() {
+  const container = document.getElementById('dynamic-contacts-container');
+  if (!container) return;
+
+  if (typeof SUPABASE_URL === 'undefined') return;
+
+  try {
+      const supabase = (window.supabaseClient) ? window.supabaseClient : window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      const { data: contacts, error } = await supabase
+          .from('contacts_list')
+          .select('*')
+          .order('display_order', { ascending: true });
+
+      if (error) throw error;
+
+      if (!contacts || contacts.length === 0) {
+          // On laisse le contenu par défaut ou on met un message
+          return;
+      }
+
+      container.innerHTML = contacts.map(c => {
+          const emailList = c.emails.split('\n').filter(e => e.trim() !== '');
+          const emailsHtml = emailList.map(email => `
+              <a href="mailto:${email.trim()}" class="email-link">${email.trim()}</a>
+          `).join('');
+
+          return `
+              <div class="contact-point">
+                  <h3>${c.title}</h3>
+                  ${c.description ? `<p>${c.description}</p>` : ''}
+                  ${emailsHtml}
+              </div>
+          `;
+      }).join('');
+  } catch (e) {
+      console.error("Load Contacts Error:", e);
   }
 }

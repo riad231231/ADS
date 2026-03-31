@@ -156,6 +156,7 @@
     <!-- NAVIGATION PAR ONGLETS -->
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('tab-content')">Dashboard Contenu</button>
+        <button class="tab-btn" onclick="switchTab('tab-contacts')">Contacts Club</button>
         <button class="tab-btn" onclick="switchTab('tab-members')">Gestion des Membres <span id="count-wait" style="display:none; background:var(--danger); color:white; font-size:0.7rem; border-radius:50%; width:18px; height:18px; text-align:center; margin-left:5px;">!</span></button>
     </div>
 
@@ -223,7 +224,38 @@
         </div>
     </div>
 
-    <!-- ONGLET 2: GESTION DES MEMBRES -->
+    <!-- ONGLET 2: CONTACTS -->
+    <div id="tab-contacts" class="tab-content">
+        <div class="card" style="border-top: 4px solid var(--primary);">
+            <h2><i class="fas fa-address-book"></i> Gestion des Contacts</h2>
+            <form id="form-contact" style="margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="field" style="grid-column: span 2;">
+                    <label>Titre de la rubrique (ex: Direction & Administration)</label>
+                    <input type="text" id="c-title" placeholder="Titre..." required>
+                </div>
+                <div class="field">
+                    <label>Description (optionnel)</label>
+                    <textarea id="c-desc" rows="2" placeholder="Petite phrase d'introduction..."></textarea>
+                </div>
+                <div class="field">
+                    <label>Emails (un par ligne)</label>
+                    <textarea id="c-emails" rows="2" placeholder="email1@ads.com&#10;email2@ads.com" required></textarea>
+                </div>
+                <div class="field">
+                    <label>Ordre d'affichage (0, 1, 2...)</label>
+                    <input type="number" id="c-order" value="0">
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button type="submit" class="btn-add btn-news">Ajouter la rubrique</button>
+                </div>
+            </form>
+            <div id="list-contacts" class="list-container" style="max-height: none;">
+                Chargement des contacts...
+            </div>
+        </div>
+    </div>
+
+    <!-- ONGLET 3: GESTION DES MEMBRES -->
     <div id="tab-members" class="tab-content">
         <div class="card" style="border-top: 4px solid var(--primary); min-height: 600px;">
             <h2><i class="fas fa-users"></i> Gestion des Demandes d'inscription</h2>
@@ -405,6 +437,18 @@
                 <button type="button" class="btn-del-mini btn-icon" onclick="startDelete('sorties', '${s.id}', this)"><i class="fas fa-trash"></i></button>
             </div>
         `).join('') || "<p class='user-email'>Aucune sortie.</p>";
+
+        // Contacts
+        const contacts = await db.from('contacts_list').select('*').order('display_order', {ascending:true});
+        document.getElementById('list-contacts').innerHTML = (contacts.data || []).map(c => `
+            <div class="list-item" style="border-left: 4px solid var(--primary)">
+                <div class="item-info">
+                    <strong>${c.title}</strong>
+                    <small>${c.emails.replace(/\n/g, ', ')}</small>
+                </div>
+                <button type="button" class="btn-del-mini btn-icon" onclick="startDelete('contacts_list', '${c.id}', this)"><i class="fas fa-trash"></i></button>
+            </div>
+        `).join('') || "<p class='user-email'>Aucun contact enregistré.</p>";
     }
 
     // FORMS SUBMITS
@@ -444,6 +488,20 @@
         }]);
         if (error) showToast(error.message, true);
         else { showToast("Sortie enregistrée !"); e.target.reset(); loadAll(); }
+    }
+
+    document.getElementById('form-contact').onsubmit = async (e) => {
+        e.preventDefault();
+        const user = await checkAuth();
+        const { error } = await db.from('contacts_list').insert([{ 
+            title: document.getElementById('c-title').value,
+            description: document.getElementById('c-desc').value,
+            emails: document.getElementById('c-emails').value,
+            display_order: parseInt(document.getElementById('c-order').value) || 0,
+            author_id: user.id
+        }]);
+        if (error) showToast(error.message, true);
+        else { showToast("Secteur contact ajouté !"); e.target.reset(); loadAll(); }
     }
 
     document.getElementById('btn-logout').onclick = async () => {
