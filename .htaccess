@@ -1,8 +1,6 @@
-# Redirection de l'ancien index.php vers le nouvel index.html
+# Configuration basique pour OVH
 DirectoryIndex index.html
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    # Si on demande explicitement index.php, on redirige vers l'accueil
-    RewriteRule ^index\.php$ index.html [L,R=301]
-</IfModule>
+# Correction des accents et caractères spéciaux
+AddDefaultCharset UTF-8
+
