@@ -2,14 +2,16 @@
 <html lang="fr" style="height: 100%;">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Espace Membre - Les Ailes de Sénart</title>
     <!-- Chargement Direct Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* CSS TOTALEMENT INTÉGRÉ */
         /* DESIGN REFAIT : CARTE BLANCHE ET FULLSCREEN MOBILE */
-        body { margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #0F172A; color: #1E293B; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .card { background: white; width: 450px; max-width: 100%; border-radius: 20px; padding: 50px 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); text-align: center; color: #1E293B; transition: 0.3s; }
+        html, body { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #0F172A; color: #1E293B; }
+        body { display: flex; align-items: center; justify-content: center; }
+        .card { background: white; width: 450px; max-width: 100%; min-height: 500px; border-radius: 20px; padding: 50px 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); text-align: center; color: #1E293B; box-sizing: border-box; }
         .logo-wrapper { margin-bottom: 25px; display: inline-block; }
         .logo { height: 90px; }
         h1 { font-weight: 800; font-size: 2rem; margin: 0 0 10px; color: #0F172A; }
@@ -29,10 +31,10 @@
         .suc { background: #F0FDF4; color: #15803D; border-color: #DCFCE7; }
         
         /* FULLSCREEN MOBILE */
-        @media (max-width: 500px) {
-            body { background: white; align-items: flex-start; }
-            .card { width: 100vw; height: 100vh; border-radius: 0; box-shadow: none; padding: 60px 25px; }
-            input { background: #F1F5F9; }
+        @media (max-width: 600px) {
+            body { background: white; align-items: stretch; }
+            .card { width: 100%; height: 100%; min-height: 100vh; border-radius: 0; box-shadow: none; padding: 40px 20px; overflow-y: auto; }
+            input { background: #F1F5F9; font-size: 16px; } /* 16px empêche le zoom auto sur iOS */
         }
     </style>
 </head>
