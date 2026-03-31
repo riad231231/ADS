@@ -1,6 +1,0 @@
-# Configuration basique pour OVH
-DirectoryIndex index.html
-
-# Correction des accents et caractères spéciaux
-AddDefaultCharset UTF-8
-
