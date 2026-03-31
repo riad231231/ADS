@@ -8,8 +8,9 @@
     <style>
         /* CSS TOTALEMENT INTÉGRÉ */
         body { margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: #0F172A; color: #E2E8F0; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .card { background: #1E293B; width: 420px; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid #334155; text-align: center; }
-        .logo { height: 50px; margin-bottom: 20px; }
+        .card { background: #1E293B; width: 420px; max-width: 90%; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid #334155; text-align: center; }
+        .logo-wrapper { background: white; padding: 12px; border-radius: 12px; display: inline-block; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .logo { height: 75px; display: block; }
         h1 { font-weight: 800; font-size: 1.8rem; margin: 0 0 10px; color: white; }
         p { color: #94A3B8; margin: 0 0 30px; font-size: 0.95rem; }
         .group { text-align: left; margin-bottom: 20px; }
@@ -30,7 +31,9 @@
 <body>
 
     <div class="card">
-        <img src="resources/logo_05519.png" alt="ADS" class="logo">
+        <div class="logo-wrapper">
+            <img src="resources/logo_05519.png" alt="ADS" class="logo">
+        </div>
         <h1 id="t-title">Connexion</h1>
         <p id="t-sub">Accédez à votre espace membre.</p>
 
