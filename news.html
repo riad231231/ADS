@@ -63,16 +63,24 @@
             font-size: 1.05rem;
             line-height: 1.7;
             color: var(--text-main);
-        }
-        .news-excerpt {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-            -webkit-box-orient: vertical;
+            max-height: 120px; /* Hauteur réduite par défaut */
             overflow: hidden;
+            position: relative;
+            transition: max-height 0.4s ease;
         }
-        .news-article.expanded .news-excerpt {
-            display: block;
+        .news-content::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .news-article.expanded .news-content {
+            max-height: 2000px; /* On laisse de la place pour tout le contenu */
+        }
+        .news-article.expanded .news-content::after {
+            opacity: 0;
         }
         .news-actions {
             margin-top: 1.5rem;
@@ -235,7 +243,7 @@
                                 <span><i class="far fa-user"></i> LADS</span>
                             </div>
                             <h2 class="news-title">${n.title}</h2>
-                            <div class="news-content news-excerpt" id="content-${n.id}">
+                            <div class="news-content" id="content-${n.id}">
                                 ${n.message.replace(/\n/g, '<br>')}
                             </div>
                             <div class="news-actions">
