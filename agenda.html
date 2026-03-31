@@ -15,6 +15,9 @@
   <meta property="og:description" content="Calendrier des sorties et événements du club.">
 
   <!-- JSON-LD Structured Data -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="app.js?v=1.1"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -181,35 +184,42 @@
           </div>
         </a>
         
-                <nav id="main-nav">
+                        <nav id="main-nav">
           <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
-            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
             <li class="nav-item" style="position: relative;">
-              <a href="#" class="nav-link">Club</a>
+              <a href="#" class="nav-link">Le Club</a>
               <ul class="dropdown-content">
-                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
-                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="activites.html" class="dropdown-link">Nos Activités</a></li>
+                <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
                 <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
               </ul>
             </li>
             <li class="nav-item" style="position: relative;">
-              <a href="#" class="nav-link">Voler</a>
+              <a href="#" class="nav-link">Vol Libre</a>
               <ul class="dropdown-content">
                 <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
-                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="sites.html" class="dropdown-link">Sites de Vol</a></li>
                 <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
                 <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
-                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos Sorties</a></li>
                 <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
                 <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
-                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des Risques</a></li>
               </ul>
             </li>
-            <li class="nav-item"><a href="media.html" class="nav-link">Média</a></li>
-            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
-            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Actualités</a>
+              <ul class="dropdown-content">
+                <li><a href="news.html" class="dropdown-link">Journal du Club</a></li>
+                <li><a href="agenda.html" class="dropdown-link">Agenda du Club</a></li>
+                <li><a href="liens.html" class="dropdown-link">Liens Utiles</a></li>
+              </ul>
+            </li>
             <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-connexion">Connexion</a></li>
           </ul>
         </nav>
 
@@ -218,7 +228,7 @@
   </header>
 
   <div class="container breadcrumb">
-    Vous êtes ici : <a href="index.html" style="color: var(--primary);">Accueil</a> > <strong>Agenda</strong>
+    Vous êtes ici : <a href="index.html">Accueil</a> <span class="separator">&gt;</span> <strong>Agenda</strong>
   </div>
 
   <main class="container">
@@ -226,7 +236,7 @@
 
     <div class="agenda-grid">
       <div class="agenda-container" id="eventsContainer">
-        <!-- LISTE DES ÉVÈNEMENTS -->
+        <!-- LISTE DES ÉVÈNEMENTS (Gérée par app.js via Supabase) -->
         <div id="events-list">
           <p style="text-align: center; color: var(--text-muted);">Chargement de l'agenda...</p>
         </div>
@@ -239,7 +249,7 @@
       <aside class="news-sidebar">
         <div class="news-widget">
           <h2 style="font-size: 1.4rem; color: var(--secondary); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 4px solid var(--primary);">Flash Info / News</h2>
-          <div id="news-list-sidebar">
+          <div id="news-list">
             <p style="color: var(--text-muted); font-size: 0.9rem;">Chargement des news...</p>
           </div>
         </div>
@@ -254,99 +264,8 @@
     </div>
   </footer>
 
-  <script>
-    const months = ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"];
-
-    async function fetchEvents() {
-      try {
-        // First try localStorage (for items added via the JS admin)
-        let events = JSON.parse(localStorage.getItem('ads_events') || '[]');
-        
-        // If empty, try to fetch from JSON file (default data)
-        if (events.length === 0) {
-          const response = await fetch('data/events.json?t=' + new Date().getTime());
-          events = await response.json();
-        }
-        
-        renderEvents(events);
-      } catch (error) {
-        console.error('Erreur lors du chargement des événements:', error);
-        document.getElementById('events-list').innerHTML = '<p style="text-align: center; color: #ef4444;">Impossible de charger l\'agenda pour le moment.</p>';
-      }
-    }
-
-    function renderEvents(events) {
-      const list = document.getElementById('events-list');
-      if (!events || events.length === 0) {
-        list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Aucun évènement programmé pour le moment.</p>';
-        return;
-      }
-
-      list.innerHTML = events.map(event => {
-        const d = new Date(event.date);
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = months[d.getMonth()];
-        const year = d.getFullYear();
-
-        return `
-          <div class="event-card">
-            <div class="event-date-box">
-              <span class="date-day">${day}</span>
-              <span class="date-month">${month}</span>
-              <span class="date-year">${year}</span>
-            </div>
-            <div class="event-content">
-              <span class="event-tag">LADS</span>
-              <h2 class="event-title">${event.title}</h2>
-              <div class="event-info">
-                <p><strong>Lieu :</strong> ${event.location || 'À confirmer'}</p>
-                <p>${event.desc || ''}</p>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function loadNews() {
-      const news = JSON.parse(localStorage.getItem('ads_news') || '[]');
-      const container = document.getElementById('news-list-sidebar');
-      
-      if (news.length === 0) {
-        container.innerHTML = '<p style="font-size: 0.9rem; color: var(--text-muted);">Aucune actualité pour le moment.</p>';
-        return;
-      }
-
-      container.innerHTML = news.map(item => {
-        const fullMsg = item.message || '';
-        const limit = 85; 
-        const isLong = fullMsg.length > limit;
-        
-        if (!isLong) {
-          return `
-            <div class="news-item">
-              <a href="${item.url || '#'}" ${item.url ? 'target="_blank"' : ''}>${item.title}</a>
-              <p style="margin-bottom: 0;">${fullMsg}</p>
-            </div>
-          `;
-        }
-
-        const shortMsg = fullMsg.substring(0, limit);
-        
-        return `
-          <div class="news-item">
-            <a href="${item.url || '#'}" ${item.url ? 'target="_blank"' : ''}>${item.title}</a>
-            <p style="margin-bottom: 0;">
-              <span>${shortMsg}...</span>
-              <a href="javascript:void(0)" onclick="const p = this.parentElement; p.querySelector('span').innerText = \`${fullMsg}\`; this.remove();" style="display:inline; font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-left: 5px;">Lire la suite</a>
-            </p>
-          </div>
-        `;
-      }).join('');
-    }
-
-    fetchEvents();
-    loadNews();
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="app.js?v=1.1"></script>
 </body>
 </html>

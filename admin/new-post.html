@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvel Article - Admin ADS</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <style>
+        :root {
+            --admin-bg: #0F172A;
+            --admin-card: #1E293B;
+            --admin-border: #334155;
+            --admin-primary: #3B82F6;
+        }
+        body { background: var(--admin-bg); color: #E2E8F0; padding: 2rem; display: none; }
+        .admin-container { max-width: 800px; margin: 0 auto; }
+        .admin-card { background: var(--admin-card); border: 1px solid var(--admin-border); border-radius: var(--radius); padding: 2.5rem; box-shadow: var(--shadow-lg); }
+        .form-group { margin-bottom: 1.5rem; }
+        .admin-label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #94A3B8; }
+        .admin-input { width: 100%; background: #0F172A; border: 1px solid var(--admin-border); padding: 1rem; border-radius: var(--radius-sm); color: white; font-size: 1rem; }
+        .admin-textarea { width: 100%; background: #0F172A; border: 1px solid var(--admin-border); padding: 1rem; border-radius: var(--radius-sm); color: white; font-size: 1rem; min-height: 200px; resize: vertical; }
+        .btn-save { background: var(--admin-primary); color: white; border: none; padding: 1rem 2rem; border-radius: var(--radius); font-weight: bold; cursor: pointer; width: 100%; font-size: 1.1rem; }
+        .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div style="margin-bottom: 2rem;">
+            <a href="index.html" style="color: #94A3B8; text-decoration: none;"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
+        </div>
+
+        <section class="admin-card">
+            <h1 style="color: white; margin-bottom: 2rem;">Publier sur le Blog</h1>
+            
+            <form id="postForm">
+                <div class="form-group">
+                    <label class="admin-label">Titre de l'article</label>
+                    <input type="text" id="title" class="admin-input" required placeholder="ex: Superbe sortie à Jeufosse !">
+                </div>
+
+                <div class="form-group">
+                    <label class="admin-label">Récit de la sortie</label>
+                    <textarea id="content" class="admin-textarea" required placeholder="Racontez votre expérience..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="admin-label">Lien Vidéo YouTube (Optionnel)</label>
+                    <input type="url" id="youtube_url" class="admin-input" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+
+                <div class="form-group">
+                    <label class="admin-label">Photos de la sortie (Plusieurs possible)</label>
+                    <input type="file" id="photos" class="admin-input" accept="image/*" multiple style="padding: 0.5rem; border: 1px dashed var(--admin-border);">
+                    <p style="font-size: 0.8rem; color: #94A3B8; margin-top: 0.5rem;">Formats acceptés : JPG, PNG, WebP.</p>
+                </div>
+
+                <div id="status-msg" style="margin-bottom: 1.5rem; padding: 1rem; border-radius: 8px; display: none;"></div>
+
+                <button type="submit" id="btnSubmit" class="btn-save">PUBLIER L'ARTICLE</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        let currentUser = null;
+
+        // AUTH CHECK
+        async function checkAuth() {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) { window.location.href = '../login.html'; return; }
+            
+            const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
+            if (!profile || !profile.is_approved) { window.location.href = '../login.html'; return; }
+            
+            currentUser = user;
+            document.body.style.display = 'block';
+        }
+
+        const form = document.getElementById('postForm');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const msgBox = document.getElementById('status-msg');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = "PUBLICATION EN COURS...";
+            msgBox.style.display = 'none';
+
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const youtube_url = document.getElementById('youtube_url').value;
+            const photoFiles = document.getElementById('photos').files;
+
+            try {
+                let photoUrls = [];
+
+                // 1. Upload des photos vers le bucket 'blog-photos'
+                if (photoFiles.length > 0) {
+                    for (let i = 0; i < photoFiles.length; i++) {
+                        const file = photoFiles[i];
+                        const fileExt = file.name.split('.').pop();
+                        const fileName = `${Math.random()}.${fileExt}`;
+                        const filePath = `${currentUser.id}/${Date.now()}_${fileName}`;
+
+                        const { error: uploadError } = await supabase.storage
+                            .from('blog-photos')
+                            .upload(filePath, file);
+
+                        if (uploadError) throw new Error("Erreur upload photo : " + uploadError.message);
+
+                        const { data: { publicUrl } } = supabase.storage
+                            .from('blog-photos')
+                            .getPublicUrl(filePath);
+                        
+                        photoUrls.push(publicUrl);
+                    }
+                }
+
+                // 2. Création de l'article dans la base de données
+                const { error: dbError } = await supabase.from('blog_posts').insert([
+                    {
+                        title,
+                        content,
+                        youtube_url,
+                        photos: photoUrls,
+                        author_id: currentUser.id
+                    }
+                ]);
+
+                if (dbError) throw dbError;
+
+                msgBox.innerHTML = "<strong>Succès !</strong> Votre article a été publié sur le blog.";
+                msgBox.style.background = "#dcfce7";
+                msgBox.style.color = "#166534";
+                msgBox.style.display = 'block';
+                form.reset();
+                
+                setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+
+            } catch (err) {
+                msgBox.innerHTML = "<strong>Erreur</strong><br>" + err.message;
+                msgBox.style.background = "#fee2e2";
+                msgBox.style.color = "#ef4444";
+                msgBox.style.display = 'block';
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "PUBLIER L'ARTICLE";
+            }
+        });
+
+        checkAuth();
+    </script>
+</body>
+</html>

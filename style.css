@@ -412,9 +412,33 @@ footer::after {
 
 /* UTILS */
 .breadcrumb {
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 2rem;
   font-size: 0.9rem;
   color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .separator {
+  color: #CBD5E1;
+  font-weight: 400;
+}
+
+.breadcrumb strong {
+  color: var(--text-main);
+  font-weight: 700;
 }
 
 .lead {
@@ -429,6 +453,12 @@ footer::after {
   .header-flex { flex-direction: column; text-align: center; gap: 1rem; }
   .nav-list { gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
   .nav-link { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+  .dropdown-content {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    max-width: 95vw;
+  }
   .hero { height: 350px; }
   .hero-title { font-size: 2.2rem; word-break: break-word; }
   .hero-content p { font-size: 1.1rem !important; }

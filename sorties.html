@@ -9,6 +9,56 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    .sorties-table-container {
+      overflow-x: auto;
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      background: white;
+    }
+    .sorties-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 600px;
+    }
+    .sorties-table th {
+      background: var(--bg-subtle);
+      padding: 1rem;
+      text-align: left;
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 2px solid var(--border);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .sorties-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .sorties-table tr:last-child td {
+      border-bottom: none;
+    }
+    .sorties-table tr:hover {
+      background: rgba(29, 91, 150, 0.02);
+    }
+    .tag-site {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comment-text {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .loading-status {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-style: italic;
+    }
     .stats-list {
       list-style: none;
       padding: 0;
@@ -18,34 +68,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.7rem 0; /* Finer spacing */
-      border-bottom: 1px solid rgba(0,0,0,0.05); /* Very subtle line */
-      font-size: 0.95rem; /* Smaller font */
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.95rem;
     }
     .stats-item:last-child {
       border-bottom: none;
     }
     .year-label {
-      font-weight: 500; /* Less bold for finesse */
+      font-weight: 500;
       color: var(--text-main);
     }
     .days-badge {
-      background: rgba(var(--primary-rgb), 0.1); /* Subtle background */
+      background: rgba(29, 91, 150, 0.1);
       color: var(--primary);
       padding: 0.2rem 0.8rem;
-      border-radius: 4px; /* Less rounded for a technical look */
+      border-radius: 4px;
       font-weight: 700;
       font-size: 0.85rem;
       min-width: 80px;
       text-align: center;
-    }
-    .rules-box {
-      background: #F0F9FF;
-      border: 1px dashed var(--primary);
-      padding: var(--spacing-md);
-      border-radius: var(--radius);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -63,35 +105,42 @@
           </div>
         </a>
         
-                <nav id="main-nav">
+                        <nav id="main-nav">
           <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
-            <li class="nav-item"><a href="activites.html" class="nav-link">Activités</a></li>
             <li class="nav-item" style="position: relative;">
-              <a href="#" class="nav-link">Club</a>
+              <a href="#" class="nav-link">Le Club</a>
               <ul class="dropdown-content">
-                <li><a href="reunions-club.html" class="dropdown-link">Les réunions club</a></li>
-                <li><a href="bureau.html" class="dropdown-link">Le bureau</a></li>
+                <li><a href="activites.html" class="dropdown-link">Nos Activités</a></li>
+                <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
+                <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
                 <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
+                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
               </ul>
             </li>
             <li class="nav-item" style="position: relative;">
-              <a href="#" class="nav-link">Voler</a>
+              <a href="#" class="nav-link">Vol Libre</a>
               <ul class="dropdown-content">
                 <li><a href="referentiel-cross.html" class="dropdown-link">Référentiel Cross</a></li>
-                <li><a href="sites.html" class="dropdown-link">Sites de vol</a></li>
+                <li><a href="sites.html" class="dropdown-link">Sites de Vol</a></li>
                 <li><a href="ressources.html" class="dropdown-link">Météo & Préparation</a></li>
                 <li><a href="treuil.html" class="dropdown-link">Le Treuil</a></li>
-                <li><a href="sorties.html" class="dropdown-link">Nos sorties</a></li>
+                <li><a href="sorties.html" class="dropdown-link">Nos Sorties</a></li>
                 <li><a href="incidents.html" class="dropdown-link">Incidents / Accidents</a></li>
                 <li><a href="secours.html" class="dropdown-link">Secours & Sécurité</a></li>
-                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des risques</a></li>
+                <li><a href="gestion-risques.html" class="dropdown-link">Gestion des Risques</a></li>
               </ul>
             </li>
-            <li class="nav-item"><a href="media.html" class="nav-link">Média</a></li>
-            <li class="nav-item"><a href="liens.html" class="nav-link">Liens</a></li>
-            <li class="nav-item"><a href="agenda.html" class="nav-link">Agenda</a></li>
+            <li class="nav-item" style="position: relative;">
+              <a href="#" class="nav-link">Actualités</a>
+              <ul class="dropdown-content">
+                <li><a href="news.html" class="dropdown-link">Journal du Club</a></li>
+                <li><a href="agenda.html" class="dropdown-link">Agenda du Club</a></li>
+                <li><a href="liens.html" class="dropdown-link">Liens Utiles</a></li>
+              </ul>
+            </li>
             <li class="nav-item"><a href="contacts.html" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-connexion">Connexion</a></li>
           </ul>
         </nav>
 
@@ -116,7 +165,28 @@
           <p style="margin-top: 0.8rem; font-style: italic;">Note : On ajoute la sortie même si cela n'a pas volé (météo). Merci aux pilotes participant aux sorties de remplir ce tableau.</p>
         </div>
 
-        <h2 style="font-size: 1.4rem; color: var(--secondary);">Historique des sorties</h2>
+        <h2 style="font-size: 1.4rem; color: var(--secondary); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">Dernières sorties</h2>
+        
+        <div class="sorties-table-container">
+          <table class="sorties-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Site</th>
+                <th>ADS</th>
+                <th>Jours</th>
+                <th>Commentaires</th>
+              </tr>
+            </thead>
+            <tbody id="sorties-table-body">
+              <tr>
+                <td colspan="5" class="loading-status">Chargement des données en cours...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="font-size: 1.4rem; color: var(--secondary); margin-top: 3rem;">Historique annuel</h2>
         
         <ul class="stats-list" id="stats-list-container">
           <!-- Dynamically loaded -->
@@ -124,44 +194,73 @@
         </ul>
 
         <script>
-          function renderSortiesStats() {
-            const container = document.getElementById('stats-list-container');
-            const historical = {
-              2023: 123,
-              2022: 101,
-              2021: 82,
-              2020: 76,
-              2019: 112,
-              2018: 141,
-              2017: 139,
-              2016: 113,
-              2015: 127
+          async function initSortiesData() {
+            const tableBody = document.getElementById('sorties-table-body');
+            const statsContainer = document.getElementById('stats-list-container');
+
+            // CONFIGURATION DIRECTE
+            const SUPA_URL = "https://hksbiafznhdjngzimypi.supabase.co";
+            const SUPA_KEY = "sb_publishable_odIBMR0BBSPQiJrcyma9NQ_sumPmxew";
+
+            // Historique statique (Données historiques avant migration)
+            const historicalStats = {
+              2023: 123, 2022: 101, 2021: 82, 2020: 76, 2019: 112, 2018: 141, 2017: 139, 2016: 113, 2015: 127
             };
 
-            // Get dynamic sorties from localStorage
-            const dynamicSorties = JSON.parse(localStorage.getItem('ads_sorties_list') || '[]');
-            
-            // Sum by year
-            const stats = { ...historical };
-            dynamicSorties.forEach(s => {
-              if (s.date) {
-                const year = new Date(s.date).getFullYear();
-                stats[year] = (stats[year] || 0) + (s.days || 1);
+            try {
+              const client = window.supabase.createClient(SUPA_URL, SUPA_KEY);
+
+              // 1. Récupération des sorties depuis Supabase
+              const { data: sorties, error } = await client
+                .from('sorties')
+                .select('*')
+                .order('sortie_date', { ascending: false });
+
+              if (error) throw error;
+
+              // 2. Remplissage du tableau (Dernières sorties)
+              if (sorties && sorties.length > 0) {
+                const recent = sorties.slice(0, 50); // On affiche les 50 dernières
+                tableBody.innerHTML = recent.map(s => `
+                  <tr>
+                    <td style="white-space: nowrap; font-weight: 600; color: var(--primary);">
+                        ${new Date(s.sortie_date).toLocaleDateString('fr-FR')}
+                    </td>
+                    <td><span class="tag-site">${s.site || '—'}</span></td>
+                    <td style="text-align: center;">${s.nb_ads || '-'}</td>
+                    <td style="text-align: center; font-weight: 700;">${s.nb_jours || 0}</td>
+                    <td class="comment-text">${s.commentaires || ''}</td>
+                  </tr>
+                `).join('');
+              } else {
+                tableBody.innerHTML = '<tr><td colspan="5" class="loading-status">Aucune sortie enregistrée.</td></tr>';
               }
-            });
 
-            // Sort years descending
-            const sortedYears = Object.keys(stats).sort((a, b) => b - a);
+              // 3. Calcul des statistiques annuelles (Supabase + Historique)
+              const combinedStats = { ...historicalStats };
+              if (sorties) {
+                sorties.forEach(s => {
+                  const year = new Date(s.sortie_date).getFullYear();
+                  combinedStats[year] = (combinedStats[year] || 0) + (parseFloat(s.nb_jours) || 0);
+                });
+              }
 
-            container.innerHTML = sortedYears.map(year => `
-              <li class="stats-item">
-                <span class="year-label">Sorties ${year}</span> 
-                <span class="days-badge">${stats[year]} jours</span>
-              </li>
-            `).join('');
+              // Affichage des stats (Trié par année décroissante)
+              const sortedYears = Object.keys(combinedStats).sort((a, b) => b - a);
+              statsContainer.innerHTML = sortedYears.map(year => `
+                <li class="stats-item">
+                  <span class="year-label">Sorties ${year}</span> 
+                  <span class="days-badge">${Math.round(combinedStats[year])} jours</span>
+                </li>
+              `).join('');
+
+            } catch (error) {
+              console.error('Erreur Supabase Sorties:', error);
+              tableBody.innerHTML = '<tr><td colspan="5" class="loading-status" style="color: #ef4444;">Erreur de connexion aux données.</td></tr>';
+            }
           }
           
-          document.addEventListener('DOMContentLoaded', renderSortiesStats);
+          document.addEventListener('DOMContentLoaded', initSortiesData);
         </script>
       </section>
 
@@ -186,24 +285,7 @@
           </ul>
         </section>
 
-        <!-- Module Connexion -->
-        <section class="widget" id="login-widget">
-          <h2 class="widget-title">Espace Membre</h2>
-          <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
-            <form id="sidebarLoginForm">
-              <div class="form-group">
-                <input type="text" id="side-username" placeholder="Identifiant" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 0.8rem;">
-              </div>
-              <div class="form-group">
-                <input type="password" id="side-password" placeholder="Mot de passe" style="width: 100%; padding: 0.8rem; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 1rem;">
-              </div>
-              <button class="btn btn-primary" style="width: 100%; padding: 0.8rem; font-weight: 800; letter-spacing: 0.05em;" type="submit">
-                S'AUTHENTIFIER
-              </button>
-            </form>
-            <div id="login-status" style="margin-top: 10px; font-size: 0.8rem; color: #ef4444; display: none; text-align: center;"></div>
-          </div>
-        </section>
+        
       </aside>
     </div>
   </main>
@@ -215,6 +297,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="app.js?v=1.1"></script>
 </body>
 </html>
