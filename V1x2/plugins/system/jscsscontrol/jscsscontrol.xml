@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" version="3.0" group="system" method="upgrade">
+    <name>PLG_JSCSSCONTROL</name>
+    <version>3.1.0</version>
+    <creationDate>2015-08-01</creationDate>
+    <license>http://www.gnu.org/licenses/gpl</license>
+    <copyright>Copyright 2015 Viktor Vogel. All rights reserved.</copyright>
+    <author>Viktor Vogel</author>
+    <authoremail>admin@kubik-rubik.de</authoremail>
+    <authorUrl>https://joomla-extensions.kubik-rubik.de/</authorUrl>
+    <description>PLG_JSCSSCONTROL_XML_DESCRIPTION</description>
+    <files>
+        <filename plugin="jscsscontrol">jscsscontrol.php</filename>
+        <filename plugin="jscsscontrol">index.html</filename>
+        <folder plugin="jscsscontrol">fields</folder>
+    </files>
+    <languages folder="language">
+        <language tag="de-DE">de-DE/de-DE.plg_system_jscsscontrol.ini</language>
+        <language tag="de-DE">de-DE/de-DE.plg_system_jscsscontrol.sys.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_jscsscontrol.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_jscsscontrol.sys.ini</language>
+    </languages>
+    <updateservers>
+        <server type="extension" priority="1" name="PLG_JSCSSCONTROL">https://check.kubik-rubik.de/updates/jscsscontrol.xml</server>
+    </updateservers>
+    <config>
+        <fields name="params" addfieldpath="/plugins/system/jscsscontrol/fields">
+            <fieldset name="settings">
+                <field type="krdonationcodecheck" />
+                <field name="js" type="textarea" default="" rows="8" cols="80" label="PLG_JSCSSCONTROL_JS" description="PLG_JSCSSCONTROL_JSDESC" />
+                <field name="css" type="textarea" default="" rows="8" cols="80" label="PLG_JSCSSCONTROL_CSS" description="PLG_JSCSSCONTROL_CSSDESC" />
+                <field name="remove_jcaption" type="list" default="0" label="PLG_JSCSSCONTROL_REMOVE_JCAPTION" description="PLG_JSCSSCONTROL_REMOVE_JCAPTIONDESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="remove_tooltip" type="list" default="0" label="PLG_JSCSSCONTROL_REMOVE_TOOLTIP" description="PLG_JSCSSCONTROL_REMOVE_TOOLTIPDESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="expert_settings" type="krtitle" label="PLG_JSCSSCONTROL_EXPERTSETTINGS" />
+                <field name="debug" type="list" default="0" label="PLG_JSCSSCONTROL_DEBUG" description="PLG_JSCSSCONTROL_DEBUGDESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="execute_admin" type="list" default="0" label="PLG_JSCSSCONTROL_EXECUTEADMIN" description="PLG_JSCSSCONTROL_EXECUTEADMINDESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+            <fieldset name="donation">
+                <field type="krdonationcodecheck" name="donation" />
+                <field name="donation_code" type="text" default="" size="40" label="KR_DONATION_CODE" description="KR_DONATION_CODEDESC" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

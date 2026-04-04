@@ -1,0 +1,41 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote.color,
+#system .item > header time { font-family: "PTSansNarrowRegular"; }
+
+.module .module-title { 
+	line-height: 24px;
+	font-size: 24px;
+}
+
+blockquote.color { 
+	line-height: 30px;
+	font-size: 26px;
+}
+
+#system .item > header time .day {
+	line-height: 65px;
+	font-size: 65px;
+	letter-spacing: -3px;
+}
+
+#system .width50 .item > header time .day {
+	line-height: 50px;
+	font-size: 50px;
+}
+
+#system .item > header time .month {
+	line-height: 30px;
+	font-size: 30px;
+}
+
+#system .width50 .item > header time .month {
+	line-height: 22px;
+	font-size: 22px;
+}

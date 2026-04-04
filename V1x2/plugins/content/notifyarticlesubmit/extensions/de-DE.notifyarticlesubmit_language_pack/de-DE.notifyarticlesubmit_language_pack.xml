@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="2.5" type="file" method="upgrade">
+  <name>de-DE NotifyArticleSubmit language pack</name>
+  <version>2014-06-26 22:55</version>
+  <creationDate>2014-06-26 22:55</creationDate>
+  <author>Gruz</author>
+  <email>arygroup@gmail.com</email>
+  <authorUrl>http://gruz.org.ua</authorUrl>
+  <copyright>Copyright (C) 2004-2014 Gruz. All rights reserved.</copyright>
+  <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+  <description>de-DE NotifyArticleSubmit language pack</description>
+  <fileset>
+    <files target="plugins/content/notifyarticlesubmit/language/de-DE" folder="plugins/content/notifyarticlesubmit/language/de-DE">
+      <file>de-DE.plg_content_notifyarticlesubmit.ini</file>
+      <file>de-DE.plg_content_notifyarticlesubmit.sys.ini</file>
+    </files>
+  </fileset>
+  <updateservers>
+    <server type="extension" priority="1" name="de-DE NotifyArticleSubmit language pack">http://gruz.org.ua/images/stories/files/notifyarticlesubmit/update_de-DE.xml</server>
+  </updateservers>
+</extension>

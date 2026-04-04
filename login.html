@@ -71,7 +71,10 @@
 
         <div class="btns">
             <button class="btn-blue" id="b-main" onclick="handleAuth()">Se Connecter</button>
-            <p style="margin: 10px 0; font-size: 0.85rem; cursor: pointer; color: #3B82F6;" onclick="toggleMode()" id="t-toggle">Pas encore de compte ? S'inscrire</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <p style="margin: 0; font-size: 0.85rem; cursor: pointer; color: #3B82F6;" onclick="toggleMode()" id="t-toggle">Pas encore de compte ? S'inscrire</p>
+                <p style="margin: 0; font-size: 0.85rem; cursor: pointer; color: #94A3B8;" onclick="handleForgotPassword()" id="t-forgot">Mot de passe oublié ?</p>
+            </div>
         </div>
 
         <div id="msg"></div>
@@ -187,6 +190,38 @@
                 ms.className = "err";
                 ms.innerText = "Erreur : " + err.message;
                 btn.disabled = false;
+            }
+        }
+
+        async function handleForgotPassword() {
+            const em = document.getElementById('email').value.trim();
+            const ms = document.getElementById('msg');
+            
+            if (!em) {
+                ms.style.display = 'block';
+                ms.className = "err";
+                ms.innerText = "Entrez votre email d'abord.";
+                return;
+            }
+
+            ms.style.display = 'block';
+            ms.className = "";
+            ms.innerText = "Envoi du lien de récupération...";
+
+            try {
+                // redirectTo: URL de votre page locale où l'utilisateur pourra changer son mot de passe.
+                const resetUrl = window.location.origin + "/reset-password.html";
+                const { error } = await client.auth.resetPasswordForEmail(em, {
+                    redirectTo: resetUrl,
+                });
+
+                if (error) throw error;
+                
+                ms.className = "suc";
+                ms.innerHTML = "<strong>Email envoyé !</strong><br>Consultez votre boîte mail pour réinitialiser votre mot de passe.";
+            } catch (err) {
+                ms.className = "err";
+                ms.innerText = "Erreur : " + err.message;
             }
         }
     </script>

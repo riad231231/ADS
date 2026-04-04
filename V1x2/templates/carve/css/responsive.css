@@ -1,0 +1,170 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../warp/css/responsive.css);
+
+
+/* Breakpoints
+----------------------------------------------------------------------------------------------------*/
+
+
+/* Only Phones and Tablets (Portrait) */
+@media (max-width: 959px) {
+
+	/* Mobile Classes*/
+	.tablet-hide {display:none;}
+        .tablet-show {display:block;}
+
+	.sidebars-1 #maininner,
+	.sidebars-2 #maininner { padding: 0; }
+
+	/* Modules */
+	.grid-h .mod-line:before { border-left: 0; }
+ 
+	#sidebar-a .grid-v:first-child .mod-line:before,
+	#sidebar-b .grid-v:first-child .mod-line:before { border-width: 1px 0 0 0; }
+
+	.grid-h .mod-line,
+	.grid-v:first-child .mod-line { padding: 20px 0; }
+
+	.grid-h .mod-line .badge,
+	.grid-v:first-child .mod-line .badge { top: 20px; }
+
+	/* Systems */
+	#system { padding-bottom: 20px; }
+
+}
+
+/* Only Tablets (Portrait) */
+@media (min-width: 768px) and (max-width: 959px) { 
+
+/* Mobile Classes*/
+.tablet-hide {display:none;}
+.tablet-show {display:block;}
+.menu-responsive {font-size:15px;padding:10px;}
+
+/* Modules */
+.grid-h:nth-child(n+3).width33 > .mod-line:before { border-width: 0; }
+
+}
+
+/* Only Tablets (Portrait) and Phones (Landscape) */
+@media (min-width: 480px) and (max-width: 959px) {
+
+/* Mobile Classes*/
+.tablet-hide {display:none;}
+.tablet-show {display:block;}
+.menu-responsive {font-size:15px;padding:10px;}
+
+	/* Modules */
+	.grid-h:nth-child(n+3) > .mod-line:before { 	
+		top: -10px;
+		bottom: auto;
+		left: 0;
+		right: 0;
+		border-width: 1px 0 0 0;
+	}
+
+}
+
+/* Only Phones */
+@media (max-width: 767px) {
+
+/* Sticky Menu and Mobile Classes */
+#nagmenu.fixed {visibility:hidden;}
+.phone-hide {display:none;}
+.phone-show {display:block;}
+.menu-responsive {font-size:15px;padding:10px;}
+
+
+	/* Layout */
+	#logo,
+	#menubar,
+	#menu,
+	#search,
+	#breadcrumbs { display: none; }
+
+#header-responsive {}
+#header-responsive .logo {width:100%; margin-right:0;}
+.searchbox input{border:1px solid #999; padding:5px;}
+#header-responsive .searchbox {margin-bottom:20px; margin-left:5px; width:95%;}	
+
+}
+
+/* Only Phones (Landscape) */
+@media (min-width: 480px) and (max-width: 767px) {
+
+#nagmenu.fixed {visibility:hidden;}
+.phone-hide {display:none;}
+.phone-show {display:block;}
+.menu-responsive {font-size:15px;padding:10px;}
+#header-responsive .logo {width: 100%;margin-right:0;}
+	
+	}
+
+/* Only Phones (Portrait) */
+@media (max-width: 479px) {
+
+#nagmenu.fixed {visibility:hidden;}
+.phone-hide {display:none;}
+.phone-show {display:block;}
+.menu-responsive {font-size:15px;padding:10px;}
+#header-responsive .logo {width: 100%;margin-right:0;}
+
+	/* Modules */
+	.grid-h .mod-line:before { 	
+		top: -10px;
+		left: 0;
+		right: 0;
+		bottom: auto;
+		border-width: 1px 0 0 0;
+	}
+
+	/* System */
+	#system .items .item,
+	#system .items .item:first-child {
+		margin-top: 12px;
+		padding-top: 18px;
+		border-width: 1px 0 0 0;
+	}
+
+	#system .items :first-child .item:first-child {
+		margin-top: 0;
+		padding-top: 0;
+		border-width: 0;
+	}
+
+	#system .items .leading .item {
+		margin-bottom: 0;
+		padding-bottom: 0;
+		border-width: 0;
+	}
+
+	#system .item { padding-left: 0; }
+
+	#system .item > header time {
+		display: inline;
+		position: relative;	
+		top: 0;
+		left: 0;
+		width: 60px;
+		text-align: left;
+	}
+
+	#system .item > header time > span { display: inline; }
+
+	#system .item > header time .day,
+	#system .width50 .item > header time .day {
+		line-height: 14px;
+		font-size: 14px;
+		letter-spacing: 0;
+	}
+
+	#system .item > header time .month,
+	#system .width50 .item > header time .month {
+		line-height: 14px;
+		font-size: 14px;
+	}
+
+	#system .width50 .item > header time { left: 0; }
+	
+}

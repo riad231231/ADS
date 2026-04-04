@@ -1,0 +1,85 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/* Mega Drop-Down Menu
+----------------------------------------------------------------------------------------------------*/
+
+/* Level1 */
+.menu-dropdown a.level1,
+.menu-dropdown span.level1,
+.menu-dropdown li.active .level1 { color: #ccc; }
+
+/* Set Hover */
+.menu-dropdown li.level1:hover .level1,
+.menu-dropdown li.remain .level1 { color: #fff }
+
+
+/* Search Box
+----------------------------------------------------------------------------------------------------*/
+
+.searchbox { 
+	border-bottom: none;
+	background-image: url(../../images/outercolor/white/searchbox.png);
+}
+
+.searchbox input { color: #222; }
+
+.searchbox input:-moz-placeholder { color: #222; }
+.searchbox input::-webkit-input-placeholder { color: #222; }
+.searchbox input.placeholder { color: #222; }
+
+.searchbox.filled button { background-image: url(../../images/outercolor/white/searchbox_reset.png); }
+
+
+/* Line + Headerline Module style for Top A + Bottom B
+----------------------------------------------------------------------------------------------------*/
+
+.outer .mod-transparent .module-title,
+.outer .mod-line:before,
+.outer .mod-transparent ul.line > li,
+.outer .mod-transparent ul.zebra > li  {
+	border-color: #333;
+	border-color: rgba(204, 204, 204, 0.4); 
+}
+
+.outer .mod-transparent { color: #333; }
+.outer .mod-transparent a { color: #333; }
+
+/* Only Tablets (Portrait) and Phones (Landscape) */
+@media (min-width: 480px) and (max-width: 959px) {
+
+	.outer .grid-v:first-child .mod-line:before,
+	.outer .grid-h:nth-child(n+3) > .mod-line:before { 
+		border-color: #333;
+		border-color: rgba(204, 204, 204, 0.4); }
+
+}
+
+
+/* Footer
+----------------------------------------------------------------------------------------------------*/
+
+#footer { color: #fff; }
+#footer a { color: #fff; }
+#footer a:hover { color: #555 }
+
+#totop-scroller { background-position: 0 -100px; }
+
+/* Contact Icons */
+.outer .contact-icons li { background-image: url(../../images/outercolor/white/contact_icons.png); }
+
+/* Social Icons */
+.outer .social-icons li a { background-image: url(../../images/outercolor/white/social_icons.png); }
+
+/* Line Menu */
+.menu-line li { background-image: url(../../images/outercolor/white/menu_line_item.png); }
+
+.outer ul.zebra { color: #434343; }
+
+
+/* Base
+----------------------------------------------------------------------------------------------------*/
+
+.outer .mod-transparent em,
+.outer .mod-transparent code { color: #333; }
+
+.outer .mod-transparent em.box { color: #fff; }

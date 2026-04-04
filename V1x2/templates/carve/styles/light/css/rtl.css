@@ -1,0 +1,12 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../../../css/rtl.css);
+
+
+.menu-dropdown a.level3 { background-image: url(../../../images/rtl/menu_dropdown_level3.png); }
+
+.menu-sidebar li.parent .level1 > span { background-image: url(../../../images/rtl/menu_sidebar_parent.png); }
+.mod-box-black .menu-sidebar li.parent .level1 > span { background-image: url(../../../images/rtl/menu_sidebar_parent_black.png); }
+.mod-box-color .menu-sidebar li.parent .level1 > span { background-image: url(../../../images/rtl/menu_sidebar_parent_color.png); }
+
+#system .item > .links a { background-image: url(../../../images/rtl/system_item_links.png); }

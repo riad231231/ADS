@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension method="upgrade" type="library" version="2.5.0">
+	<name>Zen Library</name>
+	<libraryname>zen</libraryname>
+	<author>Joomla Bamboo</author>
+	<creationDate>March 13, 2013</creationDate>
+	<copyright>Copyright (c) 2013 Joomla Bamboo. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>design@joomlabamboo.com</authorEmail>
+	<authorUrl>www.joomlabamboo.com</authorUrl>
+	<version>1.0.3</version>
+	<description>This Library is used by Zen Grid Framework and JBPlugin</description>
+	<files folder="libraries/zen">
+		<folder>addon</folder>
+		<folder>form</folder>
+		<folder>grid</folder>
+		<folder>image</folder>
+		<folder>script</folder>
+		<folder>uri</folder>
+		<folder>utility</folder>
+		<filename>index.html</filename>
+	</files>
+	<media destination="zen" folder="media">
+		<folder>css</folder>
+		<folder>htc</folder>
+		<folder>js</folder>
+		<folder>user</folder>
+		<filename>index.html</filename>
+	</media>
+</extension>

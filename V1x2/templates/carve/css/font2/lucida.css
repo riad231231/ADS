@@ -1,0 +1,17 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote.color,
+#system .item > header time { font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif; }
+
+#bottom-b .mod-headerline .module-title { 
+	line-height: 20px;
+	font-size: 20px;
+}
+
+#system .item > header time .day { letter-spacing: -4px; }

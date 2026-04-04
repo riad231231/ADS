@@ -1,0 +1,16 @@
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+width: 1130px;
+}
+.span12 {
+width: 1130px;
+}
+.offset12 {
+margin-left: 1170px;
+}
+.container {
+max-width: 1150px;
+}
+

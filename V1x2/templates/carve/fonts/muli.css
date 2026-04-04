@@ -1,0 +1,13 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@font-face {
+    font-family: 'MuliRegular';
+    src: url('Muli-Regular-webfont.eot');
+    src: url('Muli-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Muli-Regular-webfont.woff') format('woff'),
+         url('Muli-Regular-webfont.ttf') format('truetype'),
+         url('Muli-Regular-webfont.svg#MuliRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

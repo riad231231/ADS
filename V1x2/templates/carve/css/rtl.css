@@ -1,0 +1,279 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../warp/css/rtl.css);
+
+
+/* Layout
+----------------------------------------------------------------------------------------------------*/
+
+#menu { float: left; }
+
+.sidebar-a-left #maininner,
+.sidebar-b-left #maininner { 
+	padding-left: 0;
+	padding-right: 20px; 
+}
+
+.sidebar-a-right #maininner,
+.sidebar-b-right #maininner { 
+	padding-right: 0;
+	padding-left: 20px; 
+}
+
+#totop-scroller {
+	right: auto;
+	left: 0;
+}
+
+/* Menus
+----------------------------------------------------------------------------------------------------*/
+
+/* Mega Drop-Down Menu */
+
+#menu .fancy { margin-left: 20px; }
+
+.menu-dropdown li.level1 {
+	margin-right: 0;
+	margin-left: 20px;
+}
+
+.menu-dropdown .dropdown { 
+	left: auto;
+	right: -7px;
+}
+
+.menu-dropdown li:hover .dropdown.flip,
+.menu-dropdown li.remain .dropdown.flip { 
+	right: auto;
+	left: -7px;
+}
+
+.menu-dropdown a.level3 {
+	padding-left: 0;
+	padding-right: 12px;
+	background-position: 100% 0;
+}
+
+.menu-dropdown a.level3 { 
+	padding-left: auto;
+	padding-right: 12px;
+	background-position: 100% 0; }
+
+.menu-dropdown a.level3 { background-image: url(../images/rtl/menu_dropdown_level3.png); }
+.menu-dropdown a.level3:hover,
+.menu-dropdown a.level3.current { background-position: 100% -100px; }
+
+/* Sidebar/Accordion Menu */
+
+.menu-sidebar li.parent .level1 > span { 
+	background-image: url(../images/rtl/menu_sidebar_parent.png);
+	background-position: 0 0; }
+.mod-box-black .menu-sidebar li.parent .level1 > span { background-image: url(../images/rtl/menu_sidebar_parent_black.png); }
+.mod-box-color .menu-sidebar li.parent .level1 > span { background-image: url(../images/rtl/menu_sidebar_parent_color.png); }
+
+.menu-sidebar li.parent:hover .level1 > span { background-position: 0 -100px; }
+.menu-sidebar li.parent.active .level1 > span { background-position: 0 -200px; }
+
+.menu-sidebar ul.level2 ul {
+	padding-left: 0;
+	padding-right: 10px;
+}
+
+.menu-sidebar .level2 a > span {
+	padding-left: 0;
+	padding-right: 18px;
+	background-position: 100% 0;
+}
+
+.menu-sidebar span.icon {
+	margin-right: 0;
+	margin-left: 4px;
+}
+
+.menu-sidebar .level2 a:hover > span,
+.menu-sidebar .level2 a.current > span { background-position: 100% -100px; }
+
+/* Line Menu */
+.menu-line li {
+	margin-left: 0;
+	margin-right: 7px;
+	padding-left: 0;
+	padding-right: 8px;
+	background-position: 100% 50%;
+}
+
+.menu-line li:first-child {
+	margin-right: 0;
+	padding-right: 0;
+}
+
+
+/* Modules
+----------------------------------------------------------------------------------------------------*/
+
+.module .badge { 
+	right: auto;
+	left: 20px;
+	background-position: 100% 0;
+}
+
+.module .badge-hot { background-position: 100% 0; }
+.module .badge-top { background-position: 100% -40px; }
+.module .badge-free { background-position: 100% -80px; }
+.module .badge-new { background-position: 100% -120px; }
+
+.module .badge + .module-title { 
+	padding-right: 0;
+	padding-left: 40px;
+}
+
+.grid-h .mod-line:before {
+	left: auto;
+	right: -10px;
+	border-left: none;
+	border-width: 0 1px 0 0;
+}
+
+.mod-line .badge,
+.mod-headerline .badge { 
+	right: auto;
+	left: 0;
+}
+
+/* Only Phones and Tablets (Portrait) */
+@media (max-width: 959px) {
+	.grid-h .mod-line:before { border-right: 0; }
+}
+
+/* Tools
+----------------------------------------------------------------------------------------------------*/
+
+/* Check List */
+ul.check > li {
+	padding-left: 0;
+	padding-right: 30px;
+	background-position: 100% 0;
+}
+
+/* Definition Lists */
+dl.separator dd { border-width: 0 1px 0 0; }
+
+dl.separator dt:before {
+	right: auto;
+	left: -15px;
+}
+
+dl.separator dt:after {
+	right: auto;
+	left: -3px;
+}
+
+/* Contact Icons */
+
+.contact-icons { padding-right: 0; }
+
+.contact-icons li {
+	padding-left: 0;
+	padding-right: 25px;
+	background-position: 100% 0;
+}
+
+.contact-icons .phone { background-position: 100% -50px; }
+.contact-icons .mail { background-position: 100% -100px; }
+
+/* Social Icons */
+
+.social-icons { padding-right: 0; }
+
+.social-icons li a { 
+	margin-right: 0;
+	margin-left: 5px;
+	background-position: 0 0;
+	float: right;
+}
+
+.social-icons .twitter a { background-position: 0 0; }
+.social-icons .twitter a:hover { background-position: 0 -35px; }
+
+.social-icons .facebook a { background-position: 0 -70px; }
+.social-icons .facebook a:hover { background-position: 0 -105px; }
+
+.social-icons .rss a { background-position: 0  -140px; }
+.social-icons .rss a:hover { background-position: 0 -175px; }
+
+.social-icons .googleplus a { background-position: 0 -210px; }
+.social-icons .googleplus a:hover { background-position: 0 -245px; } 
+
+/* System
+----------------------------------------------------------------------------------------------------*/
+
+#system .item { 
+	padding-left: 0;
+	padding-right: 80px; }
+
+#system .item > header time {
+	left: auto;
+	right: -80px;
+}
+
+#system .width50 .item > header time { 
+	left: auto;
+	right: -70px;
+}
+
+#system .item > .links a {
+	padding-left: auto;
+	padding-right: 20px;
+	background-image: url(../images/rtl/system_item_links.png);
+	background-position: 100% 0;
+}
+
+#system .item > .links a:hover { background-position: 100% -20px; }
+
+#system .pagination a.previous, 
+#system .pagination a.next { background-position: 50% -50px; }
+#system .pagination a.previous:hover { background-position: 50% -75px; }
+#system .pagination a.next { background-position: 50% 0; }
+#system .pagination a.next:hover { background-position: 50% -25px; }
+
+#system #comments ul.level1 ul { background-position: 100% 0; }
+
+/* Only Phones (Portrait) */
+@media (max-width: 479px) {
+
+	#system .item { padding-right: 0; }
+
+	#system .item > header time {
+	left: auto;
+	right: 0;
+	text-align: right;
+	}
+
+	#system .width50 .item > header time { 
+	left: auto;
+	right: 0; }
+}
+
+/* Search Box */
+
+.searchbox { background-position: 100% 50%; }
+
+.searchbox .results:before {
+	right: auto;
+	left: 65px;
+}
+
+/* Breadcrums */
+.breadcrumbs a,
+.breadcrumbs > span {
+	padding-right: 0;
+	padding-left: 15px;
+	background-image: url(../images/rtl/breadcrumbs.png);
+	background-position: 0 50%;
+}
+	
+blockquote.color {
+	padding-left: 0;
+	padding-right: 75px;
+	background-position:  100% 0;
+}

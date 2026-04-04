@@ -105,7 +105,7 @@
           </div>
         </a>
         
-                        <nav id="main-nav">
+                                <nav id="main-nav">
           <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item" style="position: relative;">
@@ -115,7 +115,7 @@
                 <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
                 <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
                 <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
-                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+                <li><a href="media.html" class="dropdown-link">Média & Documents</a></li>
               </ul>
             </li>
             <li class="nav-item" style="position: relative;">
@@ -217,6 +217,10 @@
                 .order('sortie_date', { ascending: false });
 
               if (error) throw error;
+              
+              // 4. Vérification de la session pour la confidentialité
+              const { data: { session } } = await client.auth.getSession();
+              const isLoggedIn = !!session;
 
               // 2. Remplissage du tableau (Dernières sorties)
               if (sorties && sorties.length > 0) {
@@ -229,7 +233,9 @@
                     <td><span class="tag-site">${s.site || '—'}</span></td>
                     <td style="text-align: center;">${s.nb_ads || '-'}</td>
                     <td style="text-align: center; font-weight: 700;">${s.nb_jours || 0}</td>
-                    <td class="comment-text">${s.commentaires || ''}</td>
+                    <td class="comment-text">
+                        ${isLoggedIn ? (s.commentaires || '—') : '<span style="color:var(--text-muted); font-size:0.8rem;">🔒 Connectez-vous</span>'}
+                    </td>
                   </tr>
                 `).join('');
               } else {

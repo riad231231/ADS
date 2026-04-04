@@ -211,7 +211,7 @@
           </div>
         </a>
         
-                        <nav id="main-nav">
+                                <nav id="main-nav">
           <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item" style="position: relative;">
@@ -221,7 +221,7 @@
                 <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
                 <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
                 <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
-                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+                <li><a href="media.html" class="dropdown-link">Média & Documents</a></li>
               </ul>
             </li>
             <li class="nav-item" style="position: relative;">
@@ -580,29 +580,36 @@
       </p>
     </div>
   </footer>
-
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Chargement dynamique des sites depuis Supabase
+        if (typeof SUPABASE_URL !== 'undefined') {
+            const supabase = window.supabaseClient || window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            const { data: sites, error } = await supabase.from('sites_de_vol').select('*').order('dept', {ascending:true});
+            
+            if (!error && sites && sites.length > 0) {
+                // Si on a des sites en base, on peut les injecter ou compléter la page
+                console.log("Sites chargés :", sites.length);
+                // Optionnel : On pourrait ici vider la liste statique et la remplacer par la dynamique 
+                // pour une automatisation totale.
+            }
+        }
+    });
+
     function filterSites() {
       const input = document.getElementById('siteSearch');
       const filter = input.value.toLowerCase();
       const cards = document.getElementsByClassName('site-card');
 
       for (let i = 0; i < cards.length; i++) {
-        const searchText = cards[i].getAttribute('data-search') || cards[i].innerText.toLowerCase();
+        const searchText = (cards[i].getAttribute('data-search') || cards[i].innerText).toLowerCase();
         if (searchText.indexOf(filter) > -1) {
           cards[i].style.display = "";
         } else {
           cards[i].style.display = "none";
-        }
-      }
-
-      // Masquer les groupes de départements s'ils n'ont plus de sites visibles
-      const groups = document.getElementsByClassName('dept-group');
-      for (let g = 0; g < groups.length; g++) {
-        const visibleCards = groups[g].querySelectorAll('.site-card[style=""]');
-        if (visibleCards.length === 0 && filter !== "") {
-            // Un peu complexe à gérer parfaitement sans JS plus lourd, 
-            // on se contente de filtrer les cartes pour l'instant.
         }
       }
     }

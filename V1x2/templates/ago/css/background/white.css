@@ -1,0 +1,192 @@
+
+
+/* Copyright (C) jvgtheme.pl 
+
+/* Background
+----------------------------------------------------------------------------------------------------*/
+body#page{
+background: #fff;
+}
+#block-toolbar{background:#252525;
+color:#bbb; 
+padding:3px;
+font-size: 11px;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+#block-header {
+  background:#e7e7e7  url(../../images/background/white/header.png) no-repeat center left;
+   box-shadow: inset 0px 2px 40px 0px rgba(0, 0, 0, 0.3);   
+}
+#block-top-a {background:#ededed url(../../images/background/white/bokeh.jpg) 50% 0px  no-repeat ;
+ box-shadow: inset 0px 2px 40px 0px rgba(0, 0, 0, 0.3);             
+  color: #fff;                
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#block-footer{background:#252525 ;
+   padding: 5px           
+}
+
+#block-bottom {background:#d9d9d9 ;
+color: #666;               
+ border-top: 5px solid #7699AF              
+}
+
+/* Layout
+----------------------------------------------------------------------------------------------------*/
+
+
+#sidebar-a
+.module-title{ background: url(../../images/background/white/border.png) repeat-x scroll center bottom transparent;
+     margin-bottom: 10px;
+padding-bottom: 15px;
+     text-shadow: 0 -1px 0 rgba(255,255,255,0.3);
+}
+
+#sidebar-b
+.module-title{background:#017DAF;
+     color: #fff;
+     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);         
+    position: relative;
+margin: -16px -16px 15px -16px;
+padding: 10px 15px;
+}
+#block-bottom
+.module-title{ 
+background: url(../../images/background/white/border.png) repeat-x scroll center bottom transparent ;
+   display: block;
+    line-height: 35px;
+    padding: 5px;
+    color: #199DD6;
+     text-shadow: 0 1px 1px #fff;
+}
+#top-a
+.module-title{color: #121212}
+
+#block-top-a a {color: #fff}
+    
+#block-top-a a:hover {color: #ddd}
+/* Menus
+----------------------------------------------------------------------------------------------------*/
+/* Drop-Down */
+.menu-dropdown .dropdown {
+	border:none;
+}
+.menu-dropdown a.level1,
+.menu-dropdown span.level1 {
+	color: #222;
+	border:none;
+}
+
+/* Set Active */
+.menu-dropdown li.active .level1 { 
+
+}
+
+/* Set Hover */
+.menu-dropdown li.level1:hover .level1,
+.menu-dropdown li.remain .level1 { background:transparent;
+
+}
+.menu-dropdown .dropdown-bg > div {
+padding: 0 5px;	
+	border-top: none;
+	border:none;
+background:#ededed;
+
+}
+
+.menu-dropdown a.level1,
+.menu-dropdown span.level1 {
+	-webkit-transition: 
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	-moz-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	-o-transition:
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	-ms-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+}
+/* Level 2 */
+.menu-dropdown li.level2 { 
+	margin: 0 5px;
+	border-top:1px solid #444;
+}
+.menu-dropdown a.level2,
+.menu-dropdown span.level2 { color: #444; 
+ text-shadow: 1px 1px 1px #fff;	                            
+-webkit-transition: 
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	-moz-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	-o-transition:
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	-ms-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+}
+.menu-dropdown a.level3{color:#333;
+text-shadow: 1px 1px 1px #fff;
+}
+/* System
+----------------------------------------------------------------------------------------------------*/
+
+time pubdate {
+	float: left;
+	clear:both;
+}
+#system .item > header time {
+	float:left;
+	display: block;
+	text-align: center;
+	width: 60px;
+	background: none repeat scroll 0 0 #FAFAFA;
+	border: 1px solid #ddd;
+	margin: 0 20px 0 0;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	padding-left: 3px;
+}
+#system .item > header time .day {
+	font-size: 50px;
+	letter-spacing: -2px;
+	line-height:50px;
+}
+#system .item > header time .month {
+	font-size: 18px;
+	line-height: 15px;
+}
+#system .width50 .item > header time .day {
+	font-size: 50px;
+	line-height: 50px;
+}
+#system .width50 .item > header time .month {
+	font-size: 18px;
+	line-height: 15px;
+}
+
+
+
+/* System-all
+----------------------------------------------------------------------------------------------------*/

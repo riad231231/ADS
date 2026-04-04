@@ -11,7 +11,7 @@ new_nav_html = '''        <nav id="main-nav">
                 <li><a href="reunions-club.html" class="dropdown-link">Les Réunions Club</a></li>
                 <li><a href="bureau.html" class="dropdown-link">Le Bureau</a></li>
                 <li><a href="adhesion.html" class="dropdown-link">Adhésion</a></li>
-                <li><a href="media.html" class="dropdown-link">Média / Bibliothèque</a></li>
+                <li><a href="media.html" class="dropdown-link">Média & Documents</a></li>
               </ul>
             </li>
             <li class="nav-item" style="position: relative;">

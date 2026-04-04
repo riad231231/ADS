@@ -157,6 +157,8 @@
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('tab-content')">Dashboard Contenu</button>
         <button class="tab-btn" onclick="switchTab('tab-contacts')">Contacts Club</button>
+        <button class="tab-btn" onclick="switchTab('tab-sites')">Sites de Vol</button>
+        <button class="tab-btn" onclick="switchTab('tab-media')">Médias & Vidéos</button>
         <button class="tab-btn" onclick="switchTab('tab-members')">Gestion des Membres <span id="count-wait" style="display:none; background:var(--danger); color:white; font-size:0.7rem; border-radius:50%; width:18px; height:18px; text-align:center; margin-left:5px;">!</span></button>
     </div>
 
@@ -209,9 +211,15 @@
                         <label>Nom du site</label>
                         <input type="text" id="s-site" placeholder="Ex: Rigny le ferron" required>
                     </div>
-                    <div class="field">
-                        <label>Date de la sortie</label>
-                        <input type="date" id="s-date" required>
+                    <div style="display: flex; gap: 1rem;">
+                        <div class="field" style="flex: 1;">
+                            <label>Date de la sortie</label>
+                            <input type="date" id="s-date" required>
+                        </div>
+                        <div class="field" style="flex: 1;">
+                            <label>Nombre de pilotes ADS</label>
+                            <input type="number" id="s-nb" placeholder="4" min="0">
+                        </div>
                     </div>
                     <div class="field">
                         <label>Commentaire / Détails</label>
@@ -251,6 +259,76 @@
             </form>
             <div id="list-contacts" class="list-container" style="max-height: none;">
                 Chargement des contacts...
+            </div>
+        </div>
+    </div>
+
+    <!-- ONGLET 2 BIS: SITES DE VOL -->
+    <div id="tab-sites" class="tab-content">
+        <div class="card" style="border-top: 4px solid var(--amber);">
+            <h2><i class="fas fa-mountain"></i> Gestion des Sites de Vol</h2>
+            <form id="form-site" style="margin-bottom: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div class="field" style="grid-column: span 2;">
+                    <label>Nom du site (ex: Bar sur Aube)</label>
+                    <input type="text" id="si-name" required>
+                </div>
+                <div class="field">
+                    <label>Département (ex: 10)</label>
+                    <input type="number" id="si-dept" required>
+                </div>
+                <div class="field">
+                    <label>ID FFVL (ex: 10002)</label>
+                    <input type="number" id="si-ffvl">
+                </div>
+                <div class="field">
+                    <label>Latitude (ex: 48.23)</label>
+                    <input type="number" step="0.0001" id="si-lat">
+                </div>
+                <div class="field">
+                    <label>Longitude (ex: 4.71)</label>
+                    <input type="number" step="0.0001" id="si-lon">
+                </div>
+                <div class="field" style="grid-column: span 2;">
+                    <label>Orientations vent (ex: O, NO)</label>
+                    <input type="text" id="si-orient" placeholder="N, NE, O...">
+                </div>
+                <div style="display: flex; align-items: flex-end; grid-column: span 2;">
+                    <button type="submit" class="btn-add btn-sortie">Enregistrer le site</button>
+                </div>
+            </form>
+            <div id="list-sites" class="list-container" style="max-height: none;">
+                Chargement des sites...
+            </div>
+        </div>
+    </div>
+
+    <!-- ONGLET 2 TER: MÉDIAS ET VIDÉOS -->
+    <div id="tab-media" class="tab-content">
+        <div class="card" style="border-top: 4px solid var(--secondary);">
+            <h2><i class="fas fa-video"></i> Gestion des Médias & Vidéos</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <!-- Vidéos YouTube -->
+                <div>
+                    <h3>Vidéos (YouTube/Vimeo)</h3>
+                    <form id="form-video" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <input type="text" id="v-title" placeholder="Titre de la vidéo" required>
+                        <input type="url" id="v-url" placeholder="https://youtube.com/watch?v=..." required>
+                        <button type="submit" class="btn-add btn-sortie">Ajouter la vidéo</button>
+                    </form>
+                    <div id="list-videos" class="list-container" style="margin-top: 1rem;"></div>
+                </div>
+
+                <!-- Documents PDF -->
+                <div>
+                    <h3>Documents & PDF</h3>
+                    <form id="form-doc" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <input type="text" id="d-title" placeholder="Nom du document" required>
+                        <input type="file" id="d-file" accept=".pdf,.doc,.docx,.png,.jpg" required>
+                        <button type="submit" class="btn-add btn-sortie">Uploader le fichier</button>
+                    </form>
+                    <div id="list-docs" class="list-container" style="margin-top: 1rem;"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -465,6 +543,36 @@
                 <button type="button" class="btn-del-mini btn-icon" onclick="startDelete('contacts_list', '${c.id}', this)"><i class="fas fa-trash"></i></button>
             </div>
         `).join('') || "<p class='user-email'>Aucun contact enregistré.</p>";
+
+        // Sites
+        const sites = await db.from('sites_de_vol').select('*').order('dept', {ascending:true});
+        document.getElementById('list-sites').innerHTML = (sites.data || []).map(s => `
+            <div class="list-item" style="border-left: 4px solid var(--amber)">
+                <div class="item-info">
+                    <strong>${s.dept} - ${s.name}</strong>
+                    <small>FFVL: ${s.ffvl_id || '?'} | GPS: ${s.lat},${s.lon} | Vent: ${s.orientations}</small>
+                </div>
+                <button type="button" class="btn-del-mini btn-icon" onclick="startDelete('sites_de_vol', '${s.id}', this)"><i class="fas fa-trash"></i></button>
+            </div>
+        `).join('') || "<p class='user-email'>Aucun site enregistré.</p>";
+
+        // Vidéos
+        const videos = await db.from('club_videos').select('*').order('created_at', {ascending:false});
+        document.getElementById('list-videos').innerHTML = (videos.data || []).map(v => `
+            <div class="list-item" style="border-left: 4px solid #f00">
+                <div class="item-info"><strong>${v.title}</strong><small>${v.url}</small></div>
+                <button type="button" class="btn-del-mini btn-icon" onclick="startDelete('club_videos', '${v.id}', this)"><i class="fas fa-trash"></i></button>
+            </div>
+        `).join('') || "—";
+
+        // Documents
+        const docs = await db.from('club_documents').select('*').order('created_at', {ascending:false});
+        document.getElementById('list-docs').innerHTML = (docs.data || []).map(d => `
+            <div class="list-item" style="border-left: 4px solid var(--secondary)">
+                <div class="item-info"><strong>${d.title}</strong><small>${d.file_name}</small></div>
+                <button type="button" class="btn-del-mini btn-icon" onclick="startDelete('club_documents', '${d.id}', this)"><i class="fas fa-trash"></i></button>
+            </div>
+        `).join('') || "—";
     }
 
     // FORMS SUBMITS
@@ -500,6 +608,7 @@
             site: document.getElementById('s-site').value,
             sortie_date: document.getElementById('s-date').value,
             commentaires: document.getElementById('s-msg').value,
+            nb_ads: parseInt(document.getElementById('s-nb').value) || 0,
             initiateur: user.email.split('@')[0]
         }]);
         if (error) showToast(error.message, true);
@@ -518,6 +627,58 @@
         }]);
         if (error) showToast(error.message, true);
         else { showToast("Secteur contact ajouté !"); e.target.reset(); loadAll(); }
+    }
+
+    document.getElementById('form-site').onsubmit = async (e) => {
+        e.preventDefault();
+        const user = await checkAuth();
+        const { error } = await db.from('sites_de_vol').insert([{ 
+            name: document.getElementById('si-name').value,
+            dept: parseInt(document.getElementById('si-dept').value),
+            ffvl_id: parseInt(document.getElementById('si-ffvl').value) || null,
+            lat: parseFloat(document.getElementById('si-lat').value) || null,
+            lon: parseFloat(document.getElementById('si-lon').value) || null,
+            orientations: document.getElementById('si-orient').value,
+            author_id: user.id
+        }]);
+        if (error) showToast(error.message, true);
+        else { showToast("Site enregistré !"); e.target.reset(); loadAll(); }
+    }
+
+    document.getElementById('form-video').onsubmit = async (e) => {
+        e.preventDefault();
+        const user = await checkAuth();
+        const { error } = await db.from('club_videos').insert([{ 
+            title: document.getElementById('v-title').value,
+            url: document.getElementById('v-url').value,
+            author_id: user.id
+        }]);
+        if (error) showToast(error.message, true);
+        else { showToast("Vidéo ajoutée !"); e.target.reset(); loadAll(); }
+    }
+
+    document.getElementById('form-doc').onsubmit = async (e) => {
+        e.preventDefault();
+        const user = await checkAuth();
+        const file = document.getElementById('d-file').files[0];
+        if(!file) return;
+
+        const fileName = `${Date.now()}_${file.name}`;
+        
+        // 1. Upload au Storage
+        const upload = await db.storage.from('documents').upload(fileName, file);
+        if(upload.error) return showToast(upload.error.message, true);
+
+        // 2. Enregistrement en base
+        const { error } = await db.from('club_documents').insert([{ 
+            title: document.getElementById('d-title').value,
+            file_name: fileName,
+            file_url: db.storage.from('documents').getPublicUrl(fileName).data.publicUrl,
+            author_id: user.id
+        }]);
+        
+        if (error) showToast(error.message, true);
+        else { showToast("Document publié !"); e.target.reset(); loadAll(); }
     }
 
     document.getElementById('btn-logout').onclick = async () => {

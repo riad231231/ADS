@@ -1,0 +1,9 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+.menu-dropdown a.level1,
+.menu-dropdown span.level1,
+.menu-dropdown .level2 .level2 span.subtitle { font-family: "DroidSansRegular"; }
+
+
+.menu-dropdown a.level1 > span,
+.menu-dropdown span.level1 > span { font-size: 18px; }

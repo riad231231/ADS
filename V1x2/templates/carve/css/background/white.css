@@ -1,0 +1,15 @@
+/**
+* @package   Pixel Point Creative  | Inc
+* @author    Pixel Point Creative http://www.pixelpointcreative.com
+* @copyright Copyright (C) Pixel Point Creative, LLC
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
+*/
+
+/*Background White*/
+
+@import url(../outercolor/white.css);
+
+#page {
+background: #fff;
+}
+

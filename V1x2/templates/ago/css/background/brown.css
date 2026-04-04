@@ -1,0 +1,217 @@
+
+/* Copyright (C) jvgtheme.pl
+
+/* Background
+----------------------------------------------------------------------------------------------------*/
+body#page { background: #181818; }
+#block-toolbar{
+color:#bbb; 
+
+font-size: 11px;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+#block-header {
+  background:#0E0100 url(../../images/background/brown/header.png)no-repeat center left;
+    box-shadow: inset 0px 2px 40px 0px rgba(0, 0, 0, 0.3);  
+   color: #fff;
+}
+#block-top-a {background:#1c120f url(../../images/background/brown/top_a.jpg) top center  no-repeat ;
+ box-shadow: inset 0px 2px 40px 0px rgba(0, 0, 0, 0.3);             
+  color: #fff;                
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#block-top-b { background:#e2e2e2 ;
+ box-shadow: inset 0px 2px 60px 0px rgba(0, 0, 0, 0.3);            
+}
+
+
+#block-bottom {background:#0E0100 url(../../images/background/blue/map2.png)no-repeat scroll top left;  
+border-top: 5px solid #441907;
+ color: #f2f2f2; 
+ text-shadow: 0 -1px 0 rgba(0,0,0,0.2);    
+}
+#block-footer{background:#1c120f;
+   padding: 5px;          
+}
+
+#sidebar-b
+.module-title{background:#8e3334;
+  position: relative;
+margin: -16px -16px 15px -16px;
+padding: 10px 15px;
+}
+/* Layout
+----------------------------------------------------------------------------------------------------*/
+
+#block-toolbar a{
+color:#fff; 
+padding:3px;
+font-size: 11px;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#toolbar a:hover {
+    color: #0984BE;
+}
+#main .module-title {
+    color: #0e0100;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+#sidebar-a
+.module-title{ background: url(../../images/background/red/border.png) repeat-x scroll center bottom transparent; 
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+}
+#block-bottom
+.module-title{ background: url(../../images/background/blue/border3.png) repeat-x scroll left bottom transparent;
+    line-height: 35px;
+    padding: 5px;
+    color: #f0f0f0;
+     text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+#footer{color: #f2f2f2}
+
+#footer a{color: #bbb}
+
+#footer a:hover{color: #1a1a1a}
+
+
+/* Menus
+----------------------------------------------------------------------------------------------------*/
+/* Drop-Down */
+.menu-dropdown .dropdown {
+	border:none;
+}
+.menu-dropdown a.level1,
+.menu-dropdown span.level1 {
+	color:#fff; 
+	border:none;
+}
+
+/* Set Active */
+.menu-dropdown li.active .level1 { color: #e2e2e2; 
+
+	
+}
+
+/* Set Hover */
+.menu-dropdown li.level1:hover .level1,
+.menu-dropdown li.remain .level1 { color: #d50; 
+
+}
+.menu-dropdown .dropdown-bg > div {
+padding: 0 5px;	
+	border-top: none;
+	border:none;
+	background: #0E0100;
+}
+
+.menu-dropdown a.level1,
+.menu-dropdown span.level1 {
+	-webkit-transition: 
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	-moz-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	-o-transition:
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	-ms-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+	transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.4s ease-in-out,
+		background 0.3s ease-in-out;
+}
+/* Level 2 */
+.menu-dropdown li.level2 { 
+	margin: 0 5px;
+	border-top:1px solid #fff;
+}
+.menu-dropdown a.level2,
+.menu-dropdown span.level2 { color: #fff; 
+-webkit-transition: 
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	-moz-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	-o-transition:
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	-ms-transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+	transition:
+		border-top-color 0.2s ease-in-out,
+		color 0.3s ease-in-out,
+		background 0.4s ease-in-out;
+}
+/* System
+----------------------------------------------------------------------------------------------------*/
+.searchbox input {
+	height: 30px;
+	color: #fff;
+	font-size: 14px;
+}
+/* Drop-Down Results */
+.searchbox .results {
+	top: 41px;
+	right: -1px;
+	width: 300px;
+	border: 1px solid #ddd;
+	background: #ffffff;
+	color: #444;
+}
+
+#system .title a { color: #666; }
+
+time pubdate {
+	float: left;
+	clear:both;
+}
+#system .item > header time {
+	float:left;
+	display: block;
+	text-align: center;
+	width: 60px;
+	background: none repeat scroll 0 0 #FAFAFA;
+	border: 1px solid #ddd;
+	margin: 0 20px 0 0;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	padding-left: 3px;
+}
+#system .item > header time .day {
+	font-size: 50px;
+	letter-spacing: -2px;
+	line-height:50px;
+}
+#system .item > header time .month {
+	font-size: 18px;
+	line-height: 15px;
+}
+#system .width50 .item > header time .day {
+	font-size: 50px;
+	line-height: 50px;
+}
+#system .width50 .item > header time .month {
+	font-size: 18px;
+	line-height: 15px;
+}
+
+/* Tools
+----------------------------------------------------------------------------------------------------*/

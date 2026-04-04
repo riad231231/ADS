@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="content" method="upgrade">
+  <name>PLG_CONTENT_NOTIFYARTICLESUBMIT_PLUGIN_TITLE</name>
+  <author>Gruz</author>
+  <creationDate>2014-06-26</creationDate>
+  <copyright>gruz.org.ua</copyright>
+  <license>GNU General Public License</license>
+  <version>2.5.3</version>
+  <description>PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_DESC</description>
+  <files>
+    <folder>extensions</folder>
+    <folder>language</folder>
+    <folder>assets</folder>
+    <folder>helpers</folder>
+    <filename>scriptfile.php</filename>
+    <filename plugin="notifyarticlesubmit">notifyarticlesubmit.php</filename>
+    <filename>index.html</filename>
+  </files>
+  <scriptfile>scriptfile.php</scriptfile>
+  <!-- A NOTE
+	Though the Regular and Admin division is removed, I leave "ausers" prefix as all previous users have settings with this prefix saved.
+	Besides, the prefix is useful when checkin "User Groups-Specific users" and "Categories-Specific articles" pairs
+  !-->
+  <config>
+    <fields name="params" addfieldpath="/libraries/gjfields">
+      <fieldset name="general_settings" group="settings" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_GENERAL_SETTINGS">
+        <field name="@version" type="nn_version" extension="notifyarticlesubmit" xml="/plugins/content/notifyarticlesubmit/notifyarticlesubmit.xml"/>
+        <!--
+		<field name="nswitch_allowusersselection1" type="modalarticle" label="Article" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS_DESC" />
+		<field name="{block_a1" type="blockquote" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_NOTIFICATION_SWITCH" />
+		<field name="block_a1}" type="blockquote" />
+!-->
+        <!-- General settings { -->
+        <field type="list" name="shownotificationswitch" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_NOTIFICATION_SWITCH" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_NOTIFICATION_SWITCH_DESC" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{shownotificationswitch" type="toggler" param="shownotificationswitch" value="1" class="blockquote"/>
+        <field type="list" name="notificationswitchdefault" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFICATION_SWITCH_DEFAULT" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{nswitch_usergroups" type="blockquote" class="no-box-shadow no-border" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS"/>
+        <field name="nswitch_allowusergroups" type="list" default="2" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_SWITCH" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON_DESC">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALL</option>
+        </field>
+        <field name="{nswitch_allowusergroups" type="toggler" param="nswitch_allowusergroups" value="1,2" class="wrapblock"/>
+        <field name="nswitch_allowusergroupsselection" type="usergroups" size="10" multiple="multiple" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS_DESC">
+          <option value=""/>
+        </field>
+        <field name="nswitch_allowusergroups}" type="toggler"/>
+        <field name="nswitch_usergroups}" type="blockquote"/>
+        <field name="{nswitch_users" type="blockquote" class="no-box-shadow no-border" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SPECIFIC_USERS"/>
+        <field name="nswitch_allowusers" type="list" default="0" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_SWITCH" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON_DESC">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALL</option>
+        </field>
+        <field name="{nswitch_allowusers" type="toggler" param="nswitch_allowusers" value="1,2" class="wrapblock"/>
+        <field name="nswitch_allowusersselection" type="users" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS_DESC">
+						&gt; <option value=""/></field>
+        <field name="nswitch_allowusers}" type="toggler"/>
+        <field name="nswitch_users}" type="blockquote"/>
+        <field name="shownotificationswitch}" type="toggler"/>
+        <field type="list" name="showsuccessmessage" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_SUCCESS_MESSAGE" description="" default="0">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{showsuccessmessage" type="toggler" param="showsuccessmessage" value="1"/>
+        <field type="textareafixed" name="successmessage" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SUCCESS_MESSAGE" rows="4" cols="31" default="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MAIL_HAS_BEEN_SENT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_TO_BE_SHOWN_IN_BROWSER_AFTER_ADDING_OR_UPDATING_AN_ARTICLE"/>
+        <field name="showsuccessmessage}" type="toggler"/>
+        <field type="list" name="showerrormessage" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_ERROR_MESSAGE" description="" default="0">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{showerrormessage" type="toggler" param="showerrormessage" value="1"/>
+        <field type="textareafixed" name="errormessage" label="Error Message" rows="4" cols="31" default="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MAIL_COULD_NOT_BE_SENT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_TO_BE_SHOWN_IN_BROWSER_IF_ERROR_HAPPENS"/>
+        <field name="showerrormessage}" type="toggler"/>
+        <!-- General settings } -->
+        <!-- Debug settings { -->
+        <field type="list" name="debug" label="Debug mode" description="" default="0">
+          <option value="0">JDISABLED</option>
+          <option value="1">JENABLED</option>
+        </field>
+        <field name="{fakeusers" type="toggler" param="debug" value="1"/>
+        <field type="list" name="generatefakeusers" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_GENERATE_FAKE_USERS" description="" default="0">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{generatefakeusers" type="toggler" param="generatefakeusers" value="1"/>
+        <field name="fakeusersgroups" type="usergroup" multiple="multiple" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS_DESC"/>
+        <field type="text" name="fakeusersnumber" size="5" label="Number of users per group, integer" description="" default="1"/>
+        <field name="generatefakeusers}" type="toggler"/>
+        <field name="fakeusers}" type="toggler"/>
+        <!-- Debug settings } -->
+      </fieldset>
+      <fieldset name="settings" group="settings" label="JOPTIONS">
+        <!--
+		<field name="{block_a1" type="variablefield" basetype="blockquote" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SHOW_NOTIFICATION_SWITCH" maxrepeatlength="1" />
+		<field name="nswitch_allowusersselection1" type="variablefield" basetype="modalarticle" label="Article" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS_DESC" />
+		<field name="block_a1}" type="variablefield"  basetype="blockquote" maxrepeatlength="1" />
+!-->
+        <field name="{notificationgroup" length="" maxrepeatlength="" type="variablefield" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD__DEFAULT_RULE_GROUP_NAME" basetype="group"/>
+        <!-- Notification rules  { -->
+        <field name="ausers_notifyon" maxrepeatlength="1" type="variablefield" basetype="list" default="0" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON" description="">
+          <option value="3">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NEVER</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NEW_AND_UPDATED</option>
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NEW_ONLY</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_UPDATED_ONLY</option>
+        </field>
+        <field name="{ausers_notifyon012" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_notifyon" value="0,1,2"/>
+        <field name="{ausers_notifyon02" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_notifyon" value="0,2"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_notifyonaction" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON_ACTION" description="" default="5">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_PUBLISH_ONLY</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_UNPUBLISH_ONLY</option>
+          <option value="6">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_PUBLISH_OR_UNPUBLISH</option>
+          <option value="3">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_CHANGES_IN_PUBLISHED_ONLY</option>
+          <option value="4">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_CHANGES_IN_UNPUBLISHED_ONLY</option>
+          <option value="5">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALWAYS</option>
+        </field>
+        <field name="ausers_notifyon02}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="{ausersnotifyonaction" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_notifyonaction" value="1,2,3,4,5,6"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_notifyonlyifcanview" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ONLY_IF_CAN_VIEW" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ONLY_IF_CAN_VIEW_DESC" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{20111101161730" maxrepeatlength="1" type="variablefield" basetype="blockquote" class="no-box-shadow" label=""/>
+        <field name="ausers_articlegroups" maxrepeatlength="1" type="variablefield" basetype="list" default="0" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_CATEGORIES" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON_DESC">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALL</option>
+        </field>
+        <field name="{ausers_articlegroups12" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_articlegroups" value="1,2"/>
+        <field name="ausers_articlegroupsselection" maxrepeatlength="1" type="variablefield" basetype="category" extension="com_content" multiple="multiple" size="20" show_uncategorized="1" default="" label="" description=""/>
+        <field name="ausers_articlegroups12}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="20111101161730}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="{ausers_notifyon02_a1" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_notifyon" value="0,2"/>
+        <field name="{20111101161745" maxrepeatlength="1" type="variablefield" basetype="blockquote" class="no-box-shadow" label=""/>
+        <field name="ausers_articles" maxrepeatlength="1" type="variablefield" basetype="list" default="0" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SPECIFIC_ARTICLES" description="">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NO_SPECIFIC_RULES</option>
+        </field>
+        <field name="{ausers_articles12" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_articles" value="1,2"/>
+        <field name="ausers_articlesselection" maxrepeatlength="1" type="variablefield" basetype="modalarticle" multiple="1" default="" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ARTICLE_IDS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ARTICLE_IDS_DESC"/>
+        <field name="ausers_articles12}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="20111101161745}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="ausers_notifyon02_a1}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="{20111228015026" maxrepeatlength="1" type="variablefield" basetype="blockquote" class="margin-bottom-medium" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_FOLLOWING_USERS"/>
+        <field name="ausers_notifyusergroups" maxrepeatlength="1" type="variablefield" basetype="list" default="1" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS_DESC">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALL</option>
+        </field>
+        <field name="{ausers_notifyusergroups12" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_notifyusergroups" value="1,2"/>
+        <field name="ausers_notifyusergroupsselection" maxrepeatlength="1" type="variablefield" basetype="usergroups" size="10" multiple="multiple" excludeLevels="0" default="8" label="" description=""/>
+        <field name="ausers_notifyusergroups12}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="ausers_notifyusers" maxrepeatlength="1" type="variablefield" basetype="list" default="0" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SPECIFIC_USERS" description="">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NO_SPECIFIC_RULES</option>
+        </field>
+        <field name="{ausers_notifyusers12" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_notifyusers" value="1,2"/>
+        <field name="ausers_notifyusersselection" maxrepeatlength="1" type="variablefield" basetype="users" default="" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS_DESC"/>
+        <field name="ausers_notifyusers12}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="textarea" name="ausers_additionalmailadresses" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ADDITIONAL_E_MAILS" rows="2" cols="30" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ADDITIONAL_E_MAILS_DESC"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="textarea" name="ausers_excludeusers" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_USERS" rows="2" cols="30" default="arygroup@gmail.com" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ENTER_EMAIL_ADRESSES_1_PER_LINE_TO_EXCLUDE"/>
+        <field name="{20111101161842" maxrepeatlength="1" type="variablefield" basetype="blockquote" class="no-border no-box-shadow" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_AUTHOR"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="author_notifyonaction" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_AUTHOR_OF_THE_ARTICLE" description="" default="6">
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NEVER</option>
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_PUBLISH_ONLY</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_UNPUBLISH_ONLY</option>
+          <option value="6">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_PUBLISH_OR_UNPUBLISH</option>
+          <option value="3">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_CHANGES_IN_PUBLISHED_ONLY</option>
+          <option value="4">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ON_CHANGES_IN_UNPUBLISHED_ONLY</option>
+          <option value="5">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALWAYS</option>
+        </field>
+        <field name="{author_notifyonaction123456" maxrepeatlength="1" type="variablefield" basetype="toggler" param="author_notifyonaction" value="1,2,3,4,5,6"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="author_foranyuserchanges" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_FOR_ALL_USERS_CHANGES" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_AUTHOR_ONLY_IF_HISHER_ARTICLE_IS_MODIFIED_BY_A_USER_ALLOWED_IN_NOTIFY_ON_ACTIONS_PERFORMED_BY_USERS_SECTION_ABOVE" default="1">
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ONLY_FOR_ALLOWED_MODIFIERS</option>
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_FOR_EVERY_MODIFIER</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_authorincludeintrotext" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_INTROTEXT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_INTROTEXT_INTO_MAIL_BODY" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_authorincludefulltext" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_FULLTEXT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_FULLTEXT_INTO_MAIL_BODY" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="author_notifyonaction123456}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="20111101161842}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="{20111101161855" maxrepeatlength="1" type="variablefield" basetype="blockquote" class="no-border no-box-shadow" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_MODIFIER"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_notifymodifier" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_MODIFIER" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_MODIFIER_ON_OWN_CHANGES" default="0">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{ausers_notifymodifier1" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_notifymodifier" value="1"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_modifierincludeintrotext" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_INTROTEXT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_INTROTEXT_INTO_MAIL_BODY" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_modifierincludefulltext" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_FULLTEXT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_FULLTEXT_INTO_MAIL_BODY" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="ausers_notifymodifier1}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="20111101161855}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="20111228015026}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="{20111101161148" maxrepeatlength="1" type="variablefield" basetype="blockquote" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON_ACTIONS_PERFORMED_BY_USERS"/>
+        <field name="{20111101161220" maxrepeatlength="1" type="variablefield" basetype="blockquote" class="no-border no-box-shadow" label=""/>
+        <field name="ausers_allowusergroups" maxrepeatlength="1" type="variablefield" basetype="list" default="0" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON_DESC">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALL</option>
+        </field>
+        <field name="{ausers_allowusergroups12" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_allowusergroups" value="1,2"/>
+        <field name="ausers_allowusergroupsselection" maxrepeatlength="1" type="variablefield" basetype="usergroup" multiple="multiple" notregistered="0" publicfrontend="disable" registred="disable" default="" label="" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_GROUP_LEVELS_DESC"/>
+        <field name="ausers_allowusergroups12}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="20111101161220}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="{20111101161236" maxrepeatlength="1" type="variablefield" basetype="blockquote" class="no-border no-box-shadow" label=""/>
+        <field name="ausers_allowusers" maxrepeatlength="1" type="variablefield" basetype="list" default="0" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SPECIFIC_USERS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFY_ON_DESC">
+          <option value="1">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_SELECTION</option>
+          <option value="2">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EXCLUDE_SELECTION</option>
+          <option value="0">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ALL</option>
+        </field>
+        <field name="{ausers_allowusers12" maxrepeatlength="1" type="variablefield" basetype="toggler" param="ausers_allowusers" value="1,2"/>
+        <field name="ausers_allowusersselection" maxrepeatlength="1" type="variablefield" basetype="users" default="" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_USER_IDS_DESC"/>
+        <field name="ausers_allowusers12}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="20111101161236}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="20111101161148}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="ausersnotifyonaction}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="{message_settings" maxrepeatlength="1" type="variablefield" basetype="blockquote" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_NOTIFICATION_MESSAGE_SETTINGS"/>
+        <!--
+					<field name="messagesystems" maxrepeatlength="1" type="variablefield" basetype="list" multiple="true"  label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_SYSTEM" description="" default="email">
+						<option value="email">Email</option>
+						<option value="joomla">Joomla built in message system</option>
+						<option value="uddieim">UddieIM</option>
+					</field>
+					!-->
+        <!-- <field name="{ausers_messagesystems" maxrepeatlength="1" type="variablefield" basetype="toggler" param="messagesystems" class="margin-bottom-medium" value="email"/>
+						<field name="{messagesystems_email" maxrepeatlength="1" type="variablefield" basetype="blockquote"  label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EMAIL_SPECIFIC"/> !-->
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="emailformat" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EMAIL_FORMAT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EMAIL_FORMAT_DESC" default="plaintext">
+          <option value="plaintext">Plain text</option>
+          <option value="html">HTML</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" multiple="multiple" name="attachpreviousversion" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EMAIL_ATTACH_PREVIOUS_VERSION" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_EMAIL_ATTACH_PREVIOUS_VERSION_DESC" default="0">
+          <option value="html">HTML</option>
+          <option value="txt">plaintext</option>
+          <option value="sql">mysql</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="attachdiffinfo" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_ATTACH_DIFF_INFO" default="0" multiple="multiple">
+          <option value="Html/SideBySide">HTML SideBySide</option>
+          <option value="Html/Inline">HTML Inline</option>
+          <option value="Text/Unified">Text Unified</option>
+          <option value="Text/Context">Text Context</option>
+        </field>
+        <!--	<field name="messagesystems_email}" maxrepeatlength="1" type="variablefield" basetype="blockquote" />
+					 <field name="ausers_messagesystems}" maxrepeatlength="1" type="variablefield" basetype="toggler"/> !-->
+        <field maxrepeatlength="1" type="variablefield" basetype="spacer" name="general_spaser1" hr="false" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_BODY_STRUCTURE" class="spacer-enhanced"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="messagebodysource" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_BODY_SOURCE" description="" default="hardcoded">
+          <option value="hardcoded">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_BODY_HARDCODED</option>
+          <option value="custom">PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_BODY_CUSTOM</option>
+        </field>
+        <field name="{messagebodysource_hardcoded" maxrepeatlength="1" type="variablefield" basetype="toggler" param="messagebodysource" value="hardcoded"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includearticletitle" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_ARTICLE_TITLE" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includecategorytree" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_CATEGORY" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includeauthorname" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_AUTHOR_NAME" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includemodifiername" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_MODIFIER_NAME" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includecreateddate" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_CREATED_DATE" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includemodifieddate" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_MODIFIED_DATE" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includeintrotext" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_INTROTEXT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_INTROTEXT_INTO_MAIL_BODY" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includefulltext" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_FULLTEXT" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_FULLTEXT_INTO_MAIL_BODY" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="{emailformat_plaintext" maxrepeatlength="1" type="variablefield" basetype="toggler" param="emailformat" value="plaintext"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="includediffinfo_text" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_DIFF_INFO" default="none">
+          <option value="none">JNONE</option>
+          <option value="Text/Unified">Text Unified</option>
+          <option value="Text/Context">Text Context</option>
+        </field>
+        <field name="emailformat_plaintext}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="{emailformat_html" maxrepeatlength="1" type="variablefield" basetype="toggler" param="emailformat" value="html"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="includediffinfo_html" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_DIFF_INFO" default="none">
+          <option value="none">JNONE</option>
+          <option value="Html/SideBySide">HTML SideBySide</option>
+          <option value="Html/Inline">HTML Inline</option>
+          <option value="Text/Unified">Text Unified</option>
+          <option value="Text/Context">Text Context</option>
+        </field>
+        <field name="emailformat_html}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includefrontendviewlink" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_LINK_TO_ARTICLE" description="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_LINK_TO_VIEW_AN_ARTICLE_AT_THE_WEB_SITE_IF_PUBLISHED" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includefrontendeditlink" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_FRONTEND_EDIT_LINK" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field maxrepeatlength="1" type="variablefield" basetype="list" name="ausers_includebackendeditlink" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_INCLUDE_BACKEND_EDIT_LINK" description="" default="1">
+          <option value="0">JNO</option>
+          <option value="1">JYES</option>
+        </field>
+        <field name="messagebodysource_hardcoded}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="{messagebodysource_custom" maxrepeatlength="1" type="variablefield" basetype="toggler" param="messagebodysource" value="custom"/>
+        <field maxrepeatlength="1" type="variablefield" basetype="textareafixed" name="messagesubjectcustom" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_SUBJECT_PLACEHOLDERS" rows="4" cols="40" default="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_SUBJECT_PLACEHOLDERS_DEFAULT" description=""/>
+        <field maxrepeatlength="1" type="variablefield" basetype="textareafixed" name="messagebodycustom" label="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_BODY_PLACEHOLDERS" rows="16" cols="40" default="PLG_CONTENT_NOTIFYARTICLESUBMIT_FIELD_MESSAGE_BODY_PLACEHOLDERS_DEFAULT" description=""/>
+        <field name="messagebodysource_custom}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="message_settings}" maxrepeatlength="1" type="variablefield" basetype="blockquote"/>
+        <field name="ausers_notifyon012}" maxrepeatlength="1" type="variablefield" basetype="toggler"/>
+        <field name="notificationgroup}" type="variablefield" basetype="group"/>
+      </fieldset>
+    </fields>
+  </config>
+  <updateservers>
+    <servers type="extension" priority="1" name="notifyarticlesubmit">http://gruz.org.ua/index.php?option=com_ars&amp;view=update&amp;task=stream&amp;format=xml&amp;id=7&amp;dummy=extension.xml</servers>
+  </updateservers>
+</extension>
